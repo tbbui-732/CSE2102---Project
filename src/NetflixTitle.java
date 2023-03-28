@@ -7,7 +7,7 @@ public class NetflixTitle {
   private String show_id;
   private String rating;
 
-  public NetflixTitle(String initTitle, String initDirector, String initCountries[], String initGenre, String initShowID, string initRating) {
+  public NetflixTitle(String initTitle, String initDirector, String initCountries[], String initGenre, String initShowID, String initRating) {
     title = initTitle;
     director = initDirector;
     countries = initCountries;
@@ -103,7 +103,7 @@ public class NetflixTitle {
     return director;
   }
 
-  public String getCountries() {
+  public String[] getCountries() {
     return countries;
   }
 
@@ -115,7 +115,7 @@ public class NetflixTitle {
     return show_id;
   }
 
-  public string getRating() {
+  public String getRating() {
     return rating;
   }
 }
