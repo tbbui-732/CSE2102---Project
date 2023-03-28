@@ -1,0 +1,1 @@
+In this project, you will build an interactive system (command-line based) for managing the inventory for a video streaming service, such as Netflix. This system will be built incrementally following a process that is similar to the agile approach. Each sprint will be 1 week long, and will culminate with a demo in the lab.
