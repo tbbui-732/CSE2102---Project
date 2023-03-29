@@ -3,6 +3,9 @@
 ## Project - Video Inventory System
 In this project, you will build an interactive system (command-line based) for managing the inventory for a video streaming service, such as Netflix. This system will be built incrementally following a process that is similar to the agile approach. Each sprint will be 1 week long, and will culminate with a demo in the lab.
 
+## Specified Sprints
+- Located in the project_info PDF
+
 ## Test Driver Specifications
 ### The goal of the test driver is to test the accessor, mutator and constructor methods in your classes. Implement the test driver in the following steps:
 1. Prompt the user whether they want to build a TV show or a movie.
