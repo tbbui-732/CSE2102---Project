@@ -3,14 +3,14 @@ public class NetflixShows extends NetflixTitle{
   private int numEpisodes;
   public NetflixShows(String initTitle,
                       String initDirector,
-                      String initCountries[],
+                      String initCountry,
                       String initGenre,
                       String initShowID,
                       String initRating,
                       int initNumSeasons,
                       int initNumEpisodes)
   {
-    super(initTitle, initDirector, initCountries, initGenre, initShowID, initRating);
+    super(initTitle, initDirector, initCountry, initGenre, initShowID, initRating);
     numSeasons = initNumSeasons;
     numEpisodes = initNumEpisodes;
   }

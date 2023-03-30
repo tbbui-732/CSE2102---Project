@@ -20,7 +20,7 @@ public class NetflixTitleContainers {
         // Store information
         String title      = moviesContainer[i].getTitle();
         String director   = moviesContainer[i].getDirector();
-        String countries  = moviesContainer[i].getCountries();
+        String country  = moviesContainer[i].getCountry();
         String genre      = moviesContainer[i].getGenre();
         String show_id    = moviesContainer[i].getID();
         String rating     = moviesContainer[i].getRating();
@@ -29,7 +29,7 @@ public class NetflixTitleContainers {
         // Display information
         System.out.printf("Title: %s\n",      title);
         System.out.printf("Director: %s\n",   director);
-        System.out.printf("Countries: %s\n",  countries);
+        System.out.printf("Country: %s\n",    country);
         System.out.printf("Genre: %s\n",      genre);
         System.out.printf("Show ID: %s\n",    show_id);
         System.out.printf("Rating: %s\n",     rating);
