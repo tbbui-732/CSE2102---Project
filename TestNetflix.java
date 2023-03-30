@@ -1,9 +1,10 @@
 import java.util.Scanner;
 
 public class TestNetflix {
-  
+  private static NetflixTitleContainers database;
   public static int buildNetflixTitle() {
-    // Returns 0 for MOVIES and 1 for TV SHOW
+    // Return  1 for TV SHOW
+    // Return  0 for MOVIES 
     // Return -1 for bad answer
 
     // Get user input
