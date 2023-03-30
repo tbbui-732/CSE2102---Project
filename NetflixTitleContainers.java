@@ -101,9 +101,16 @@ public class NetflixTitleContainers {
     moviesContainer = newMoviesContainer;
   }
   
-  // TODO: implement this method
-  public static void addShow() {
-    
-  }
+  public static void addShow(NetflixShows show) {
+    int n = showsContainer.length;
+    NetflixShows newShowsContainer[] = new NetflixShows[n+1];
 
+    for (int i = 0; i < n; i++) {
+      newShowsContainer[i] = showsContainer[i];
+    }
+
+    newShowsContainer[n] = show;
+    
+    showsContainer = newShowsContainer;
+  }
 }
