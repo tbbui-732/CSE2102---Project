@@ -2,23 +2,26 @@ import java.util.Scanner;
 
 public class TestNetflix {
   private static NetflixTitleContainers database;
+  private static Scanner sc = new Scanner(System.in);
+  // NOTE: remove these attributes
+  private static NetflixMovies movie; 
+  private static NetflixShows show;
+
   public static int buildNetflixTitle() {
     // Return  1 for TV SHOW
     // Return  0 for MOVIES 
     // Return -1 for bad answer
 
     // Get user input
-    Scanner sc = new Scanner(System.in);
     System.out.println("Would you like to build a TV Show or a Movie?");
     String selection = sc.nextLine();
-    sc.close();
 
-    // Build based on selection
-    System.out.printf("Okay, we are going to build a %s\n", selection);
 
-    if (selection == "TV Show") {
+    if (selection.equalsIgnoreCase("TV Show")) {
+      System.out.println("Okay, we are going to build a TV Show");
       return 1;
-    } else if (selection == "Movie") {
+    } else if (selection.equalsIgnoreCase("Movie")) {
+      System.out.println("Okay, we are going to build a Movie");
       return 0;
     } else {
       return -1;
@@ -26,7 +29,6 @@ public class TestNetflix {
   }
 
   public static void buildTVShow() {
-    Scanner sc = new Scanner(System.in); 
     String title;
     String director;
     String country;
@@ -37,49 +39,43 @@ public class TestNetflix {
     int numEpisodes;
 
     // Prompt attributes
+
     System.out.printf("Enter show title: ");
     title = sc.nextLine();
 
-    System.out.printf("\nEnter show director: ");
+    System.out.printf("Enter show director: ");
     director = sc.nextLine();
 
-    System.out.printf("\nEnter show country: ");
+    System.out.printf("Enter show country: ");
     country = sc.nextLine();
 
-    System.out.printf("\nEnter show genre: ");
+    System.out.printf("Enter show genre: ");
     genre = sc.nextLine();
 
-    System.out.printf("\nEnter show ID: ");
+    System.out.printf("Enter show ID: ");
     show_id = sc.nextLine();
 
-    System.out.printf("\nEnter show rating: ");
+    System.out.printf("Enter show rating: ");
     rating = sc.nextLine();
-    sc.close();
 
-    System.out.printf("\nEnter number of seasons: ");
+    System.out.printf("Enter number of seasons: ");
     numSeasons = Integer.parseInt(sc.nextLine());
 
-    System.out.printf("\nEnter number of episodes: ");
+    System.out.printf("Enter number of episodes: ");
     numEpisodes = Integer.parseInt(sc.nextLine());
     
     // Add prompts to database
-    NetflixShows show = new NetflixShows(title, director, country, genre, show_id, rating, numSeasons, numEpisodes);
-    database.addShow(show);
+    NetflixShows newShow = new NetflixShows(title, director, country, genre, show_id, rating, numSeasons, numEpisodes);
+    show = newShow;
+    database.addShow(newShow);
 
     // Output TV Show that was just created
-    // System.out.printf("Show title: %s", title);
-    // System.out.printf("Show director: %s", title);
-    // System.out.printf("Show country: %s", title);
-    // System.out.printf("Show genre: %s", title);
-    // System.out.printf("Show ID: %s", title);
-    // System.out.printf("Show rating: %s", title);
-    // System.out.printf("Show seasons: %s", title);
-    // System.out.printf("Show episodes: %s", title);
+    System.out.println("\n-- Show information --");
     database.displayShowInfo(show.getTitle());
+    System.out.println("");
   }
 
   public static void buildMovie() {
-    Scanner sc = new Scanner(System.in); 
     String title;
     String director;
     String country;
@@ -89,55 +85,198 @@ public class TestNetflix {
     int duration;
 
     // Prompt attributes
+
     System.out.printf("Enter movie title: ");
     title = sc.nextLine();
 
-    System.out.printf("\nEnter movie director: ");
+    System.out.printf("Enter movie director: ");
     director = sc.nextLine();
 
-    System.out.printf("\nEnter movie country: ");
+    System.out.printf("Enter movie country: ");
     country = sc.nextLine();
 
-    System.out.printf("\nEnter movie genre: ");
+    System.out.printf("Enter movie genre: ");
     genre = sc.nextLine();
 
-    System.out.printf("\nEnter movie ID: ");
+    System.out.printf("Enter movie ID: ");
     show_id = sc.nextLine();
 
-    System.out.printf("\nEnter movie rating: ");
+    System.out.printf("Enter movie rating: ");
     rating = sc.nextLine();
-    sc.close();
 
-    System.out.printf("\nEnter movie duration: ");
+    System.out.printf("Enter movie duration: ");
     duration = Integer.parseInt(sc.nextLine());
 
     // Store contents of movie into movie database
-    NetflixMovies movie = new NetflixMovies(title, director, country, genre, show_id, rating, duration);
-    database.addMovie(movie);
+    NetflixMovies newMovie = new NetflixMovies(title, director, country, genre, show_id, rating, duration);
+    movie = newMovie;
+    database.addMovie(newMovie);
 
     // Output movie that was just created
-    // System.out.printf("Movie title: %s",      title);
-    // System.out.printf("Movie director: %s",   director);
-    // System.out.printf("Movie country: %s",    country);
-    // System.out.printf("Movie genre: %s",      genre);
-    // System.out.printf("Movie ID: %s",         show_id);
-    // System.out.printf("Movie rating: %s",     rating);
-    // System.out.printf("Movie duration: %d",   duration);
-
+    System.out.println("\n-- Movie information --");
     database.displayMovieInfo(movie.getTitle());
+    System.out.println("");
+  }
+
+  public static void changeMovieAttribute(int attribute) {
+    String input;
+    switch(attribute) {
+      case 1:
+        System.out.printf("Old title: %s\n", movie.getTitle());
+        System.out.printf("Enter new value: ");
+        input = sc.nextLine();
+        movie.changeTitle(input);
+        System.out.printf("New title: %s\n", movie.getTitle());
+        break;
+      case 2:
+        System.out.printf("Old director: %s\n", movie.getDirector());
+        System.out.printf("Enter new value: ");
+        input = sc.nextLine();
+        movie.changeDirector(input);
+        System.out.printf("New director: %s\n", movie.getDirector());
+        break;
+      case 3:
+        System.out.printf("Old country: %s\n", movie.getCountry());
+        System.out.printf("Enter new value: ");
+        input = sc.nextLine();
+        movie.setNewCountry(input);
+        System.out.printf("New country: %s\n", movie.getCountry());
+        break;
+      case 4:
+        System.out.printf("Old genre: %s\n", movie.getGenre());
+        System.out.printf("Enter new value: ");
+        input = sc.nextLine();
+        movie.changeGenre(input);
+        System.out.printf("New genre: %s\n", movie.getGenre());
+        break;
+      case 5:
+        System.out.printf("Old show ID: %s\n", movie.getID());
+        System.out.printf("Enter new value: ");
+        input = sc.nextLine();
+        movie.changeShowID(input);
+        System.out.printf("New show ID: %s\n", movie.getID());
+        break;
+      case 6:
+        System.out.printf("Old rating: %s\n", movie.getRating());
+        System.out.printf("Enter new value: ");
+        input = sc.nextLine();
+        movie.changeRating(input);
+        System.out.printf("New rating: %s\n", movie.getRating());
+        break;
+      case 7:
+        System.out.printf("Old duration: %d\n", movie.getDuration());
+        System.out.printf("Enter new value: ");
+        input = sc.nextLine();
+        movie.setDuration(Integer.parseInt(input));
+        System.out.printf("New duration: %d\n", movie.getDuration());
+        break;
+    }
+  }
+
+  public static void changeShowAttribute (int attribute) {
+    String input;
+    switch(attribute) {
+      case 1:
+        System.out.printf("Old title: %s\n", show.getTitle());
+        System.out.printf("Enter new value: ");
+        input = sc.nextLine();
+        show.changeTitle(input);
+        System.out.printf("New title: %s\n", show.getTitle());
+        break;
+      case 2:
+        System.out.printf("Old director: %s\n", show.getDirector());
+        System.out.printf("Enter new value: ");
+        input = sc.nextLine();
+        show.changeDirector(input);
+        System.out.printf("New director: %s\n", show.getDirector());
+        break;
+      case 3:
+        System.out.printf("Old country: %s\n", show.getCountry());
+        System.out.printf("Enter new value: ");
+        input = sc.nextLine();
+        show.setNewCountry(input);
+        System.out.printf("New country: %s\n", show.getCountry());
+        break;
+      case 4:
+        System.out.printf("Old genre: %s\n", show.getGenre());
+        System.out.printf("Enter new value: ");
+        input = sc.nextLine();
+        show.changeGenre(input);
+        System.out.printf("New genre: %s\n", show.getGenre());
+        break;
+      case 5:
+        System.out.printf("Old show ID: %s\n", show.getID());
+        System.out.printf("Enter new value: ");
+        input = sc.nextLine();
+        show.changeShowID(input);
+        System.out.printf("New show ID: %s\n", show.getID());
+        break;
+      case 6:
+        System.out.printf("Old rating: %s\n", show.getRating());
+        System.out.printf("Enter new value: ");
+        input = sc.nextLine();
+        show.changeRating(input);
+        System.out.printf("New rating: %s\n", show.getRating());
+        break;
+      case 8:
+        System.out.printf("Old seasons: %d\n", show.getNumSeasons());
+        System.out.printf("Enter new value: ");
+        input = sc.nextLine();
+        show.setNumSeasons(Integer.parseInt(input));
+        System.out.printf("New seasons: %d\n", show.getNumSeasons());
+        break;
+      case 9: 
+        System.out.printf("Old episodes: %d\n", show.getNumEpisodes());
+        System.out.printf("Enter new value: ");
+        input = sc.nextLine();
+        show.setNumEpisodes(Integer.parseInt(input));
+        System.out.printf("New episodes: %d\n", show.getNumEpisodes());
+        break;
+    }
   }
 
   public static void main(String[] args) {
     int selection = buildNetflixTitle();
-    
+
     if (selection == 1) { // TV Shows
       buildTVShow();
     } else if (selection == 0) { // Movies
       buildMovie();
     } else { // Error
       System.out.println("Bad input, make sure you answer is either 'TV Show' or 'Movie'\n");
-      selection = buildNetflixTitle();
+      return;
     }
-  
+
+    System.out.print("Do you want to change an attribute? (yes or no): ");
+    String answer = sc.nextLine();
+    //System.out.println(answer);
+
+    if (answer.equals("yes")) {
+      // Change attribute
+      System.out.println("Choose the attribute you want to change --");
+      System.out.println("1 > Title");
+      System.out.println("2 > Director");
+      System.out.println("3 > Country");
+      System.out.println("4 > Genre");
+      System.out.println("5 > Show ID");
+      System.out.println("6 > Rating");
+      System.out.println("7 (movies only) > Duration");
+      System.out.println("8 (shows only)  > Seasons");
+      System.out.println("9 (shows only)  > Episodes");
+
+      int attribute = Integer.parseInt(sc.nextLine());
+
+      if (selection == 1) { // TV SHOW
+        changeShowAttribute(attribute); 
+        System.out.println("\n-- Updated show information --");
+        database.displayShowInfo(show.getTitle());
+      } else if (selection == 0) { // MOVIES
+        changeMovieAttribute(attribute);
+        System.out.println("\n-- Updated movie information --");
+        database.displayMovieInfo(movie.getTitle());
+      }
+
+    }
+    sc.close();
   }
 }
