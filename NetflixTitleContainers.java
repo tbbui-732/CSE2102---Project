@@ -32,7 +32,7 @@ public class NetflixTitleContainers {
         System.out.printf("Genre: %s\n",      genre);
         System.out.printf("Show ID: %s\n",    show_id);
         System.out.printf("Rating: %s\n",     rating);
-        System.out.printf("Duration: %d\n",   duration);
+        System.out.printf("Duration (in minutes): %d\n",   duration);
 
         return 1;
       }
