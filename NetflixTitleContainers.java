@@ -1,8 +1,7 @@
 public class NetflixTitleContainers {
-  private static NetflixMovies moviesContainer[];
-  private static NetflixShows showsContainer[];
+  private static NetflixMovies moviesContainer[] = new NetflixMovies[1];
+  private static NetflixShows showsContainer[] = new NetflixShows[1];
   
-  // -- Display method --
   public static int displayMovieInfo(String movieName) {
     // Return 1 if successful
     //        0 otherwise
