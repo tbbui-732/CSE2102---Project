@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class TestNetflix {
-  private static NetflixTitleContainers database;
+  private static NetflixTitleContainers database = new NetflixTitleContainers();
   private static Scanner sc = new Scanner(System.in);
   // NOTE: remove these attributes
   private static NetflixMovies movie; 
