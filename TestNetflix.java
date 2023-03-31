@@ -170,6 +170,12 @@ public class TestNetflix {
         movie.setDuration(Integer.parseInt(input));
         System.out.printf("New duration: %d\n", movie.getDuration());
         break;
+      case "seasons":
+        System.out.println("> (!) Can not change show attribute for movie object\n> (!) No changes have been made");
+        break;
+      case "episodes":
+        System.out.println("> (!) Can not change show attribute for movie object\n> (!) No changes have been made");
+        break;
     }
   }
 
@@ -217,6 +223,9 @@ public class TestNetflix {
         input = sc.nextLine();
         show.changeRating(input);
         System.out.printf("New rating: %s\n", show.getRating());
+        break;
+      case "duration":
+        System.out.println("> (!) Can not change a movie attribute for a show object\n> (!) No changes have been made...");
         break;
       case "seasons":
         System.out.printf("Old seasons: %d\n", show.getNumSeasons());
