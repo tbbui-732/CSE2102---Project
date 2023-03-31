@@ -1,8 +1,8 @@
 public class NetflixTitleContainers {
-  private static NetflixMovies moviesContainer[] = new NetflixMovies[1];
-  private static NetflixShows showsContainer[] = new NetflixShows[1];
+  private NetflixMovies moviesContainer[] = new NetflixMovies[1];
+  private NetflixShows showsContainer[] = new NetflixShows[1];
   
-  public static int displayMovieInfo(String movieName) {
+  public int displayMovieInfo(String movieName) {
     // Return 1 if successful
     //        0 otherwise
 
@@ -43,7 +43,7 @@ public class NetflixTitleContainers {
     return 0;
   }
 
-  public static int displayShowInfo(String showName) {
+  public int displayShowInfo(String showName) {
     // Return 1 if successful
     //        0 otherwise
 
@@ -88,7 +88,7 @@ public class NetflixTitleContainers {
 
   // Mutator methods 
   // NOTE: neither have been fully tested yet
-  public static void addMovie(NetflixMovies movie) {
+  public void addMovie(NetflixMovies movie) {
     int n = moviesContainer.length;
     NetflixMovies newMoviesContainer[];
     if (n == 1) {
@@ -105,7 +105,7 @@ public class NetflixTitleContainers {
     moviesContainer = newMoviesContainer;
   }
   
-  public static void addShow(NetflixShows show) {
+  public void addShow(NetflixShows show) {
     int n = showsContainer.length;
     NetflixShows newShowsContainer[];
     if (n == 1) {
