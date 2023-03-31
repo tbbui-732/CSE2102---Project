@@ -118,54 +118,54 @@ public class TestNetflix {
     System.out.println("");
   }
 
-  public static void changeMovieAttribute(int attribute) {
+  public static void changeMovieAttribute(String attribute) {
     String input;
     switch(attribute) {
-      case 1:
+      case "title":
         System.out.printf("Old title: %s\n", movie.getTitle());
-        System.out.printf("Enter new value: ");
+        System.out.printf("Enter new title: ");
         input = sc.nextLine();
         movie.changeTitle(input);
         System.out.printf("New title: %s\n", movie.getTitle());
         break;
-      case 2:
+      case "director":
         System.out.printf("Old director: %s\n", movie.getDirector());
-        System.out.printf("Enter new value: ");
+        System.out.printf("Enter new director: ");
         input = sc.nextLine();
         movie.changeDirector(input);
         System.out.printf("New director: %s\n", movie.getDirector());
         break;
-      case 3:
+      case "country":
         System.out.printf("Old country: %s\n", movie.getCountry());
-        System.out.printf("Enter new value: ");
+        System.out.printf("Enter new country: ");
         input = sc.nextLine();
         movie.setNewCountry(input);
         System.out.printf("New country: %s\n", movie.getCountry());
         break;
-      case 4:
+      case "genre":
         System.out.printf("Old genre: %s\n", movie.getGenre());
-        System.out.printf("Enter new value: ");
+        System.out.printf("Enter new genre: ");
         input = sc.nextLine();
         movie.changeGenre(input);
         System.out.printf("New genre: %s\n", movie.getGenre());
         break;
-      case 5:
+      case "id":
         System.out.printf("Old show ID: %s\n", movie.getID());
-        System.out.printf("Enter new value: ");
+        System.out.printf("Enter new show id: ");
         input = sc.nextLine();
         movie.changeShowID(input);
         System.out.printf("New show ID: %s\n", movie.getID());
         break;
-      case 6:
+      case "rating":
         System.out.printf("Old rating: %s\n", movie.getRating());
-        System.out.printf("Enter new value: ");
+        System.out.printf("Enter new rating: ");
         input = sc.nextLine();
         movie.changeRating(input);
         System.out.printf("New rating: %s\n", movie.getRating());
         break;
-      case 7:
+      case "duration":
         System.out.printf("Old duration: %d\n", movie.getDuration());
-        System.out.printf("Enter new value: ");
+        System.out.printf("Enter new duration (in minutes): ");
         input = sc.nextLine();
         movie.setDuration(Integer.parseInt(input));
         System.out.printf("New duration: %d\n", movie.getDuration());
@@ -173,61 +173,61 @@ public class TestNetflix {
     }
   }
 
-  public static void changeShowAttribute (int attribute) {
+  public static void changeShowAttribute (String attribute) {
     String input;
     switch(attribute) {
-      case 1:
+      case "title":
         System.out.printf("Old title: %s\n", show.getTitle());
-        System.out.printf("Enter new value: ");
+        System.out.printf("Enter new title: ");
         input = sc.nextLine();
         show.changeTitle(input);
         System.out.printf("New title: %s\n", show.getTitle());
         break;
-      case 2:
+      case "director":
         System.out.printf("Old director: %s\n", show.getDirector());
-        System.out.printf("Enter new value: ");
+        System.out.printf("Enter new director: ");
         input = sc.nextLine();
         show.changeDirector(input);
         System.out.printf("New director: %s\n", show.getDirector());
         break;
-      case 3:
+      case "country":
         System.out.printf("Old country: %s\n", show.getCountry());
-        System.out.printf("Enter new value: ");
+        System.out.printf("Enter new country: ");
         input = sc.nextLine();
         show.setNewCountry(input);
         System.out.printf("New country: %s\n", show.getCountry());
         break;
-      case 4:
+      case "genre":
         System.out.printf("Old genre: %s\n", show.getGenre());
-        System.out.printf("Enter new value: ");
+        System.out.printf("Enter new genre: ");
         input = sc.nextLine();
         show.changeGenre(input);
         System.out.printf("New genre: %s\n", show.getGenre());
         break;
-      case 5:
+      case "id":
         System.out.printf("Old show ID: %s\n", show.getID());
-        System.out.printf("Enter new value: ");
+        System.out.printf("Enter new id: ");
         input = sc.nextLine();
         show.changeShowID(input);
         System.out.printf("New show ID: %s\n", show.getID());
         break;
-      case 6:
+      case "rating":
         System.out.printf("Old rating: %s\n", show.getRating());
-        System.out.printf("Enter new value: ");
+        System.out.printf("Enter new rating: ");
         input = sc.nextLine();
         show.changeRating(input);
         System.out.printf("New rating: %s\n", show.getRating());
         break;
-      case 8:
+      case "seasons":
         System.out.printf("Old seasons: %d\n", show.getNumSeasons());
-        System.out.printf("Enter new value: ");
+        System.out.printf("Enter new number of seasons: ");
         input = sc.nextLine();
         show.setNumSeasons(Integer.parseInt(input));
         System.out.printf("New seasons: %d\n", show.getNumSeasons());
         break;
-      case 9: 
+      case "episodes": 
         System.out.printf("Old episodes: %d\n", show.getNumEpisodes());
-        System.out.printf("Enter new value: ");
+        System.out.printf("Enter new number of episodes: ");
         input = sc.nextLine();
         show.setNumEpisodes(Integer.parseInt(input));
         System.out.printf("New episodes: %d\n", show.getNumEpisodes());
@@ -253,18 +253,20 @@ public class TestNetflix {
 
     if (answer.equals("yes")) {
       // Change attribute
-      System.out.println("Choose the attribute you want to change --");
-      System.out.println("1 > Title");
-      System.out.println("2 > Director");
-      System.out.println("3 > Country");
-      System.out.println("4 > Genre");
-      System.out.println("5 > Show ID");
-      System.out.println("6 > Rating");
-      System.out.println("7 (movies only) > Duration");
-      System.out.println("8 (shows only)  > Seasons");
-      System.out.println("9 (shows only)  > Episodes");
+      System.out.println("Choose the attribute you want to change (type the full name) --");
+      System.out.println("1 > title");
+      System.out.println("2 > director");
+      System.out.println("3 > country");
+      System.out.println("4 > genre");
+      System.out.println("5 > id");
+      System.out.println("6 > rating");
+      System.out.println("7 (movies only) > duration");
+      System.out.println("8 (shows only)  > seasons");
+      System.out.println("9 (shows only)  > episodes");
+      System.out.print("> ");
 
-      int attribute = Integer.parseInt(sc.nextLine());
+      String attribute = sc.nextLine();
+      System.out.println("\n-- Updating information --");
 
       if (selection == 1) { // TV SHOW
         changeShowAttribute(attribute); 
