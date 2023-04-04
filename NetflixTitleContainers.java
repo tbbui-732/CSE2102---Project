@@ -1,6 +1,8 @@
+import java.util.ArrayList;
+
 public class NetflixTitleContainers {
-    private NetflixMovies moviesContainer[] = new NetflixMovies[1];
-    private NetflixShows showsContainer[] = new NetflixShows[1];
+    private ArrayList<NetflixMovies> movieContainer = new ArrayList<NetflixMovies>();
+    private ArrayList<NetflixShows> showContainer = new ArrayList<NetflixMovies>();
 
     public int displayMovieInfo(String movieName) {
         // Return 1 if successful
