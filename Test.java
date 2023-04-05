@@ -1,12 +1,21 @@
+import java.io.FileNotFoundException;
+
 public class Test {
+    private static NetflixTitleContainers database = new NetflixTitleContainers();
     public static void testCSVParser() {
         String filename = "netflix.csv";
-        CSVParser csv = new CSVParser(filename);
-        csv.displayCSVFile();
+
+        try {
+            CSVParser csv = new CSVParser(filename);
+            csv.parseCSVFile();
+        } catch (FileNotFoundException error) {
+            error.printStackTrace();
+            System.exit(1);
+        }
+
     }
 
     public static void testContainer() {
-        NetflixTitleContainers database = new NetflixTitleContainers();
         NetflixMovies movie = new NetflixMovies(
             "title",
             "director",
@@ -38,5 +47,7 @@ public class Test {
 
     public static void main(String[] args) {
         testContainer();
+        System.out.println(database.titleExists("title"));
+        System.out.println(database.titleExists("tle"));
     }
 }
