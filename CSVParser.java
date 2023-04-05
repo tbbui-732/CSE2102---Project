@@ -9,6 +9,7 @@ public class CSVParser {
         this.filename = filename;
     }
 
+    // Prints out every line in CSV file
     public void displayCSVFile() {
         try {
             Scanner sc = new Scanner(new File(filename));
