@@ -6,6 +6,7 @@ public class NetflixTitle {
     private String genre;
     private String show_id;
     private String rating;
+    private int release_year; 
 
     public NetflixTitle(String initTitle, String initDirector, String initCountry, String initGenre, String initShowID, String initRating) {
         title = initTitle;
@@ -40,6 +41,10 @@ public class NetflixTitle {
     public void changeRating(String newRating) {
         rating = newRating;
     }
+     
+    public void changeYear(int newYear) {
+        release_year = newYear;
+    }
 
     // Accessor methods
     public String getTitle() {
@@ -64,5 +69,9 @@ public class NetflixTitle {
 
     public String getRating() {
         return rating;
+    }
+
+    public int getYear() {
+        return release_year;
     }
 }

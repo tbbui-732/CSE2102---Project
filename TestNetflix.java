@@ -34,7 +34,6 @@ public class TestNetflix {
         String show_id;
         String rating;
         int numSeasons;
-        int numEpisodes;
 
         // Prompt attributes
 
@@ -59,11 +58,8 @@ public class TestNetflix {
         System.out.printf("Enter number of seasons: ");
         numSeasons = Integer.parseInt(sc.nextLine());
 
-        System.out.printf("Enter number of episodes: ");
-        numEpisodes = Integer.parseInt(sc.nextLine());
-
         // Add prompts to database
-        NetflixShows newShow = new NetflixShows(title, director, country, genre, show_id, rating, numSeasons, numEpisodes);
+        NetflixShows newShow = new NetflixShows(title, director, country, genre, show_id, rating, numSeasons);
         database.addShow(newShow);
 
         // Output TV Show that was just created
@@ -160,6 +156,13 @@ public class TestNetflix {
                 movie.changeRating(input);
                 System.out.printf("New rating: %s\n", movie.getRating());
                 break;
+            case "year":
+                System.out.printf("Old year: %s\n", show.getYear());
+                System.out.printf("Enter new year: ");
+                input = sc.nextLine();
+                show.changeYear(Integer.parseInt(input));
+                System.out.printf("New year: %s\n", show.getYear());
+                break;
             case "duration":
                 System.out.printf("Old duration: %d\n", movie.getDuration());
                 System.out.printf("Enter new duration (in minutes): ");
@@ -168,9 +171,6 @@ public class TestNetflix {
                 System.out.printf("New duration: %d\n", movie.getDuration());
                 break;
             case "seasons":
-                System.out.println("> (!) Can not change show attribute for movie object\n> (!) No changes have been made");
-                break;
-            case "episodes":
                 System.out.println("> (!) Can not change show attribute for movie object\n> (!) No changes have been made");
                 break;
         }
@@ -222,6 +222,13 @@ public class TestNetflix {
                 show.changeRating(input);
                 System.out.printf("New rating: %s\n", show.getRating());
                 break;
+            case "year":
+                System.out.printf("Old year: %s\n", show.getYear());
+                System.out.printf("Enter new year: ");
+                input = sc.nextLine();
+                show.changeYear(Integer.parseInt(input));
+                System.out.printf("New year: %s\n", show.getYear());
+                break;
             case "duration":
                 System.out.println("> (!) Can not change a movie attribute for a show object\n> (!) No changes have been made...");
                 break;
@@ -231,13 +238,6 @@ public class TestNetflix {
                 input = sc.nextLine();
                 show.setNumSeasons(Integer.parseInt(input));
                 System.out.printf("New seasons: %d\n", show.getNumSeasons());
-                break;
-            case "episodes": 
-                System.out.printf("Old episodes: %d\n", show.getNumEpisodes());
-                System.out.printf("Enter new number of episodes: ");
-                input = sc.nextLine();
-                show.setNumEpisodes(Integer.parseInt(input));
-                System.out.printf("New episodes: %d\n", show.getNumEpisodes());
                 break;
         }
     }
@@ -289,9 +289,9 @@ public class TestNetflix {
             System.out.println("4 > genre");
             System.out.println("5 > id");
             System.out.println("6 > rating");
-            System.out.println("7 (movies only) > duration");
-            System.out.println("8 (shows only)  > seasons");
-            System.out.println("9 (shows only)  > episodes");
+            System.out.println("7 > year");
+            System.out.println("8  (movies only) > duration");
+            System.out.println("9  (shows only)  > seasons");
             System.out.print("> ");
 
             String attribute = sc.nextLine();
