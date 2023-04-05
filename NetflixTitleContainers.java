@@ -96,4 +96,45 @@ public class NetflixTitleContainers {
     public void addShow(NetflixShows show) {
         showContainer.add(show);
     }
+
+    // Accessor methods
+    // Returns null if movie is not found or doesn't exist
+    public NetflixMovies getMovie(String title) {
+       int n = movieContainer.size();
+       for (int i = 0; i < n; i++) {
+           if (movieContainer.get(i).getTitle() == title) {
+               return movieContainer.get(i);
+           }
+       }
+       return null;
+    }
+
+    // Returns null if show is not found or doesn't exist
+    public NetflixShows getShow(String title) {
+       int n = showContainer.size();
+       for (int i = 0; i < n; i++) {
+           if (showContainer.get(i).getTitle() == title) {
+               return showContainer.get(i);
+           }
+       }
+       return null;
+    }
+
+    public boolean titleExists(String title) {
+        int n = movieContainer.size();
+        for (int i = 0; i < n; i++) {
+            if (movieContainer.get(i).getTitle() == title) {
+                return true;
+            }
+        }
+        
+        n = showContainer.size();
+        for (int i = 0; i < n; i++) {
+            if (showContainer.get(i).getTitle() == title) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

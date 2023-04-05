@@ -17,10 +17,9 @@ public class CSVParser {
             throw new FileNotFoundException("FileNotFoundException: " + filename + " does not exist");
         }
     }
-
-    // TODO: we need a function that parses through every CSV line
-    //  Each line builds either a NetflixShow or NetflixMovie
-    //  It then adds it to the NetflixContainers database
+    
+    // TODO: 
+    //  Read data from this file and a build a database of titles
     public void parseCSVFile() {
         try {
             file_sc = new Scanner(new File(filename));
