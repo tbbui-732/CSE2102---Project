@@ -89,37 +89,11 @@ public class NetflixTitleContainers {
     }
 
     // Mutator methods 
-    // NOTE: neither have been fully tested yet
     public void addMovie(NetflixMovies movie) {
-        int n = moviesContainer.length;
-        NetflixMovies newMoviesContainer[];
-        if (n == 1) {
-            newMoviesContainer = new NetflixMovies[1];
-            newMoviesContainer[0] = movie;
-        } else {
-            newMoviesContainer = new NetflixMovies[n+1];
-            for (int i = 0; i < n; i++) {
-                newMoviesContainer[i] = moviesContainer[i];
-            }
-            newMoviesContainer[n] = movie;
-        }
-
-        moviesContainer = newMoviesContainer;
+        movieContainer.add(movie);
     }
 
     public void addShow(NetflixShows show) {
-        int n = showsContainer.length;
-        NetflixShows newShowsContainer[];
-        if (n == 1) {
-            newShowsContainer = new NetflixShows[1];
-            newShowsContainer[0] = show;
-        } else {
-            newShowsContainer = new NetflixShows[n+1];
-            for (int i = 0; i < n; i++) {
-                newShowsContainer[i] = showsContainer[i];
-            }
-            newShowsContainer[n] = show;
-        }
-        showsContainer = newShowsContainer;
+        showContainer.add(show);
     }
 }
