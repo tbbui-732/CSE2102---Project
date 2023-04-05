@@ -64,12 +64,11 @@ public class TestNetflix {
 
         // Add prompts to database
         NetflixShows newShow = new NetflixShows(title, director, country, genre, show_id, rating, numSeasons, numEpisodes);
-        show = newShow;
         database.addShow(newShow);
 
         // Output TV Show that was just created
         System.out.println("\n-- Show information --");
-        database.displayShowInfo(show.getTitle());
+        database.displayShowInfo(title);
         System.out.println("");
     }
 
@@ -107,16 +106,16 @@ public class TestNetflix {
 
         // Store contents of movie into movie database
         NetflixMovies newMovie = new NetflixMovies(title, director, country, genre, show_id, rating, duration);
-        movie = newMovie;
         database.addMovie(newMovie);
 
         // Output movie that was just created
         System.out.println("\n-- Movie information --");
-        database.displayMovieInfo(movie.getTitle());
+        database.displayMovieInfo(title);
         System.out.println("");
     }
 
-    public static void changeMovieAttribute(String attribute) {
+    public static void changeMovieAttribute(String attribute, String movieTitle) {
+        NetflixMovies movie = database.getMovie(movieTitle);
         String input;
         switch(attribute) {
             case "title":
@@ -177,8 +176,9 @@ public class TestNetflix {
         }
     }
 
-    public static void changeShowAttribute (String attribute) {
+    public static void changeShowAttribute (String attribute, String showTitle) {
         String input;
+        NetflixShows show = database.getShow(showTitle);
         switch(attribute) {
             case "title":
                 System.out.printf("Old title: %s\n", show.getTitle());
@@ -273,12 +273,14 @@ public class TestNetflix {
                 break;
         }
 
-
         System.out.print("Do you want to change an attribute? (yes or no): ");
         String answer = sc.nextLine();
-        //System.out.println(answer);
 
         if (answer.equals("yes")) {
+            System.out.print("Enter the title you want to edit> ");
+            String title = sc.nextLine();
+            System.out.println("");
+
             // Change attribute
             System.out.println("Choose the attribute you want to change (type the full name) --");
             System.out.println("1 > title");
@@ -296,15 +298,14 @@ public class TestNetflix {
             System.out.println("\n-- Updating information --");
 
             if (selection == 1) { // TV SHOW
-                changeShowAttribute(attribute); 
+                changeShowAttribute(attribute, title); 
                 System.out.println("\n-- Updated show information --");
-                database.displayShowInfo(show.getTitle());
+                database.displayShowInfo(title);
             } else if (selection == 0) { // MOVIES
-                changeMovieAttribute(attribute);
+                changeMovieAttribute(attribute, title);
                 System.out.println("\n-- Updated movie information --");
-                database.displayMovieInfo(movie.getTitle());
+                database.displayMovieInfo(title);
             }
-
         }
         sc.close();
     }
