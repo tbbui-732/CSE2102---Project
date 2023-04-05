@@ -2,13 +2,13 @@ import java.util.ArrayList;
 
 public class NetflixTitleContainers {
     private ArrayList<NetflixMovies> movieContainer = new ArrayList<NetflixMovies>();
-    private ArrayList<NetflixShows> showContainer = new ArrayList<NetflixMovies>();
+    private ArrayList<NetflixShows> showContainer = new ArrayList<NetflixShows>();
 
     public int displayMovieInfo(String movieName) {
         // Return 1 if successful
         //        0 otherwise
 
-        int n = moviesContainer.length;
+        int n = movieContainer.size();
 
         // Return error if empty
         if (n == 0) {
@@ -17,15 +17,15 @@ public class NetflixTitleContainers {
         }
 
         for (int i = 0; i < n; i++) {
-            if (movieName == moviesContainer[i].getTitle()) {
+            if (movieName == movieContainer.get(i).getTitle()) {
                 // Store information
-                String title      = moviesContainer[i].getTitle();
-                String director   = moviesContainer[i].getDirector();
-                String country  = moviesContainer[i].getCountry();
-                String genre      = moviesContainer[i].getGenre();
-                String show_id    = moviesContainer[i].getID();
-                String rating     = moviesContainer[i].getRating();
-                int duration      = moviesContainer[i].getDuration();
+                String title      = movieContainer.get(i).getTitle();
+                String director   = movieContainer.get(i).getDirector();
+                String country    = movieContainer.get(i).getCountry();
+                String genre      = movieContainer.get(i).getGenre();
+                String show_id    = movieContainer.get(i).getID();
+                String rating     = movieContainer.get(i).getRating();
+                int duration      = movieContainer.get(i).getDuration();
 
                 // Display information
                 System.out.printf("Title: %s\n",      title);
@@ -49,7 +49,7 @@ public class NetflixTitleContainers {
         // Return 1 if successful
         //        0 otherwise
 
-        int n = showsContainer.length;
+        int n = showContainer.size();
 
         // Return error if empty
         if (n == 0) {
@@ -58,16 +58,16 @@ public class NetflixTitleContainers {
         }
 
         for (int i = 0; i < n; i++) {
-            if (showName == showsContainer[i].getTitle()) {
+            if (showName == showContainer.get(i).getTitle()) {
                 // Store information
-                String title      = showsContainer[i].getTitle();
-                String director   = showsContainer[i].getDirector();
-                String country    = showsContainer[i].getCountry();
-                String genre      = showsContainer[i].getGenre();
-                String show_id    = showsContainer[i].getID();
-                String rating     = showsContainer[i].getRating();
-                int numSeasons    = showsContainer[i].getNumSeasons();
-                int numEpisodes   = showsContainer[i].getNumEpisodes();
+                String title      = showContainer.get(i).getTitle();
+                String director   = showContainer.get(i).getDirector();
+                String country    = showContainer.get(i).getCountry();
+                String genre      = showContainer.get(i).getGenre();
+                String show_id    = showContainer.get(i).getID();
+                String rating     = showContainer.get(i).getRating();
+                int numSeasons    = showContainer.get(i).getNumSeasons();
+                int numEpisodes   = showContainer.get(i).getNumEpisodes();
 
                 // Display information
                 System.out.printf("Title: %s\n",              title);
