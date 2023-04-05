@@ -9,6 +9,8 @@ public class CSVParser {
     
     public CSVParser(String filename) throws FileNotFoundException {
         this.filename = filename;
+
+        // Throw an exception if file is not found
         try {
             file_sc = new Scanner(new File(filename));
         } catch (FileNotFoundException error) {

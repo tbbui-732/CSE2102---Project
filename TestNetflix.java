@@ -5,9 +5,6 @@ import java.util.Scanner;
 public class TestNetflix {
     private static NetflixTitleContainers database = new NetflixTitleContainers();
     private static Scanner sc = new Scanner(System.in);
-    // NOTE: remove these attributes
-    private static NetflixMovies movie; 
-    private static NetflixShows show;
 
     public static int buildNetflixTitle() {
         // Return  1 for TV SHOW
@@ -17,7 +14,6 @@ public class TestNetflix {
         // Get user input
         System.out.println("Would you like to build a TV Show or a Movie?");
         String selection = sc.nextLine();
-
 
         if (selection.equalsIgnoreCase("TV Show")) {
             System.out.println("Okay, we are going to build a TV Show");
@@ -247,16 +243,36 @@ public class TestNetflix {
     }
 
     public static void main(String[] args) {
-        int selection = buildNetflixTitle();
 
-        if (selection == 1) { // TV Shows
-            buildTVShow();
-        } else if (selection == 0) { // Movies
-            buildMovie();
-        } else { // Error
-            System.out.println("Bad input, make sure you answer is either 'TV Show' or 'Movie'\n");
-            return;
+        // Get filename and parse through it
+        try {
+            System.out.print("Please enter the name of the input file: ");
+            String filename = sc.nextLine();
+            CSVParser csvParser = new CSVParser(filename);
+            csvParser.parseCSVFile(); // Operates upon and adds each line to database
+        } 
+        // Throw error if file does not exist; exitting program...
+        catch (FileNotFoundException error) {
+            error.printStackTrace();
+            System.exit(1);
         }
+        
+        // Allow user to add another Netflix title
+        int selection = buildNetflixTitle();
+        while (selection < 0) {
+            // Continually ask for input until answer is correct
+            System.out.println("Bad input, make sure you answer is either 'TV Show' or 'Movie'\n");
+            selection = buildNetflixTitle();
+        }
+        switch(selection) {
+            case 0: 
+                buildMovie();
+                break;
+            case 1: 
+                buildTVShow();
+                break;
+        }
+
 
         System.out.print("Do you want to change an attribute? (yes or no): ");
         String answer = sc.nextLine();
