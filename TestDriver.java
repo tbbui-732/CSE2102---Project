@@ -1,9 +1,10 @@
 import java.io.IOException;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+import java.util.ArrayList;
 
-public class TestNetflix {
-    private static NetflixTitleContainers database = new NetflixTitleContainers();
+public class TestDriver {
+    private static NetflixTitleContainer database = new NetflixTitleContainer();
     private static Scanner sc = new Scanner(System.in);
 
     public static int buildNetflixTitle() {
@@ -43,9 +44,9 @@ public class TestNetflix {
         System.out.print("Title: ");              t_title        = sc.nextLine();
         System.out.print("Director: ");           t_director     = sc.nextLine();
         System.out.print("Country/Countries: ");  t_country      = sc.nextLine();
-        System.out.print("Release year: ");       t_release_year = sc.nextLine();
+        System.out.print("Release year: ");       t_release_year = Integer.parseInt(sc.nextLine());
         System.out.print("Rating: ");             t_rating       = sc.nextLine();
-        System.out.print("Number of seasons: ");  t_seasons      = sc.nextLine();
+        System.out.print("Number of seasons: ");  t_seasons      = Integer.parseInt(sc.nextLine());
         System.out.print("Genre: ");              t_genre        = sc.nextLine();
 
         // Add prompts to database
@@ -66,7 +67,7 @@ public class TestNetflix {
 
         // Output TV Show that was just created
         System.out.println("\n-- Show information --");
-        database.displayShowInfo(title);
+        database.displayShowInfo(t_title);
         System.out.println("");
     }
 
@@ -87,9 +88,9 @@ public class TestNetflix {
         System.out.print("Title: ");              t_title        = sc.nextLine();
         System.out.print("Director: ");           t_director     = sc.nextLine();
         System.out.print("Country/Countries: ");  t_country      = sc.nextLine();
-        System.out.print("Release year: ");       t_release_year = sc.nextLine();
+        System.out.print("Release year: ");       t_release_year = Integer.parseInt(sc.nextLine());
         System.out.print("Rating: ");             t_rating       = sc.nextLine();
-        System.out.print("Duration (in minutes): ");  t_minutes      = sc.nextLine();
+        System.out.print("Duration (in minutes): ");  t_minutes      = Integer.parseInt(sc.nextLine());
         System.out.print("Genre: ");              t_genre        = sc.nextLine();
 
         // Add prompts to database
@@ -110,7 +111,7 @@ public class TestNetflix {
 
         // Output TV Show that was just created
         System.out.println("\n-- Movie information --");
-        database.displayMovieInfo(title);
+        database.displayMovieInfo(t_title);
         System.out.println("");
     }
 
@@ -129,52 +130,52 @@ public class TestNetflix {
         String input;
         switch(attribute) {
             case "id": 
-                System.out.println("Old ID: %s", t_show_id);
+                System.out.printf("Old ID: %s\n", t_show_id);
                 input = sc.nextLine();
                 movie.setID(input);
-                System.out.println("New ID: %s", movie.getID());
+                System.out.printf("New ID: %s\n", movie.getID());
                 break;
             case "title": 
-                System.out.println("Old title: %s", t_title);
+                System.out.printf("Old title: %s\n", t_title);
                 input = sc.nextLine();
                 movie.setTitle(input);
-                System.out.println("New title: %s", movie.getTitle());
+                System.out.printf("New title: %s\n", movie.getTitle());
                 break;
             case "director":
-                System.out.println("Old director: %s", t_director);
+                System.out.printf("Old director: %s\n", t_director);
                 input = sc.nextLine();
                 movie.setDirector(input);
-                System.out.println("New director: %s", movie.getDirector());
+                System.out.printf("New director: %s\n", movie.getDirector());
                 break;
             case "country":
-                System.out.println("Old country: %s", t_country);
+                System.out.printf("Old country: %s\n", t_country);
                 input = sc.nextLine();
                 movie.setCountry(input);
-                System.out.println("New country: %s", movie.getCountry());
+                System.out.printf("New country: %s\n", movie.getCountry());
                 break;
             case "year":
-                System.out.println("Old year: %d", t_release_year);
+                System.out.printf("Old year: %d\n", t_release_year);
                 input = sc.nextLine();
                 movie.setYear(Integer.parseInt(input));
-                System.out.println("New year: %d", movie.getYear());
+                System.out.printf("New year: %d\n", movie.getYear());
                 break;
             case "rating":
-                System.out.println("Old rating: %s", t_rating);
+                System.out.printf("Old rating: %s\n", t_rating);
                 input = sc.nextLine();
                 movie.setRating(input);
-                System.out.println("New rating: %s", movie.getRating());
+                System.out.printf("New rating: %s\n", movie.getRating());
                 break;
             case "seasons":
-                System.out.println("Old number of seasons: %d", t_seasons);
+                System.out.printf("Old number of minutes: %d\n", t_minutes);
                 input = sc.nextLine();
                 movie.setDuration(Integer.parseInt(input));
-                System.out.println("New number of seasons: %d", movie.getDuration());
+                System.out.printf("New number of minutes: %d\n", movie.getDuration());
                 break;
             case "genre":
-                System.out.println("Old genre: %s", t_genre);
+                System.out.printf("Old genre: %s\n", t_genre);
                 input = sc.nextLine();
                 movie.setGenre(input);
-                System.out.println("New genre: %s", movie.getGenre());
+                System.out.printf("New genre: %s\n", movie.getGenre());
                 break;
         }
     }
@@ -194,52 +195,52 @@ public class TestNetflix {
         String input;
         switch(attribute) {
             case "id": 
-                System.out.println("Old ID: %s", t_show_id);
+                System.out.printf("Old ID: %s\n", t_show_id);
                 input = sc.nextLine();
                 show.setID(input);
-                System.out.println("New ID: %s", show.getID());
+                System.out.printf("New ID: %s\n", show.getID());
                 break;
             case "title": 
-                System.out.println("Old title: %s", t_title);
+                System.out.printf("Old title: %s\n", t_title);
                 input = sc.nextLine();
                 show.setTitle(input);
-                System.out.println("New title: %s", show.getTitle());
+                System.out.printf("New title: %s\n", show.getTitle());
                 break;
             case "director":
-                System.out.println("Old director: %s", t_director);
+                System.out.printf("Old director: %s\n", t_director);
                 input = sc.nextLine();
                 show.setDirector(input);
-                System.out.println("New director: %s", show.getDirector());
+                System.out.printf("New director: %s\n", show.getDirector());
                 break;
             case "country":
-                System.out.println("Old country: %s", t_country);
+                System.out.printf("Old country: %s\n", t_country);
                 input = sc.nextLine();
                 show.setCountry(input);
-                System.out.println("New country: %s", show.getCountry());
+                System.out.printf("New country: %s\n", show.getCountry());
                 break;
             case "year":
-                System.out.println("Old year: %d", t_release_year);
+                System.out.printf("Old year: %d\n", t_release_year);
                 input = sc.nextLine();
                 show.setYear(Integer.parseInt(input));
-                System.out.println("New year: %d", show.getYear());
+                System.out.printf("New year: %d\n", show.getYear());
                 break;
             case "rating":
-                System.out.println("Old rating: %s", t_rating);
+                System.out.printf("Old rating: %s\n", t_rating);
                 input = sc.nextLine();
                 show.setRating(input);
-                System.out.println("New rating: %s", show.getRating());
+                System.out.printf("New rating: %s\n", show.getRating());
                 break;
             case "duration":
-                System.out.println("Old number of seasons: %d", t_seasons);
+                System.out.printf("Old number of seasons: %d\n", t_seasons);
                 input = sc.nextLine();
                 show.setDuration(Integer.parseInt(input));
-                System.out.println("New number of seasons: %d", show.getDuration());
+                System.out.printf("New number of seasons: %d\n", show.getDuration());
                 break;
             case "genre":
-                System.out.println("Old genre: %s", t_genre);
+                System.out.printf("Old genre: %s\n", t_genre);
                 input = sc.nextLine();
                 show.setGenre(input);
-                System.out.println("New genre: %s", show.getGenre());
+                System.out.printf("New genre: %s\n", show.getGenre());
                 break;
         }
     }
@@ -404,7 +405,7 @@ public class TestNetflix {
 
     // Displays titles based on desired country
     public static void searchCountry() {
-        ArrayList<String> countries = database.getcountries();
+        ArrayList<String> countries = database.getCountries();
         int n = countries.size();
         System.out.println("Please select from the following countries");
         for (int i = 0; i < n; i++) {
@@ -474,6 +475,7 @@ public class TestNetflix {
         System.out.println("8. TV-G");
 
         String rating;
+        int n;
         rating = sc.nextLine();
 
         // Display titles with current rating
@@ -500,7 +502,8 @@ public class TestNetflix {
         System.out.println("Program will display years +/- 50 years");
 
         int year;
-        year = sc.nextLine();
+        int n;
+        year = Integer.parseInt(sc.nextLine());
 
         int minYear = year - 50;
         int maxYear = year + 50;
@@ -511,7 +514,7 @@ public class TestNetflix {
 
         n = movieContainer.size();
         for (int i = 0; i < n; i++) {
-            int currYear = movieContainer.getYear();
+            int currYear = movieContainer.get(i).getYear();
             if (currYear >= minYear && currYear <= maxYear) {
                 System.out.println(movieContainer.get(i).getTitle());
             }
@@ -519,7 +522,7 @@ public class TestNetflix {
 
         n = showContainer.size();
         for (int i = 0; i < n; i++) {
-            int currYear = showContainer.getYear();
+            int currYear = showContainer.get(i).getYear();
             if (currYear >= minYear && currYear <= maxYear) {
                 System.out.println(showContainer.get(i).getTitle());
             }
@@ -539,8 +542,8 @@ public class TestNetflix {
         selection = sc.nextLine();
 
         // Find titles within selected time range
-        int minTime;
-        int maxTime;
+        int minTime = 0;
+        int maxTime = 30;
 
         switch(selection) {
             case "a":
@@ -577,7 +580,6 @@ public class TestNetflix {
                 System.out.println(movieContainer.get(i).getTitle());
             }
         }
-
     }
 
     public static void searchShowDuration() {
@@ -593,8 +595,8 @@ public class TestNetflix {
         selection = sc.nextLine();
 
         // Find titles within selected time range
-        int minSeason;
-        int maxSeason;
+        int minSeason = 0;
+        int maxSeason = 3;
 
         switch(selection) {
             case "a":
@@ -627,7 +629,7 @@ public class TestNetflix {
         int n = showContainer.size();
         for (int i = 0; i < n; i++) {
             int curr_year = showContainer.get(i).getYear();
-            if (curr_year <= maxTime && curr_year >= minTime) {
+            if (curr_year <= maxSeason && curr_year >= minSeason) {
                 System.out.println(showContainer.get(i).getTitle());
             }
         }
@@ -680,36 +682,35 @@ public class TestNetflix {
     }
 
     public static void mainMenu() {
-        String input; 
+        int input; 
 
         System.out.println("\n--- Please enter number to select following options ---");
         System.out.println("1. Add a title");
         System.out.println("2. Delete a title");
         System.out.println("3. Search for a title (displays information)");
         System.out.println("4. Modify a title");
-        System.out.println("Type 'exit' to end program");
+        System.out.println("5. Exit program");
+        input = Integer.parseInt(sc.nextLine());
 
-        input = sc.nextLine();
-
-        while (Integer.parseInt(input) < 1 || Integer.parseInt(input) > 4) {
+        while (input < 1 || input > 4) {
             System.out.println("Invalid input, please enter a value between (1-5)");
             input = Integer.parseInt(sc.nextLine());
         }
         
         switch(input) {
-            case "1": 
+            case 1: 
                 System.out.println("--- Adding a new title ---");
                 addNewTitle();
                 break;
-            case "2": 
+            case 2: 
                 System.out.println("--- Deleting a title ---");
                 deleteTitle(); 
                 break;
-            case "3": 
+            case 3: 
                 System.out.println("--- Searching for a title ---");
-
+                searchForTitle();
                 break;
-            case "4": 
+            case 4: 
                 System.out.println("--- Modifying an existing title ---");
                 modifyExistingTitle();
                 break;
