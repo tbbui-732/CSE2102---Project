@@ -164,7 +164,7 @@ public class TestNetflix {
                 movie.setRating(input);
                 System.out.println("New rating: %s", movie.getRating());
                 break;
-            case "duration":
+            case "seasons":
                 System.out.println("Old number of seasons: %d", t_seasons);
                 input = sc.nextLine();
                 movie.setDuration(Integer.parseInt(input));
@@ -279,8 +279,8 @@ public class TestNetflix {
             System.out.println("5 > id");
             System.out.println("6 > rating");
             System.out.println("7 > year");
-            System.out.println("8  (movies only) > duration");
-            System.out.println("9  (shows only)  > seasons");
+            System.out.println("8 (movies only) > duration");
+            System.out.println("9 (shows only)  > seasons");
             System.out.print("> ");
 
             String attribute = sc.nextLine();
@@ -329,11 +329,354 @@ public class TestNetflix {
             System.exit(1);
         }
     }
+
+    // TODO: write method for modifying existing title
+    public static void modifyExistingTitle() {
+        String type;
+        String title;
+        String attribute;
+
+        System.out.print("Modify 'TV Show' or 'Movie'? : ");
+        type = sc.nextLine();
+
+        System.out.print("Enter title you want to modify: ");
+        title = sc.nextLine();
+
+        System.out.println("Choose the attribute you want to change (type the full name) --");
+        System.out.println("1 > title");
+        System.out.println("2 > director");
+        System.out.println("3 > country");
+        System.out.println("4 > genre");
+        System.out.println("5 > id");
+        System.out.println("6 > rating");
+        System.out.println("7 > year");
+        System.out.println("8 (movies only) > duration");
+        System.out.println("9 (shows only)  > seasons");
+        System.out.print("> ");
+        attribute = sc.nextLine();
+        
+        // Make sure type exists
+        while (!(type.equalsIgnoreCase("TV Show")) && !(type.equalsIgnoreCase("Movie"))) {
+            System.out.print("Invalid type: 'TV Show' or 'Movie'? : ");
+            type = sc.nextLine();
+        }
+        
+        // Change attributes
+        if (type.equalsIgnoreCase("TV Show")) {
+            changeShowAttribute(attribute, title);
+            return;
+        } else if (type.equalsIgnoreCase("Movie")) {
+            changeMovieAttribute(attribute, title);
+            return;
+        }
+    }
     
-    // TODO: write method for searching title
-    public static void searchTitle() {
+    // Displays titles based on desired director
+    public static void searchDirector() {
+        ArrayList<String> directors = database.getDirectors();
+        int n = directors.size();
+        System.out.println("Please select from the following directors");
+        for (int i = 0; i < n; i++) {
+            System.out.printf("%d: %s\n", i, directors.get(i));
+        }
+        
+        String director;
+        director = sc.nextLine();
+        
+        // Display titles with current director name
+        ArrayList<NetflixMovie> movieContainer = database.getMovieContainer();
+        ArrayList<NetflixShow> showContainer = database.getShowContainer();
 
+        n = movieContainer.size();
+        for (int i = 0; i < n; i++) {
+            if (director.equalsIgnoreCase(movieContainer.get(i).getDirector())) {
+                System.out.println(movieContainer.get(i).getTitle());
+            }
+        }
+        
+        n = showContainer.size();
+        for (int i = 0; i < n; i++) {
+            if (director.equalsIgnoreCase(showContainer.get(i).getDirector())) {
+                System.out.println(showContainer.get(i).getTitle());
+            }
+        }
+    }
 
+    // Displays titles based on desired country
+    public static void searchCountry() {
+        ArrayList<String> countries = database.getcountries();
+        int n = countries.size();
+        System.out.println("Please select from the following countries");
+        for (int i = 0; i < n; i++) {
+            System.out.printf("%d: %s\n", i, countries.get(i));
+        }
+
+        String country;
+        country = sc.nextLine();
+
+        // Display titles with current country
+        ArrayList<NetflixMovie> movieContainer = database.getMovieContainer();
+        ArrayList<NetflixShow> showContainer = database.getShowContainer();
+
+        n = movieContainer.size();
+        for (int i = 0; i < n; i++) {
+            if (country.equalsIgnoreCase(movieContainer.get(i).getCountry())) {
+                System.out.println(movieContainer.get(i).getTitle());
+            }
+        }
+
+        n = showContainer.size();
+        for (int i = 0; i < n; i++) {
+            if (country.equalsIgnoreCase(showContainer.get(i).getCountry())) {
+                System.out.println(showContainer.get(i).getTitle());
+            }
+        }
+    }
+
+    public static void searchGenre() {
+        ArrayList<String> genres = database.getGenres();
+        int n = genres.size();
+        System.out.println("Please select from the following genres");
+        for (int i = 0; i < n; i++) {
+            System.out.printf("%d: %s", i, genres.get(i));
+        }
+        String genre;
+        genre = sc.nextLine();
+
+        // Display titles with current genre
+        ArrayList<NetflixMovie> movieContainer = database.getMovieContainer();
+        ArrayList<NetflixShow> showContainer = database.getShowContainer();
+
+        n = movieContainer.size();
+        for (int i = 0; i < n; i++) {
+            if (genre.equalsIgnoreCase(movieContainer.get(i).getGenre())) {
+                System.out.println(movieContainer.get(i).getTitle());
+            }
+        }
+
+        n = showContainer.size();
+        for (int i = 0; i < n; i++) {
+            if (genre.equalsIgnoreCase(showContainer.get(i).getGenre())) {
+                System.out.println(showContainer.get(i).getTitle());
+            }
+        }
+    }
+
+    public static void searchRating() {
+        System.out.println("Please select from the following ratings");
+        System.out.println("1. PG-13");
+        System.out.println("2. TV-MA");
+        System.out.println("3. TV-14");
+        System.out.println("4. TV-PG");
+        System.out.println("5. TV-Y");
+        System.out.println("6. TV-Y7");
+        System.out.println("7. R");
+        System.out.println("8. TV-G");
+
+        String rating;
+        rating = sc.nextLine();
+
+        // Display titles with current rating
+        ArrayList<NetflixMovie> movieContainer = database.getMovieContainer();
+        ArrayList<NetflixShow> showContainer = database.getShowContainer();
+
+        n = movieContainer.size();
+        for (int i = 0; i < n; i++) {
+            if (rating.equalsIgnoreCase(movieContainer.get(i).getRating())) {
+                System.out.println(movieContainer.get(i).getTitle());
+            }
+        }
+
+        n = showContainer.size();
+        for (int i = 0; i < n; i++) {
+            if (rating.equalsIgnoreCase(showContainer.get(i).getRating())) {
+                System.out.println(showContainer.get(i).getTitle());
+            }
+        }
+    }
+
+    public static void searchYear() {
+        System.out.println("Please enter a year: ");
+        System.out.println("Program will display years +/- 50 years");
+
+        int year;
+        year = sc.nextLine();
+
+        int minYear = year - 50;
+        int maxYear = year + 50;
+
+        // Display titles with years +/- 50 years
+        ArrayList<NetflixMovie> movieContainer = database.getMovieContainer();
+        ArrayList<NetflixShow> showContainer = database.getShowContainer();
+
+        n = movieContainer.size();
+        for (int i = 0; i < n; i++) {
+            int currYear = movieContainer.getYear();
+            if (currYear >= minYear && currYear <= maxYear) {
+                System.out.println(movieContainer.get(i).getTitle());
+            }
+        }
+
+        n = showContainer.size();
+        for (int i = 0; i < n; i++) {
+            int currYear = showContainer.getYear();
+            if (currYear >= minYear && currYear <= maxYear) {
+                System.out.println(showContainer.get(i).getTitle());
+            }
+        }
+    }
+
+    public static void searchMovieDuration() {
+        System.out.println("Please select a range of movie length (enter letter)");
+        System.out.println("a. 0-30 minutes");
+        System.out.println("b. 31-60 minutes");
+        System.out.println("c. 61-90 minutes");
+        System.out.println("d. 91-120 minutes");
+        System.out.println("e. 121-150 minutes");
+        System.out.println("f. 151-180 minutes");
+
+        String selection;
+        selection = sc.nextLine();
+
+        // Find titles within selected time range
+        int minTime;
+        int maxTime;
+
+        switch(selection) {
+            case "a":
+                minTime = 0;
+                maxTime = 30;
+                break;
+            case "b":
+                minTime = 31;
+                maxTime = 60;
+                break;
+            case "c":
+                minTime = 61;
+                maxTime = 90;
+                break;
+            case "d":
+                minTime = 91;
+                maxTime = 120;
+                break;
+            case "e":
+                minTime = 121;
+                maxTime = 150;
+                break;
+            case "f":
+                minTime = 151;
+                maxTime = 180;
+                break;
+        }
+
+        ArrayList<NetflixMovie> movieContainer = database.getMovieContainer();
+        int n = movieContainer.size();
+        for (int i = 0; i < n; i++) {
+            int curr_year = movieContainer.get(i).getYear();
+            if (curr_year <= maxTime && curr_year >= minTime) {
+                System.out.println(movieContainer.get(i).getTitle());
+            }
+        }
+
+    }
+
+    public static void searchShowDuration() {
+        System.out.println("Please select a range of season lengths (enter letter)");
+        System.out.println("a. 0-3 seasonss");
+        System.out.println("b. 4-7 seasonss");
+        System.out.println("c. 8-11 seasons");
+        System.out.println("d. 12-15 seasons");
+        System.out.println("e. 16-19 seasons");
+        System.out.println("f. 20-23 seasons");
+
+        String selection;
+        selection = sc.nextLine();
+
+        // Find titles within selected time range
+        int minSeason;
+        int maxSeason;
+
+        switch(selection) {
+            case "a":
+                minSeason = 0;
+                maxSeason = 3;
+                break;
+            case "b":
+                minSeason = 4;
+                maxSeason = 7;
+                break;
+            case "c":
+                minSeason = 8;
+                maxSeason = 11;
+                break;
+            case "d":
+                minSeason = 12;
+                maxSeason = 15;
+                break;
+            case "e":
+                minSeason = 16;
+                maxSeason = 19;
+                break;
+            case "f":
+                minSeason = 20;
+                maxSeason = 23;
+                break;
+        }
+
+        ArrayList<NetflixShow> showContainer = database.getShowContainer();
+        int n = showContainer.size();
+        for (int i = 0; i < n; i++) {
+            int curr_year = showContainer.get(i).getYear();
+            if (curr_year <= maxTime && curr_year >= minTime) {
+                System.out.println(showContainer.get(i).getTitle());
+            }
+        }
+    }
+
+    public static void searchForTitle() {
+        String type;
+        String attribute;
+
+        // Ask user for movie or tv show
+        System.out.println("Are you looking for a 'TV Show' or 'Movie'?");
+        System.out.print("> ");
+        type = sc.nextLine();
+
+        // Search based on attributes
+        System.out.println("Which attribute are you searching based on? (enter full word)");
+        System.out.println("1 > director");
+        System.out.println("2 > country");
+        System.out.println("3 > genre");
+        System.out.println("4 > rating");
+        System.out.println("5 > year");
+        System.out.println("6 (movies only) > duration");
+        System.out.println("7 (shows only)  > seasons");
+        System.out.print("> ");
+        attribute = sc.nextLine();
+
+        switch(attribute) {
+            case "director": 
+                searchDirector();
+                break;
+            case "country": 
+                searchCountry();
+                break;
+            case "genre": 
+                searchGenre();
+                break;
+            case "rating": 
+                searchRating();
+                break;
+            case "year": 
+                searchYear();
+                break;
+            case "duration": 
+                searchMovieDuration();
+                break;
+            case "seasons": 
+                searchShowDuration();
+                break;
+        }
     }
 
     public static void mainMenu() {
@@ -364,9 +707,11 @@ public class TestNetflix {
                 break;
             case "3": 
                 System.out.println("--- Searching for a title ---");
+
                 break;
             case "4": 
                 System.out.println("--- Modifying an existing title ---");
+                modifyExistingTitle();
                 break;
         }
     }

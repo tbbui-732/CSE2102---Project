@@ -1,8 +1,12 @@
 import java.util.ArrayList;
+import java.util.Dictionary;
 
 public class NetflixTitleContainer {
     private ArrayList<NetflixMovie> movieContainer = new ArrayList<NetflixMovie>();
     private ArrayList<NetflixShow> showContainer   = new ArrayList<NetflixShow>();
+    private ArrayList<String> directors = new ArrayList<String>();
+    private ArrayList<String> countries = new ArrayList<String>();
+    private ArrayList<String> genres = new ArrayList<String>();
 
     public int displayMovieInfo(String movieName) {
         // Return 1 if successful
@@ -138,6 +142,14 @@ public class NetflixTitleContainer {
         return null;
     }
 
+    public ArrayList<NetflixMovie> getMovieContainer() {
+        return movieContainer;
+    }
+
+    public ArrayList<NetflixShow> getShowContainer() {
+        return showContainer;
+    }
+
     public boolean titleExists(String title) {
         int n = movieContainer.size();
         for (int i = 0; i < n; i++) {
@@ -157,6 +169,31 @@ public class NetflixTitleContainer {
     }
 
     // Build methods
+    // NOTE: These currently store duplicate values
+    public void addDirector(String director) {
+        directors.add(director);  
+    }
+
+    public void addCountry(String country) {
+        countries.add(country);
+    }
+
+    public void addGenre(String genre) {
+        genres.add(genre);
+    }
+
+    public ArrayList<String> getDirectors() {
+        return directors;
+    }
+    
+    public ArrayList<String> getCountries() {
+        return countries;
+    }
+
+    public ArrayList<String> getGenres() {
+        return genres;
+    }
+
     public void buildMovie(
             String  show_id,
             String  type,
@@ -181,6 +218,9 @@ public class NetflixTitleContainer {
                 );
 
         movieContainer.add(movie);
+        addDirector(director);
+        addCountry(country);
+        addGenre(genre);
     }
 
     public void buildShow(
@@ -207,5 +247,8 @@ public class NetflixTitleContainer {
                 );
 
         showContainer.add(show);
+        addDirector(director);
+        addCountry(country);
+        addGenre(genre);
     }
 }
