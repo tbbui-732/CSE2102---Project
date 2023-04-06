@@ -5,8 +5,9 @@ import java.io.FileNotFoundException;
 
 public class CSVParser {
     private String filename;
-    private Scanner file_sc;
-    
+    Scanner file_sc;
+    NetflixTitleContainer database = new NetflixTitleContainer(); 
+
     public CSVParser(String filename) throws FileNotFoundException {
         this.filename = filename;
 
@@ -17,23 +18,61 @@ public class CSVParser {
             throw new FileNotFoundException("FileNotFoundException: " + filename + " does not exist");
         }
     }
-    
-    // TODO: 
-    //  Read data from this file and a build a database of titles
-    public void parseCSVFile() {
+
+    // Parses every line in CSV and puts information into the corresponding container
+    // Returns database if successful
+    public NetflixTitleContainer parseCSVFile() {
+        File file = new File(filename);
         try {
-            file_sc = new Scanner(new File(filename));
-            //file_sc.useDelimiter(",");
-            while(file_sc.hasNext()) {
-                String current_line = file_sc.next();
-                System.out.printf("%s", current_line);
+            Scanner file_sc = new Scanner(file);
 
+            // Loop through every line in the CSV file
+            while (file_sc.hasNextLine()) {
+                String line = file_sc.nextLine();
+                Scanner line_sc = new Scanner(line);
+                line_sc.useDelimiter(",");
 
+                // Temporary variables
+                String  t_show_id       = line_sc.next();
+                String  t_type          = line_sc.next();
+                String  t_title         = line_sc.next();
+                String  t_director      = line_sc.next();
+                String  t_country       = line_sc.next();
+                int     t_release_year  = Integer.parseInt(line_sc.next()); 
+                String  t_rating        = line_sc.next();
+                int     t_duration      = Integer.parseInt(line_sc.next());
+                String  t_genre         = line_sc.next();
+
+                if (t_type.equalsIgnoreCase("TV Show")) {
+                    database.buildShow(
+                            t_show_id,
+                            t_type,
+                            t_title,
+                            t_director,
+                            t_country,
+                            t_release_year,
+                            t_rating,
+                            t_duration,
+                            t_genre);
+                } else if (t_type.equalsIgnoreCase("Movie")) {
+                    database.buildMovie(
+                            t_show_id,
+                            t_type,
+                            t_title,
+                            t_director,
+                            t_country,
+                            t_release_year,
+                            t_rating,
+                            t_duration,
+                            t_genre);
+                }
+                line_sc.close();
             }
-            System.out.println("");
             file_sc.close();
-        } catch (IOException error) {
+        }
+        catch (IOException error) {
             error.printStackTrace();
         }
+        return database;
     }
 }

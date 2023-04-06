@@ -249,7 +249,7 @@ public class TestNetflix {
             System.out.print("Please enter the name of the input file: ");
             String filename = sc.nextLine();
             CSVParser csvParser = new CSVParser(filename);
-            csvParser.parseCSVFile(); // Operates upon and adds each line to database
+            database = csvParser.parseCSVFile(); // Operates upon and adds each line to database
         } 
         // Throw error if file does not exist; exitting program...
         catch (FileNotFoundException error) {
