@@ -1,24 +1,26 @@
 public class NetflixShows extends NetflixTitle{
-    private int numSeasons;
-    public NetflixShows(String initTitle,
-            String initDirector,
-            String initCountry,
-            String initGenre,
-            String initShowID,
-            String initRating,
-            int initNumSeasons)
+    private int seasons;
+
+    public NetflixShows(
+            String show_id,
+            String type,
+            String title,
+            String director,
+            String country,
+            int    release_year,
+            String rating,
+            int    seasons,
+            String genre) 
     {
-        super(initTitle, initDirector, initCountry, initGenre, initShowID, initRating);
-        numSeasons = initNumSeasons;
+        super(show_id, type, title, director, country, release_year, rating, genre);
+        this.seasons = seasons;
     }
 
-    // Mutator methods
-    public void setNumSeasons(int newNumSeasons) {
-        numSeasons = newNumSeasons;
+    setDuration(int seasons) {
+        this.seasons = seasons;
     }
 
-    // Accessor methods
-    public int getNumSeasons() {
-        return numSeasons;
+    getDuration() {
+        return seasons;
     }
 }
