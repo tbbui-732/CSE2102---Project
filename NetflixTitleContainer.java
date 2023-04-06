@@ -126,7 +126,7 @@ public class NetflixTitleContainer {
     public NetflixMovie getMovie(String title) {
         int n = movieContainer.size();
         for (int i = 0; i < n; i++) {
-            if (movieContainer.get(i).getTitle() == title) {
+            if (title.equalsIgnoreCase(movieContainer.get(i).getTitle())) {
                 return movieContainer.get(i);
             }
         }
@@ -137,7 +137,7 @@ public class NetflixTitleContainer {
     public NetflixShow getShow(String title) {
         int n = showContainer.size();
         for (int i = 0; i < n; i++) {
-            if (showContainer.get(i).getTitle() == title) {
+            if (title.equalsIgnoreCase(showContainer.get(i).getTitle())) {
                 return showContainer.get(i);
             }
         }
