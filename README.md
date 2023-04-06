@@ -24,3 +24,15 @@ want to change.
 10. Exit
 
 ### Note, one run of the test driver will build exactly one instance of a TV show or a movie, and will implement no more than one change of an attribute. No error checking is necessary, assume that the user always provides correct inputs.
+
+### Aside
+#### Write functions in this order to have some standards (lol)
+    show_id      
+    type         
+    title        
+    director     
+    country      
+    release_year 
+    rating       
+    duration   (shows: seasons, movies: minutes)
+    genre        
