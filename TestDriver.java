@@ -244,37 +244,14 @@ public class TestNetflix {
         }
     }
 
-    public static void userInterface() {
-        System.out.println("\n--- Please select an option ---");
-        System.out.println("1. Add a title");
-        System.out.println("2. Delete a title");
-        System.out.println("3. Search for a title (displays information)");
-        System.out.println("4. Modify a title");
-        System.out.println("Type 'exit' to end program");
-    }
-
-    public static void main(String[] args) {
-
-        // Get filename and parse through it
-        try {
-            System.out.print("Please enter the name of the input file: ");
-            String filename = sc.nextLine();
-            CSVParser csvParser = new CSVParser(filename);
-            database = csvParser.parseCSVFile(); // Operates upon and adds each line to database
-        } 
-        // Throw error if file does not exist; exitting program...
-        catch (FileNotFoundException error) {
-            error.printStackTrace();
-            System.exit(1);
-        }
-        
-        // Allow user to add another Netflix title
+    public static void addNewTitle() {
         int selection = buildNetflixTitle();
         while (selection < 0) {
             // Continually ask for input until answer is correct
             System.out.println("Bad input, make sure you answer is either 'TV Show' or 'Movie'\n");
             selection = buildNetflixTitle();
         }
+
         switch(selection) {
             case 0: 
                 buildMovie();
@@ -283,7 +260,8 @@ public class TestNetflix {
                 buildTVShow();
                 break;
         }
-
+        
+        // After title has been created, the user has a chance to create edits here
         System.out.print("Do you want to change an attribute? (yes or no): ");
         String answer = sc.nextLine();
 
@@ -318,6 +296,83 @@ public class TestNetflix {
                 database.displayMovieInfo(title);
             }
         }
-        sc.close();
+    }
+
+    public static void deleteTitle() {
+        String input;
+        System.out.print("Enter title to delete: ");
+        input = sc.nextLine();
+        
+        // Continually prompt user for title to delete in case
+        //  the one entered does not exist
+        while (!database.titleExists(input)) {
+            System.out.printf("%s does not exist\n", input);
+            System.out.print("Enter title to delete: ");
+            input = sc.nextLine();
+        }
+       
+        database.removeTitle(input);
+        System.out.printf("Successfully deleted %s!\n", input);
+    }
+    
+    public static void addNewFile() {
+        // Get filename and parse through it
+        try {
+            System.out.print("Please enter the name of the input file: ");
+            String filename = sc.nextLine();
+            CSVParser csvParser = new CSVParser(filename);
+            database = csvParser.parseCSVFile(); // Operates upon and adds each line to database
+        } 
+        // Throw error if file does not exist; exitting program...
+        catch (FileNotFoundException error) {
+            error.printStackTrace();
+            System.exit(1);
+        }
+    }
+    
+    // TODO: write method for searching title
+    public static void searchTitle() {
+
+
+    }
+
+    public static void mainMenu() {
+        String input; 
+
+        System.out.println("\n--- Please enter number to select following options ---");
+        System.out.println("1. Add a title");
+        System.out.println("2. Delete a title");
+        System.out.println("3. Search for a title (displays information)");
+        System.out.println("4. Modify a title");
+        System.out.println("Type 'exit' to end program");
+
+        input = sc.nextLine();
+
+        while (Integer.parseInt(input) < 1 || Integer.parseInt(input) > 4) {
+            System.out.println("Invalid input, please enter a value between (1-5)");
+            input = Integer.parseInt(sc.nextLine());
+        }
+        
+        switch(input) {
+            case "1": 
+                System.out.println("--- Adding a new title ---");
+                addNewTitle();
+                break;
+            case "2": 
+                System.out.println("--- Deleting a title ---");
+                deleteTitle(); 
+                break;
+            case "3": 
+                System.out.println("--- Searching for a title ---");
+                break;
+            case "4": 
+                System.out.println("--- Modifying an existing title ---");
+                break;
+        }
+    }
+
+    public static void main(String[] args) {
+        addNewFile();
+        mainMenu();
     }
 }

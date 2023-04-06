@@ -95,6 +95,26 @@ public class NetflixTitleContainer {
         showContainer.add(show);
     }
 
+    public void removeTitle(String title) {
+        // Check showContainer first
+        int n = showContainer.size();
+        for (int i = 0; i < n; i++) {
+            if (title.equalsIgnoreCase(showContainer.get(i).getTitle())) {
+                showContainer.remove(i);
+                return;
+            }
+        }
+
+        // Then check movieContainer
+        n = movieContainer.size();
+        for (int i = 0; i < n; i++) {
+            if (title.equalsIgnoreCase(movieContainer.get(i).getTitle())) {
+                movieContainer.remove(i);                
+                return;
+            }
+        }
+    }
+
     // Accessor methods
     // Returns null if movie is not found or doesn't exist
     public NetflixMovie getMovie(String title) {
