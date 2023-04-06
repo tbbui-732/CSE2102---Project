@@ -1,24 +1,26 @@
 public class NetflixMovies extends NetflixTitle {
-    private int duration;
-    public NetflixMovies(String initTitle,
-            String initDirector,
-            String initCountry,
-            String initGenre,
-            String initShowID,
-            String initRating,
-            int initDuration) 
+    private int minutes;
+
+    public NetflixMovies(
+            String show_id,
+            String type,
+            String title,
+            String director,
+            String country,
+            int    release_year,
+            String rating,
+            int    minutes,
+            String genre) 
     {
-        super(initTitle, initDirector, initCountry, initGenre, initShowID, initRating);
-        duration = initDuration;
+        super(show_id, type, title, director, country, release_year, rating, genre);
+        this.minutes = minutes;
+    }
+    
+    setDuration(int minutes) {
+        this.minutes = minutes; 
     }
 
-    // Mutator methods
-    public void setDuration(int newDuration) {
-        duration = newDuration;
-    }
-
-    // Accessor methods
-    public int getDuration() {
-        return duration;
+    getDuration() {
+        return minutes; 
     }
 }
