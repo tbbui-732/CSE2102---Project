@@ -7,11 +7,13 @@ public class TestDriver {
     private static NetflixTitleContainer database = new NetflixTitleContainer();
     private static Scanner sc = new Scanner(System.in);
 
-    public static int buildNetflixTitle() {
-        // Return  1 for TV SHOW
-        // Return  0 for MOVIES 
-        // Return -1 for bad answer
-
+    /*
+       promptTitleType() prompts user for title type : ('TV Show', 'Movie')
+       Returns 1 for 'TV Show'
+       Returns 0 for 'Movie'
+       Returns -1 for bad answer
+       */
+    public static int promptTitleType() {
         // Get user input
         System.out.println("Would you like to build a TV Show or a Movie?");
         String selection = sc.nextLine();
@@ -27,6 +29,13 @@ public class TestDriver {
         }
     }
 
+    /*
+        buildTVShow() prompts user for NetflixShow attributes,
+            in order to create a new NetflixShow object;
+        This object is added to the database as a "TV Show" type.
+
+        No return value. 
+       */
     public static void buildTVShow() {
         // Temporary values
         String  t_show_id;
@@ -71,6 +80,13 @@ public class TestDriver {
         System.out.println("");
     }
 
+    /*
+        buildMovie() prompts user for NetflixMovie attributes,
+            in order to create a new NetflixMovie object;
+        This object is added to the database as a "Movie" type.
+
+        No return value. 
+       */
     public static void buildMovie() {
         // Temporary values
         String  t_show_id;
@@ -114,7 +130,15 @@ public class TestDriver {
         database.displayMovieInfo(t_title);
         System.out.println("");
     }
+    
+    /*
+        attribute: NetflixMovie arguments
+        movieTitle: as it implies
 
+        changeMovieAttribute(String, String) allows the user to select particular movie attributes to modify
+
+        No return value.
+        */
     public static void changeMovieAttribute(String attribute, String movieTitle) {
         NetflixMovie movie = database.getMovie(movieTitle);
 
@@ -180,6 +204,14 @@ public class TestDriver {
         }
     }
 
+    /*
+        attribute: NetflixShow arguments
+        showTitle: as it implies
+
+        changeShowAttribute(String, String) allows the user to select particular TV Show attribute to modify
+
+        No return value.
+        */
     public static void changeShowAttribute(String attribute, String showTitle) {
         NetflixShow show = database.getShow(showTitle);
 
@@ -244,13 +276,21 @@ public class TestDriver {
                 break;
         }
     }
+    
+    /*
+        addNewTitle() prompts the user to create a new 'Movie' or 'TV Show'.
+        These new objects are added to the database.
 
+        Sidenote: once object is created, a UI prompt will ask the user if they want to change an attribute
+
+        No return value. 
+        */
     public static void addNewTitle() {
-        int selection = buildNetflixTitle();
+        int selection = promptTitleType();
         while (selection < 0) {
             // Continually ask for input until answer is correct
             System.out.println("Bad input, make sure you answer is either 'TV Show' or 'Movie'\n");
-            selection = buildNetflixTitle();
+            selection = promptTitleType();
         }
 
         switch(selection) {
@@ -298,7 +338,13 @@ public class TestDriver {
             }
         }
     }
-
+    
+    /*
+        deleteTitle() prompts user for desired title to delete.
+        The selected title is removed from the database. 
+         
+        No return value. 
+        */
     public static void deleteTitle() {
         String input;
         System.out.print("Enter title to delete: ");
@@ -314,7 +360,13 @@ public class TestDriver {
        
         database.removeTitle(input);
     }
-    
+   
+    /*
+        addNewFile() prompts user for .csv file.
+        The contents of the csv file is parsed and the contents are added to the database.
+
+        No return value.
+        */
     public static void addNewFile() {
         // Get filename and parse through it
         try {
@@ -329,7 +381,13 @@ public class TestDriver {
             System.exit(1);
         }
     }
+    
+    /*
+        modifyExistingTitle() prompts the user for desired title to modify.
+        Selections are prompted and must be selected by typing the the full name.
 
+        No return value.
+        */
     public static void modifyExistingTitle() {
         String type;
         String title;
@@ -370,7 +428,11 @@ public class TestDriver {
         }
     }
     
-    // Displays titles based on desired director
+    /*
+        searchDirector() parses database to display every director.
+        The user is prompted to select a director, to which every title associated with the director 
+            is displayed.
+        */
     public static void searchDirector() {
         ArrayList<String> directors = database.getDirectors();
         int n = directors.size();
@@ -407,7 +469,11 @@ public class TestDriver {
         }
     }
 
-    // Displays titles based on desired country
+    /*
+        searchCountry() parses database to display every country.
+        Prompts user to select country, to which every title associated with 
+            the country is displayed.
+            */
     public static void searchCountry() {
         ArrayList<String> countries = database.getCountries();
         int n = countries.size();
@@ -438,6 +504,11 @@ public class TestDriver {
         }
     }
 
+    /*
+        searchGenre() parses database to display every genre.
+        Prompts user to select genre, to which every title associated with 
+            the genre is displayed.
+            */
     public static void searchGenre() {
         ArrayList<String> genres = database.getGenres();
         int n = genres.size();
@@ -467,6 +538,11 @@ public class TestDriver {
         }
     }
 
+    /*
+        searchRating() displays every rating.
+        Prompts user to select rating, to which every title associated with 
+            the rating is displayed.
+            */
     public static void searchRating() {
         System.out.println("Please select from the following ratings (type full word)");
         System.out.println("1. PG-13");
@@ -502,6 +578,11 @@ public class TestDriver {
         }
     }
 
+    /*
+        searchYear()
+        Prompts user to select year, to which every title associated with 
+            the year (+/- 50 years) is displayed.
+            */
     public static void searchYear() {
         System.out.println("Please enter a year: ");
         System.out.println("Program will display years +/- 50 years");
@@ -534,6 +615,11 @@ public class TestDriver {
         }
     }
 
+    /*
+        searchMoveDuration() displays a selection of movie ranges.
+        Prompts user to select movie range, to which every title associated with 
+            the movie range is displayed.
+            */
     public static void searchMovieDuration() {
         System.out.println("Please select a range of movie length (enter letter)");
         System.out.println("a. 0-30 minutes");
@@ -580,6 +666,11 @@ public class TestDriver {
         }
     }
 
+    /*
+        searchShowDuration() displays a selection of show season ranges.
+        Prompts user to select season range, to which every title associated with 
+            the season range is displayed.
+            */
     public static void searchShowDuration() {
         System.out.println("Please select a range of season lengths (enter letter)");
         System.out.println("a. 0-3 seasonss");
@@ -626,6 +717,11 @@ public class TestDriver {
         }
     }
 
+    /*
+        searchForTitle() displays a selection of attributes to select.
+        Prompts user to select attribute, and the elements
+            associated with the attribute are displayed.
+            */
     public static void searchForTitle() {
         String type;
         String attribute;
@@ -670,10 +766,11 @@ public class TestDriver {
                 searchShowDuration();
                 break;
         }
-
-        
     }
 
+    /*
+        mainMenu() prompts the user for select options. 
+        */
     public static void mainMenu() {
         int input; 
 
