@@ -1,77 +1,51 @@
 public class NetflixTitle {
     // Parent class attributes, associated with both movies and shows
+    private String show_id;
+    private String type;
     private String title;
     private String director;
     private String country;
-    private String genre;
-    private String show_id;
+    private int    release_year;
     private String rating;
-    private int release_year; 
+    private String genre;
 
-    public NetflixTitle(String initTitle, String initDirector, String initCountry, String initGenre, String initShowID, String initRating) {
-        title = initTitle;
-        director = initDirector;
-        country = initCountry;
-        genre = initGenre;
-        show_id = initShowID;
-        rating = initRating;
+    public NetflixTitle(
+            String show_id,
+            String type,
+            String title,
+            String director,
+            String country,
+            int    release_year,
+            String rating,
+            String genre) 
+    {
+        this.show_id      = show_id;
+        this.type         = type;
+        this.title        = title;
+        this.director     = director;
+        this.country      = country;
+        this.release_year = release_year;
+        this.rating       = rating;
+        this.genre        = genre;
     }
 
     // Mutator methods
-    public void changeTitle(String newTitle) {
-        title = newTitle;
-    }
-
-    public void changeDirector(String newDirector) {
-        director = newDirector;
-    }
-
-    public void setNewCountry(String newCountry) {
-        country = newCountry;
-    }
-
-    public void changeGenre(String newGenre) {
-        genre = newGenre;
-    }
-
-    public void changeShowID(String newID) {
-        show_id = newID;
-    }
-
-    public void changeRating(String newRating) {
-        rating = newRating;
-    }
-     
-    public void changeYear(int newYear) {
-        release_year = newYear;
-    }
+    public void setID(String show_id)         { this.show_id = show_id; }
+    public void setType(String type)          { this.type = type; }
+    public void setTitle(String title)        { this.title = title; }
+    public void setDirector(String director)  { this.director = director; }
+    public void setCountry(String country)    { this.country = country; }
+    public void setYear(int release_year)     { this.release_year = release_year; }
+    public void setRating(String rating)      { this.rating = rating; }
+    public void setGenre(String genre)        { this.genre = genre; }
 
     // Accessor methods
-    public String getTitle() {
-        return title;
-    }
-
-    public String getDirector() {
-        return director;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public String getGenre() {
-        return genre;
-    }
-
-    public String getID() {
-        return show_id;
-    }
-
-    public String getRating() {
-        return rating;
-    }
-
-    public int getYear() {
-        return release_year;
-    }
+    public String getID()        { return show_id; }
+    public String getType()      { return type; }
+    public String getTitle()     { return title; }
+    public String getDirector()  { return director; }
+    public String getCountry()   { return country; }
+    public int    getYear()      { return release_year; }
+    public String getRating()    { return rating; }
+    public String getGenre()     { return genre; }
 }
