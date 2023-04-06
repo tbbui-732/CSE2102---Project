@@ -313,7 +313,6 @@ public class TestDriver {
         }
        
         database.removeTitle(input);
-        System.out.printf("Successfully deleted %s!\n", input);
     }
     
     public static void addNewFile() {
@@ -376,11 +375,17 @@ public class TestDriver {
         ArrayList<String> directors = database.getDirectors();
         int n = directors.size();
         System.out.println("Please select from the following directors");
+        int j = 0;
         for (int i = 0; i < n; i++) {
-            System.out.printf("%d: %s\n", i, directors.get(i));
+            if (directors.get(i).isEmpty()) {
+                continue;
+            }
+            System.out.printf("%d: %s\n", j, directors.get(i));
+            j++;
         }
         
         String director;
+        System.out.print("> ");
         director = sc.nextLine();
         
         // Display titles with current director name
@@ -463,7 +468,7 @@ public class TestDriver {
     }
 
     public static void searchRating() {
-        System.out.println("Please select from the following ratings");
+        System.out.println("Please select from the following ratings (type full word)");
         System.out.println("1. PG-13");
         System.out.println("2. TV-MA");
         System.out.println("3. TV-14");
@@ -472,6 +477,7 @@ public class TestDriver {
         System.out.println("6. TV-Y7");
         System.out.println("7. R");
         System.out.println("8. TV-G");
+        System.out.print("> ");
 
         String rating;
         int n;
@@ -544,38 +550,31 @@ public class TestDriver {
         int minTime = 0;
         int maxTime = 30;
 
-        switch(selection) {
-            case "a":
-                minTime = 0;
-                maxTime = 30;
-                break;
-            case "b":
-                minTime = 31;
-                maxTime = 60;
-                break;
-            case "c":
-                minTime = 61;
-                maxTime = 90;
-                break;
-            case "d":
-                minTime = 91;
-                maxTime = 120;
-                break;
-            case "e":
-                minTime = 121;
-                maxTime = 150;
-                break;
-            case "f":
-                minTime = 151;
-                maxTime = 180;
-                break;
+        if (selection.equalsIgnoreCase("a")) {
+            minTime = 0;
+            maxTime = 30;
+        } else if (selection.equalsIgnoreCase("b")) {
+            minTime = 31;
+            maxTime = 60;
+        } else if (selection.equalsIgnoreCase("c")) {
+            minTime = 61;
+            maxTime = 90;
+        } else if (selection.equalsIgnoreCase("d")) {
+            minTime = 91;
+            maxTime = 120;
+        } else if (selection.equalsIgnoreCase("e")) {
+            minTime = 121;
+            maxTime = 150;
+        } else if (selection.equalsIgnoreCase("f")) {
+            minTime = 151;
+            maxTime = 180;
         }
 
         ArrayList<NetflixMovie> movieContainer = database.getMovieContainer();
         int n = movieContainer.size();
         for (int i = 0; i < n; i++) {
-            int curr_year = movieContainer.get(i).getYear();
-            if (curr_year <= maxTime && curr_year >= minTime) {
+            int curr_min = movieContainer.get(i).getDuration();
+            if (curr_min <= maxTime && curr_min >= minTime) {
                 System.out.println(movieContainer.get(i).getTitle());
             }
         }
@@ -597,38 +596,31 @@ public class TestDriver {
         int minSeason = 0;
         int maxSeason = 3;
 
-        switch(selection) {
-            case "a":
-                minSeason = 0;
-                maxSeason = 3;
-                break;
-            case "b":
-                minSeason = 4;
-                maxSeason = 7;
-                break;
-            case "c":
-                minSeason = 8;
-                maxSeason = 11;
-                break;
-            case "d":
-                minSeason = 12;
-                maxSeason = 15;
-                break;
-            case "e":
-                minSeason = 16;
-                maxSeason = 19;
-                break;
-            case "f":
-                minSeason = 20;
-                maxSeason = 23;
-                break;
+        if (selection.equalsIgnoreCase("a")) {
+            minSeason = 0;
+            maxSeason = 3;
+        } else if (selection.equalsIgnoreCase("b")) {
+            minSeason = 4;
+            maxSeason = 7;
+        } else if (selection.equalsIgnoreCase("c")) {
+            minSeason = 8;
+            maxSeason = 11;
+        } else if (selection.equalsIgnoreCase("d")) {
+            minSeason = 12;
+            maxSeason = 15;
+        } else if (selection.equalsIgnoreCase("e")) {
+            minSeason = 16;
+            maxSeason = 19;
+        } else if (selection.equalsIgnoreCase("f")) {
+            minSeason = 20;
+            maxSeason = 23;
         }
 
         ArrayList<NetflixShow> showContainer = database.getShowContainer();
         int n = showContainer.size();
         for (int i = 0; i < n; i++) {
-            int curr_year = showContainer.get(i).getYear();
-            if (curr_year <= maxSeason && curr_year >= minSeason) {
+            int curr_season = showContainer.get(i).getDuration();
+            if (curr_season <= maxSeason && curr_season >= minSeason) {
                 System.out.println(showContainer.get(i).getTitle());
             }
         }
@@ -678,6 +670,8 @@ public class TestDriver {
                 searchShowDuration();
                 break;
         }
+
+        
     }
 
     public static void mainMenu() {
@@ -689,30 +683,51 @@ public class TestDriver {
         System.out.println("3. Search for a title (displays information)");
         System.out.println("4. Modify a title");
         System.out.println("5. Exit program");
+        System.out.print("> ");
         input = Integer.parseInt(sc.nextLine());
 
-        while (input < 1 || input > 4) {
+        while (input < 1 || input > 5 || input == 5) {
+            if (input == 5) {
+                System.out.println("Exiting program...");
+                System.exit(0);
+            }
+
             System.out.println("Invalid input, please enter a value between (1-5)");
             input = Integer.parseInt(sc.nextLine());
         }
         
-        switch(input) {
-            case 1: 
-                System.out.println("--- Adding a new title ---");
-                addNewTitle();
-                break;
-            case 2: 
-                System.out.println("--- Deleting a title ---");
-                deleteTitle(); 
-                break;
-            case 3: 
-                System.out.println("--- Searching for a title ---");
-                searchForTitle();
-                break;
-            case 4: 
-                System.out.println("--- Modifying an existing title ---");
-                modifyExistingTitle();
-                break;
+        while (input <= 5 || input >= 1) {
+            if (input == 5) {
+                System.out.println("Exiting program...");
+                System.exit(0);
+            }
+
+            switch(input) {
+                case 1: 
+                    System.out.println("--- Adding a new title ---");
+                    addNewTitle();
+                    break;
+                case 2: 
+                    System.out.println("--- Deleting a title ---");
+                    deleteTitle(); 
+                    break;
+                case 3: 
+                    System.out.println("--- Searching for a title ---");
+                    searchForTitle();
+                    break;
+                case 4: 
+                    System.out.println("--- Modifying an existing title ---");
+                    modifyExistingTitle();
+                    break;
+            }
+            System.out.println("\n--- Please enter number to select following options ---");
+            System.out.println("1. Add a title");
+            System.out.println("2. Delete a title");
+            System.out.println("3. Search for a title (displays information)");
+            System.out.println("4. Modify a title");
+            System.out.println("5. Exit program");
+            System.out.print("> ");
+            input = Integer.parseInt(sc.nextLine());
         }
     }
 

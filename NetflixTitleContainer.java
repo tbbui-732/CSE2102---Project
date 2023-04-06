@@ -104,6 +104,7 @@ public class NetflixTitleContainer {
         int n = showContainer.size();
         for (int i = 0; i < n; i++) {
             if (title.equalsIgnoreCase(showContainer.get(i).getTitle())) {
+                System.out.printf("Successfully removed %s\n", title);
                 showContainer.remove(i);
                 return;
             }
@@ -113,6 +114,7 @@ public class NetflixTitleContainer {
         n = movieContainer.size();
         for (int i = 0; i < n; i++) {
             if (title.equalsIgnoreCase(movieContainer.get(i).getTitle())) {
+                System.out.printf("Successfully removed %s\n", title);
                 movieContainer.remove(i);                
                 return;
             }
@@ -153,14 +155,14 @@ public class NetflixTitleContainer {
     public boolean titleExists(String title) {
         int n = movieContainer.size();
         for (int i = 0; i < n; i++) {
-            if (movieContainer.get(i).getTitle() == title) {
+            if (title.equalsIgnoreCase(movieContainer.get(i).getTitle())) {
                 return true;
             }
         }
 
         n = showContainer.size();
         for (int i = 0; i < n; i++) {
-            if (showContainer.get(i).getTitle() == title) {
+            if (title.equalsIgnoreCase(showContainer.get(i).getTitle())) {
                 return true;
             }
         }
