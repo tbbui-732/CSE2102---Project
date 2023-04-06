@@ -38,10 +38,18 @@ public class CSVParser {
                 String  t_title         = line_sc.next();
                 String  t_director      = line_sc.next();
                 String  t_country       = line_sc.next();
-                int     t_release_year  = Integer.parseInt(line_sc.next()); 
+                String  t_release_year  = line_sc.next(); 
                 String  t_rating        = line_sc.next();
-                int     t_duration      = Integer.parseInt(line_sc.next());
+                String  t_duration      = line_sc.next();
                 String  t_genre         = line_sc.next();
+
+                if (t_duration.isEmpty()) {
+                    t_duration = "0";
+                }
+                
+                if (t_release_year.isEmpty()) {
+                    t_release_year = "0";
+                }
 
                 if (t_type.equalsIgnoreCase("TV Show")) {
                     database.buildShow(
@@ -50,9 +58,9 @@ public class CSVParser {
                             t_title,
                             t_director,
                             t_country,
-                            t_release_year,
+                            Integer.parseInt(t_release_year),
                             t_rating,
-                            t_duration,
+                            Integer.parseInt(t_duration),
                             t_genre);
                 } else if (t_type.equalsIgnoreCase("Movie")) {
                     database.buildMovie(
@@ -61,9 +69,9 @@ public class CSVParser {
                             t_title,
                             t_director,
                             t_country,
-                            t_release_year,
+                            Integer.parseInt(t_release_year),
                             t_rating,
-                            t_duration,
+                            Integer.parseInt(t_duration),
                             t_genre);
                 }
                 line_sc.close();
