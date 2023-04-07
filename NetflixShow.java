@@ -1,5 +1,5 @@
 public class NetflixShow extends NetflixTitle{
-    private int seasons;
+    private String seasons;
 
     public NetflixShow(
             String show_id,
@@ -7,20 +7,20 @@ public class NetflixShow extends NetflixTitle{
             String title,
             String director,
             String country,
-            int    release_year,
+            String release_year,
             String rating,
-            int    seasons,
+            String seasons,
             String genre) 
     {
         super(show_id, type, title, director, country, release_year, rating, genre);
         this.seasons = seasons;
     }
 
-    public void setDuration(int seasons) {
+    public void setDuration(String seasons) {
         this.seasons = seasons;
     }
 
-    public int getDuration() {
+    public String getDuration() {
         return seasons;
     }
 }

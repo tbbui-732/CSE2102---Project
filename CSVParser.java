@@ -50,9 +50,9 @@ public class CSVParser {
                             t_title,
                             t_director,
                             t_country,
-                            Integer.parseInt(t_release_year),
+                            t_release_year,
                             t_rating,
-                            Integer.parseInt(t_duration),
+                            t_duration,
                             t_genre);
                 } else if (t_type.equalsIgnoreCase("Movie")) {
                     database.buildMovie(
@@ -61,9 +61,9 @@ public class CSVParser {
                             t_title,
                             t_director,
                             t_country,
-                            Integer.parseInt(t_release_year),
+                            t_release_year,
                             t_rating,
-                            Integer.parseInt(t_duration),
+                            t_duration,
                             t_genre);
                 }
                 line_sc.close();

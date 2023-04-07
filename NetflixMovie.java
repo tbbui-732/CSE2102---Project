@@ -1,5 +1,5 @@
 public class NetflixMovie extends NetflixTitle {
-    private int minutes;
+    private String minutes;
 
     public NetflixMovie(
             String show_id,
@@ -7,20 +7,20 @@ public class NetflixMovie extends NetflixTitle {
             String title,
             String director,
             String country,
-            int    release_year,
+            String release_year,
             String rating,
-            int    minutes,
+            String minutes,
             String genre) 
     {
         super(show_id, type, title, director, country, release_year, rating, genre);
         this.minutes = minutes;
     }
     
-    public void setDuration(int minutes) {
+    public void setDuration(String minutes) {
         this.minutes = minutes; 
     }
 
-    public int getDuration() {
+    public String getDuration() {
         return minutes; 
     }
 }
