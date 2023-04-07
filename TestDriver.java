@@ -141,6 +141,7 @@ public class TestDriver {
         */
     public static void changeMovieAttribute(String attribute, String movieTitle) {
         NetflixMovie movie = database.getMovie(movieTitle);
+        database.removeTitle(movieTitle);
 
         String t_show_id    = movie.getID();
         String t_title      = movie.getTitle();
@@ -157,48 +158,56 @@ public class TestDriver {
                 System.out.printf("Old ID: %s\n", t_show_id);
                 input = sc.nextLine();
                 movie.setID(input);
+                database.addMovie(movie);
                 System.out.printf("New ID: %s\n", movie.getID());
                 break;
             case "title": 
                 System.out.printf("Old title: %s\n", t_title);
                 input = sc.nextLine();
                 movie.setTitle(input);
+                database.addMovie(movie);
                 System.out.printf("New title: %s\n", movie.getTitle());
                 break;
             case "director":
                 System.out.printf("Old director: %s\n", t_director);
                 input = sc.nextLine();
                 movie.setDirector(input);
+                database.addMovie(movie);
                 System.out.printf("New director: %s\n", movie.getDirector());
                 break;
             case "country":
                 System.out.printf("Old country: %s\n", t_country);
                 input = sc.nextLine();
                 movie.setCountry(input);
+                database.addMovie(movie);
                 System.out.printf("New country: %s\n", movie.getCountry());
                 break;
             case "year":
                 System.out.printf("Old year: %d\n", t_release_year);
                 input = sc.nextLine();
                 movie.setYear(input);
+                database.addMovie(movie);
                 System.out.printf("New year: %d\n", movie.getYear());
                 break;
             case "rating":
                 System.out.printf("Old rating: %s\n", t_rating);
                 input = sc.nextLine();
                 movie.setRating(input);
+                database.addMovie(movie);
                 System.out.printf("New rating: %s\n", movie.getRating());
                 break;
             case "seasons":
                 System.out.printf("Old number of minutes: %d\n", t_minutes);
                 input = sc.nextLine();
                 movie.setDuration(input);
+                database.addMovie(movie);
                 System.out.printf("New number of minutes: %d\n", movie.getDuration());
                 break;
             case "genre":
                 System.out.printf("Old genre: %s\n", t_genre);
                 input = sc.nextLine();
                 movie.setGenre(input);
+                database.addMovie(movie);
                 System.out.printf("New genre: %s\n", movie.getGenre());
                 break;
         }
@@ -214,6 +223,7 @@ public class TestDriver {
         */
     public static void changeShowAttribute(String attribute, String showTitle) {
         NetflixShow show = database.getShow(showTitle);
+        database.removeTitle(showTitle);
 
         String t_show_id    = show.getID();
         String t_title      = show.getTitle();
@@ -230,48 +240,56 @@ public class TestDriver {
                 System.out.printf("Old ID: %s\n", t_show_id);
                 input = sc.nextLine();
                 show.setID(input);
+                database.addShow(show);
                 System.out.printf("New ID: %s\n", show.getID());
                 break;
             case "title": 
                 System.out.printf("Old title: %s\n", t_title);
                 input = sc.nextLine();
                 show.setTitle(input);
+                database.addShow(show);
                 System.out.printf("New title: %s\n", show.getTitle());
                 break;
             case "director":
                 System.out.printf("Old director: %s\n", t_director);
                 input = sc.nextLine();
                 show.setDirector(input);
+                database.addShow(show);
                 System.out.printf("New director: %s\n", show.getDirector());
                 break;
             case "country":
                 System.out.printf("Old country: %s\n", t_country);
                 input = sc.nextLine();
                 show.setCountry(input);
+                database.addShow(show);
                 System.out.printf("New country: %s\n", show.getCountry());
                 break;
             case "year":
                 System.out.printf("Old year: %d\n", t_release_year);
                 input = sc.nextLine();
                 show.setYear(input);
+                database.addShow(show);
                 System.out.printf("New year: %d\n", show.getYear());
                 break;
             case "rating":
                 System.out.printf("Old rating: %s\n", t_rating);
                 input = sc.nextLine();
                 show.setRating(input);
+                database.addShow(show);
                 System.out.printf("New rating: %s\n", show.getRating());
                 break;
             case "duration":
                 System.out.printf("Old number of seasons: %d\n", t_seasons);
                 input = sc.nextLine();
                 show.setDuration(input);
+                database.addShow(show);
                 System.out.printf("New number of seasons: %d\n", show.getDuration());
                 break;
             case "genre":
                 System.out.printf("Old genre: %s\n", t_genre);
                 input = sc.nextLine();
                 show.setGenre(input);
+                database.addShow(show);
                 System.out.printf("New genre: %s\n", show.getGenre());
                 break;
         }
@@ -478,8 +496,10 @@ public class TestDriver {
         ArrayList<String> countries = database.getCountries();
         int n = countries.size();
         System.out.println("Please select from the following countries");
+        int j = 0;
         for (int i = 0; i < n; i++) {
-            System.out.printf("%d: %s\n", i, countries.get(i));
+            System.out.printf("%d: %s\n", j, countries.get(i));
+            j++;
         }
 
         String country;
@@ -513,8 +533,10 @@ public class TestDriver {
         ArrayList<String> genres = database.getGenres();
         int n = genres.size();
         System.out.println("Please select from the following genres");
+        int j = 0; 
         for (int i = 0; i < n; i++) {
-            System.out.printf("%d: %s", i, genres.get(i));
+            System.out.printf("%d: %s", j, genres.get(i));
+            j++;
         }
         String genre;
         genre = sc.nextLine();

@@ -41,7 +41,7 @@ public class NetflixTitleContainer {
                 System.out.printf("Genre: %s\n",      genre);
                 System.out.printf("Show ID: %s\n",    show_id);
                 System.out.printf("Rating: %s\n",     rating);
-                System.out.printf("Duration (in minutes): %d\n",   duration);
+                System.out.printf("Duration (in minutes): %s\n",   duration);
 
                 return 1;
             }
@@ -84,7 +84,7 @@ public class NetflixTitleContainer {
                 System.out.printf("Genre: %s\n",              genre);
                 System.out.printf("Show ID: %s\n",            show_id);
                 System.out.printf("Rating: %s\n",             rating);
-                System.out.printf("Number of seasons: %d\n",  numSeasons);
+                System.out.printf("Number of seasons: %s\n",  numSeasons);
 
                 return 1;
             }
@@ -193,15 +193,21 @@ public class NetflixTitleContainer {
         These methods keep track of attributes to be displayed in TestDriver 
         */
     public void addDirector(String director) {
-        directors.add(director);  
+        if (!directors.contains(director)) {
+            directors.add(director);  
+        }
     }
 
     public void addCountry(String country) {
-        countries.add(country);
+        if (!countries.contains(country)) {
+            countries.add(country);
+        }
     }
 
     public void addGenre(String genre) {
-        genres.add(genre);
+        if (!genres.contains(genre)) {
+            genres.add(genre);
+        }
     }
     
     /*
