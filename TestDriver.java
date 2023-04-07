@@ -451,7 +451,7 @@ public class TestDriver {
         The user is prompted to select a director, to which every title associated with the director 
             is displayed.
         */
-    public static void searchDirector() {
+    public static void searchDirector(String type) {
         ArrayList<String> directors = database.getDirectors();
         int n = directors.size();
         System.out.println("Please select from the following directors");
@@ -492,7 +492,7 @@ public class TestDriver {
         Prompts user to select country, to which every title associated with 
             the country is displayed.
             */
-    public static void searchCountry() {
+    public static void searchCountry(String type) {
         ArrayList<String> countries = database.getCountries();
         int n = countries.size();
         System.out.println("Please select from the following countries");
@@ -529,7 +529,7 @@ public class TestDriver {
         Prompts user to select genre, to which every title associated with 
             the genre is displayed.
             */
-    public static void searchGenre() {
+    public static void searchGenre(String type) {
         ArrayList<String> genres = database.getGenres();
         int n = genres.size();
         System.out.println("Please select from the following genres");
@@ -565,7 +565,7 @@ public class TestDriver {
         Prompts user to select rating, to which every title associated with 
             the rating is displayed.
             */
-    public static void searchRating() {
+    public static void searchRating(String type) {
         System.out.println("Please select from the following ratings (type full word)");
         System.out.println("1. PG-13");
         System.out.println("2. TV-MA");
@@ -605,7 +605,7 @@ public class TestDriver {
         Prompts user to select year, to which every title associated with 
             the year (+/- 50 years) is displayed.
             */
-    public static void searchYear() {
+    public static void searchYear(String type) {
         System.out.println("Please enter a year: ");
         System.out.println("Program will display years +/- 50 years");
 
@@ -779,32 +779,32 @@ public class TestDriver {
         System.out.println("3 > genre");
         System.out.println("4 > rating");
         System.out.println("5 > year");
-        System.out.println("6 (movies only) > duration");
-        System.out.println("7 (shows only)  > seasons");
+        System.out.println("6 > duration");
         System.out.print("> ");
         attribute = sc.nextLine();
 
         switch(attribute) {
             case "director": 
-                searchDirector();
+                searchDirector(type);
                 break;
             case "country": 
-                searchCountry();
+                searchCountry(type);
                 break;
             case "genre": 
-                searchGenre();
+                searchGenre(type);
                 break;
             case "rating": 
-                searchRating();
+                searchRating(type);
                 break;
             case "year": 
-                searchYear();
+                searchYear(type);
                 break;
             case "duration": 
-                searchMovieDuration();
-                break;
-            case "seasons": 
-                searchShowDuration();
+                if (type.equalsIgnoreCase("Movie")) {
+                    searchMovieDuration();
+                } else if (type.equalsIgnoreCase("TV Show")) {
+                    searchShowDuration();
+                }
                 break;
         }
     }
