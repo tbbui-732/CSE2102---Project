@@ -43,14 +43,6 @@ public class CSVParser {
                 String  t_duration      = line_sc.next();
                 String  t_genre         = line_sc.next();
 
-                if (t_duration.isEmpty()) {
-                    t_duration = "0";
-                }
-                
-                if (t_release_year.isEmpty()) {
-                    t_release_year = "0";
-                }
-
                 if (t_type.equalsIgnoreCase("TV Show")) {
                     database.buildShow(
                             t_show_id,
