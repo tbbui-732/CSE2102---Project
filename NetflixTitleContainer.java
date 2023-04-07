@@ -32,7 +32,7 @@ public class NetflixTitleContainer {
                 String genre      = movieContainer.get(i).getGenre();
                 String show_id    = movieContainer.get(i).getID();
                 String rating     = movieContainer.get(i).getRating();
-                int duration      = movieContainer.get(i).getDuration();
+                String duration   = movieContainer.get(i).getDuration();
 
                 // Display information
                 System.out.printf("Title: %s\n",      title);
@@ -75,7 +75,7 @@ public class NetflixTitleContainer {
                 String genre      = showContainer.get(i).getGenre();
                 String show_id    = showContainer.get(i).getID();
                 String rating     = showContainer.get(i).getRating();
-                int numSeasons    = showContainer.get(i).getDuration();
+                String numSeasons   = showContainer.get(i).getDuration();
 
                 // Display information
                 System.out.printf("Title: %s\n",              title);
