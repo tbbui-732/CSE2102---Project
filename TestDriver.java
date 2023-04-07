@@ -43,9 +43,9 @@ public class TestDriver {
         String  t_title;
         String  t_director;
         String  t_country;
-        int     t_release_year;
+        String  t_release_year;
         String  t_rating;
-        int     t_seasons;
+        String  t_seasons;
         String  t_genre;
 
         // Prompt attributes
@@ -53,9 +53,9 @@ public class TestDriver {
         System.out.print("Title: ");              t_title        = sc.nextLine();
         System.out.print("Director: ");           t_director     = sc.nextLine();
         System.out.print("Country/Countries: ");  t_country      = sc.nextLine();
-        System.out.print("Release year: ");       t_release_year = Integer.parseInt(sc.nextLine());
+        System.out.print("Release year: ");       t_release_year = sc.nextLine();
         System.out.print("Rating: ");             t_rating       = sc.nextLine();
-        System.out.print("Number of seasons: ");  t_seasons      = Integer.parseInt(sc.nextLine());
+        System.out.print("Number of seasons: ");  t_seasons      = sc.nextLine();
         System.out.print("Genre: ");              t_genre        = sc.nextLine();
 
         // Add prompts to database
@@ -94,9 +94,9 @@ public class TestDriver {
         String  t_title;
         String  t_director;
         String  t_country;
-        int     t_release_year;
+        String  t_release_year;
         String  t_rating;
-        int     t_minutes;
+        String  t_minutes;
         String  t_genre;
 
         // Prompt attributes
@@ -104,9 +104,9 @@ public class TestDriver {
         System.out.print("Title: ");              t_title        = sc.nextLine();
         System.out.print("Director: ");           t_director     = sc.nextLine();
         System.out.print("Country/Countries: ");  t_country      = sc.nextLine();
-        System.out.print("Release year: ");       t_release_year = Integer.parseInt(sc.nextLine());
+        System.out.print("Release year: ");       t_release_year = sc.nextLine();
         System.out.print("Rating: ");             t_rating       = sc.nextLine();
-        System.out.print("Duration (in minutes): ");  t_minutes      = Integer.parseInt(sc.nextLine());
+        System.out.print("Duration (in minutes): ");  t_minutes  = sc.nextLine();
         System.out.print("Genre: ");              t_genre        = sc.nextLine();
 
         // Add prompts to database
@@ -146,9 +146,9 @@ public class TestDriver {
         String t_title      = movie.getTitle();
         String t_director   = movie.getDirector();
         String t_country    = movie.getCountry();
-        int    t_release_year = movie.getYear();
+        String t_release_year = movie.getYear();
         String t_rating     = movie.getRating();
-        int    t_minutes    = movie.getDuration();
+        String t_minutes    = movie.getDuration();
         String t_genre      = movie.getGenre();
 
         String input;
@@ -180,7 +180,7 @@ public class TestDriver {
             case "year":
                 System.out.printf("Old year: %d\n", t_release_year);
                 input = sc.nextLine();
-                movie.setYear(Integer.parseInt(input));
+                movie.setYear(input);
                 System.out.printf("New year: %d\n", movie.getYear());
                 break;
             case "rating":
@@ -192,7 +192,7 @@ public class TestDriver {
             case "seasons":
                 System.out.printf("Old number of minutes: %d\n", t_minutes);
                 input = sc.nextLine();
-                movie.setDuration(Integer.parseInt(input));
+                movie.setDuration(input);
                 System.out.printf("New number of minutes: %d\n", movie.getDuration());
                 break;
             case "genre":
@@ -219,9 +219,9 @@ public class TestDriver {
         String t_title      = show.getTitle();
         String t_director   = show.getDirector();
         String t_country    = show.getCountry();
-        int    t_release_year = show.getYear();
+        String t_release_year = show.getYear();
         String t_rating     = show.getRating();
-        int    t_seasons    = show.getDuration();
+        String t_seasons    = show.getDuration();
         String t_genre      = show.getGenre();
 
         String input;
@@ -253,7 +253,7 @@ public class TestDriver {
             case "year":
                 System.out.printf("Old year: %d\n", t_release_year);
                 input = sc.nextLine();
-                show.setYear(Integer.parseInt(input));
+                show.setYear(input);
                 System.out.printf("New year: %d\n", show.getYear());
                 break;
             case "rating":
@@ -265,7 +265,7 @@ public class TestDriver {
             case "duration":
                 System.out.printf("Old number of seasons: %d\n", t_seasons);
                 input = sc.nextLine();
-                show.setDuration(Integer.parseInt(input));
+                show.setDuration(input);
                 System.out.printf("New number of seasons: %d\n", show.getDuration());
                 break;
             case "genre":
@@ -450,7 +450,7 @@ public class TestDriver {
         System.out.print("> ");
         director = sc.nextLine();
         
-        // Display titles with current director name
+        // Parsing through movieContainer and showContainer to look for desired director
         ArrayList<NetflixMovie> movieContainer = database.getMovieContainer();
         ArrayList<NetflixShow> showContainer = database.getShowContainer();
 
@@ -485,7 +485,7 @@ public class TestDriver {
         String country;
         country = sc.nextLine();
 
-        // Display titles with current country
+        // Parsing through movieContainer and showContainer to search for desired title
         ArrayList<NetflixMovie> movieContainer = database.getMovieContainer();
         ArrayList<NetflixShow> showContainer = database.getShowContainer();
 
@@ -519,7 +519,7 @@ public class TestDriver {
         String genre;
         genre = sc.nextLine();
 
-        // Display titles with current genre
+        // Parsing through movieContainer and showContainer to get desired title
         ArrayList<NetflixMovie> movieContainer = database.getMovieContainer();
         ArrayList<NetflixShow> showContainer = database.getShowContainer();
 
@@ -559,7 +559,7 @@ public class TestDriver {
         int n;
         rating = sc.nextLine();
 
-        // Display titles with current rating
+        // Parsing through movieContainer and showContainer to get desired title
         ArrayList<NetflixMovie> movieContainer = database.getMovieContainer();
         ArrayList<NetflixShow> showContainer = database.getShowContainer();
 
@@ -595,12 +595,16 @@ public class TestDriver {
         int maxYear = year + 50;
 
         // Display titles with years +/- 50 years
+        // Parsing through movieContainer and showContainer to get desired title
         ArrayList<NetflixMovie> movieContainer = database.getMovieContainer();
         ArrayList<NetflixShow> showContainer = database.getShowContainer();
 
         n = movieContainer.size();
         for (int i = 0; i < n; i++) {
-            int currYear = movieContainer.get(i).getYear();
+            String strYear = movieContainer.get(i).getYear();
+            strYear = currYear.replaceAll("[^0-9.]", ""); // Remove all non-numeric characters
+
+            int currYear = Integer.parseInt(strYear);
             if (currYear >= minYear && currYear <= maxYear) {
                 System.out.println(movieContainer.get(i).getTitle());
             }
@@ -608,7 +612,10 @@ public class TestDriver {
 
         n = showContainer.size();
         for (int i = 0; i < n; i++) {
-            int currYear = showContainer.get(i).getYear();
+            String strYear = movieContainer.get(i).getYear();
+            strYear = currYear.replaceAll("[^0-9.]", ""); // Remove all non-numeric characters
+
+            int currYear = Integer.parseInt(strYear);
             if (currYear >= minYear && currYear <= maxYear) {
                 System.out.println(showContainer.get(i).getTitle());
             }
@@ -654,12 +661,19 @@ public class TestDriver {
         } else if (selection.equalsIgnoreCase("f")) {
             minTime = 151;
             maxTime = 180;
+        } else {
+            System.out.println("Invalid input> defaulting to 0-30 minutes");
         }
-
+        
+        // Parse through movieContainer to find associated title
         ArrayList<NetflixMovie> movieContainer = database.getMovieContainer();
         int n = movieContainer.size();
         for (int i = 0; i < n; i++) {
-            int curr_min = movieContainer.get(i).getDuration();
+            String strMin = movieContainer.get(i).getDuration();
+            strMin = strMin.replaceAll("[^0-9.]", "");
+            
+            // Convert to integer before checking values
+            int curr_min = Integer.parseInt(strMin);
             if (curr_min <= maxTime && curr_min >= minTime) {
                 System.out.println(movieContainer.get(i).getTitle());
             }
@@ -710,7 +724,12 @@ public class TestDriver {
         ArrayList<NetflixShow> showContainer = database.getShowContainer();
         int n = showContainer.size();
         for (int i = 0; i < n; i++) {
-            int curr_season = showContainer.get(i).getDuration();
+
+            String strSeason = showContainer.get(i).getDuration();
+            strSeason = strSeason.replaceAll("[^0-9.]", "");
+                
+            // Convert to integer before checking values
+            int curr_season = Integer.parseInt(strSeason);
             if (curr_season <= maxSeason && curr_season >= minSeason) {
                 System.out.println(showContainer.get(i).getTitle());
             }
