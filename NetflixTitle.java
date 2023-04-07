@@ -5,7 +5,7 @@ public class NetflixTitle {
     private String title;
     private String director;
     private String country;
-    private int    release_year;
+    private String release_year;
     private String rating;
     private String genre;
 
@@ -15,7 +15,7 @@ public class NetflixTitle {
             String title,
             String director,
             String country,
-            int    release_year,
+            String release_year,
             String rating,
             String genre) 
     {
@@ -35,7 +35,7 @@ public class NetflixTitle {
     public void setTitle(String title)        { this.title = title; }
     public void setDirector(String director)  { this.director = director; }
     public void setCountry(String country)    { this.country = country; }
-    public void setYear(int release_year)     { this.release_year = release_year; }
+    public void setYear(String release_year)  { this.release_year = release_year; }
     public void setRating(String rating)      { this.rating = rating; }
     public void setGenre(String genre)        { this.genre = genre; }
 
@@ -45,7 +45,7 @@ public class NetflixTitle {
     public String getTitle()     { return title; }
     public String getDirector()  { return director; }
     public String getCountry()   { return country; }
-    public int    getYear()      { return release_year; }
+    public String getYear()      { return release_year; }
     public String getRating()    { return rating; }
     public String getGenre()     { return genre; }
 }

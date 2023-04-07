@@ -602,7 +602,7 @@ public class TestDriver {
         n = movieContainer.size();
         for (int i = 0; i < n; i++) {
             String strYear = movieContainer.get(i).getYear();
-            strYear = currYear.replaceAll("[^0-9.]", ""); // Remove all non-numeric characters
+            strYear = strYear.replaceAll("[^0-9.]", ""); // Remove all non-numeric characters
 
             int currYear = Integer.parseInt(strYear);
             if (currYear >= minYear && currYear <= maxYear) {
@@ -613,7 +613,7 @@ public class TestDriver {
         n = showContainer.size();
         for (int i = 0; i < n; i++) {
             String strYear = movieContainer.get(i).getYear();
-            strYear = currYear.replaceAll("[^0-9.]", ""); // Remove all non-numeric characters
+            strYear = strYear.replaceAll("[^0-9.]", ""); // Remove all non-numeric characters
 
             int currYear = Integer.parseInt(strYear);
             if (currYear >= minYear && currYear <= maxYear) {
