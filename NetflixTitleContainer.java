@@ -168,6 +168,108 @@ public class NetflixTitleContainer {
     }
 
     /*
+       Allows the user to select a particular movie attribute to modify
+       No return value
+       */
+    public void changeMovieAttribute(String attribute, String title) {
+        NetflixMovie movie = database.getMovie(title);
+        database.removeMovie(title);
+
+        String t_show_id      = movie.getID();
+        String t_title        = movie.getTitle();
+        String t_director     = movie.getDirector();
+        String t_country      = movie.getCountry();
+        String t_release_year = movie.getYear();
+        String t_rating       = movie.getRating();
+        String t_minutes      = movie.getDuration();
+        String t_genre        = movie.getGenre();
+
+
+        System.out.printf("Modifying %s\n", attribute);
+        String input = sc.nextLine();
+        switch(attribute) {
+            case "id": 
+                movie.setID(input);
+                break;
+            case "title": 
+                movie.setTitle(input);
+                break;
+            case "director":
+                movie.setDirector(input);
+                break;
+            case "country":
+                movie.setCountry(input);
+                break;
+            case "year":
+                movie.setYear(input);
+                break;
+            case "rating":
+                movie.setRating(input);
+                break;
+            case "seasons":
+                movie.setDuration(input);
+                break;
+            case "genre":
+                movie.setGenre(input);
+                break;
+        }
+
+        database.addMovie(movie);
+        System.out.printf("Successfully modified %s\n", attribute);
+    }
+
+    /*
+       Allows the user to select a particular show attribute to modify
+       No return value
+       */
+    public void changeShowAttribute(String attribute, String title) {
+        NetflixShow show = database.getShow(title);
+        database.removeShow(title);
+
+        String t_show_id      = show.getID();
+        String t_title        = show.getTitle();
+        String t_director     = show.getDirector();
+        String t_country      = show.getCountry();
+        String t_release_year = show.getYear();
+        String t_rating       = show.getRating();
+        String t_minutes      = show.getDuration();
+        String t_genre        = show.getGenre();
+
+
+        System.out.printf("Modifying %s\n", attribute);
+        String input = sc.nextLine();
+        switch(attribute) {
+            case "id": 
+                show.setID(input);
+                break;
+            case "title": 
+                show.setTitle(input);
+                break;
+            case "director":
+                show.setDirector(input);
+                break;
+            case "country":
+                show.setCountry(input);
+                break;
+            case "year":
+                show.setYear(input);
+                break;
+            case "rating":
+                show.setRating(input);
+                break;
+            case "seasons":
+                show.setDuration(input);
+                break;
+            case "genre":
+                show.setGenre(input);
+                break;
+        }
+
+        database.addShow(show);
+        System.out.printf("Successfully modified %s\n", attribute);
+    }
+
+    /*
         Build methods that take in respective Netflix title atttributes
             and store them into their respective container, as well
             as updating the containers to be used in TestDriver.
