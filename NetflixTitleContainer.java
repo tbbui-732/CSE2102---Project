@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Dictionary;
+import java.util.Collections;
 
 public class NetflixTitleContainer {
     private ArrayList<NetflixMovie> movieContainer = new ArrayList<NetflixMovie>();
@@ -69,6 +70,102 @@ public class NetflixTitleContainer {
 
         // Show does not exist in database
         System.out.printf("The show '%s' does not exist in the database\n", showName);
+    }
+
+    /*
+        Given an attribute, display the names of those
+            attributes from every movie or show
+    */
+    public void displayShowDirectors() {
+        int num_show = showContainer.size();
+        ArrayList<String> directors = new ArrayList<String>();
+        
+        // Get all directors
+        //      Skip duplicates
+        for (int i = 0; i < num_show; i++) {
+            string director = showContainer.get(i).getDirector();
+
+            if (!directors.contains(director)) {
+                directors.add(director);
+            }
+        }
+
+        // Sort the directors in alphabetical order
+        Collections.sort(directors);
+
+        // Display all directors
+        for (int i = 0; i < directors.size(); i++) {
+            System.out.println(directors.get(i));
+        }
+    }
+
+    public void displayMovieDirectors() {
+        int num_show = movieContainer.size();
+        ArrayList<String> directors = new ArrayList<String>();
+        
+        // Get all directors
+        //      Skip duplicates
+        for (int i = 0; i < num_show; i++) {
+            string director = movieContainer.get(i).getDirector();
+
+            if (!directors.contains(director)) {
+                directors.add(director);
+            }
+        }
+
+        // Sort the directors in alphabetical order
+        Collections.sort(directors);
+
+        // Display all directors
+        for (int i = 0; i < directors.size(); i++) {
+            System.out.println(directors.get(i));
+        }
+    }
+
+    public void displayShowCountries() {
+        int num_countries = showContainer.size();
+        ArrayList<String> countries = new ArrayList<String>();
+
+        // Get all countries
+        //      Skip duplicates
+        for (int i = 0; i < num_countries; i++) {
+            String country = showContainer.get(i).getCountry();
+
+            if (!countries.contains(country)) {
+                countries.add(country);
+            }
+        }
+
+        // Sort the countries in alphabetical order
+        Collections.sort(countries);
+
+        // Display all countries
+        for (int i = 0; i < countries.size(); i++) {
+            System.out.println(countries.get(i));
+        }
+    }
+
+    public void displayMovieCountries() {
+        int num_countries = movieContainer.size();
+        ArrayList<String> countries = new ArrayList<String>();
+
+        // Get all countries
+        //      Skip duplicates
+        for (int i = 0; i < num_countries; i++) {
+            String country = movieContainer.get(i).getCountry();
+
+            if (!countries.contains(country)) {
+                countries.add(country);
+            }
+        }
+
+        // Sort the countries in alphabetical order
+        Collections.sort(countries);
+
+        // Display all countries
+        for (int i = 0; i < countries.size(); i++) {
+            System.out.println(countries.get(i));
+        }
     }
 
     /*
