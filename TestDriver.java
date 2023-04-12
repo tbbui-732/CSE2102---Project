@@ -30,170 +30,6 @@ public class TestDriver {
     }
 
     /*
-        attribute: NetflixMovie arguments
-        movieTitle: as it implies
-
-        changeMovieAttribute(String, String) allows the user to select particular movie attributes to modify
-
-        No return value.
-        */
-    public static void changeMovieAttribute(String attribute, String movieTitle) {
-        NetflixMovie movie = database.getMovie(movieTitle);
-        database.removeTitle(movieTitle);
-
-        String t_show_id    = movie.getID();
-        String t_title      = movie.getTitle();
-        String t_director   = movie.getDirector();
-        String t_country    = movie.getCountry();
-        String t_release_year = movie.getYear();
-        String t_rating     = movie.getRating();
-        String t_minutes    = movie.getDuration();
-        String t_genre      = movie.getGenre();
-
-        String input;
-        switch(attribute) {
-            case "id": 
-                System.out.printf("Old ID: %s\n", t_show_id);
-                input = sc.nextLine();
-                movie.setID(input);
-                database.addMovie(movie);
-                System.out.printf("New ID: %s\n", movie.getID());
-                break;
-            case "title": 
-                System.out.printf("Old title: %s\n", t_title);
-                input = sc.nextLine();
-                movie.setTitle(input);
-                database.addMovie(movie);
-                System.out.printf("New title: %s\n", movie.getTitle());
-                break;
-            case "director":
-                System.out.printf("Old director: %s\n", t_director);
-                input = sc.nextLine();
-                movie.setDirector(input);
-                database.addMovie(movie);
-                System.out.printf("New director: %s\n", movie.getDirector());
-                break;
-            case "country":
-                System.out.printf("Old country: %s\n", t_country);
-                input = sc.nextLine();
-                movie.setCountry(input);
-                database.addMovie(movie);
-                System.out.printf("New country: %s\n", movie.getCountry());
-                break;
-            case "year":
-                System.out.printf("Old year: %d\n", t_release_year);
-                input = sc.nextLine();
-                movie.setYear(input);
-                database.addMovie(movie);
-                System.out.printf("New year: %d\n", movie.getYear());
-                break;
-            case "rating":
-                System.out.printf("Old rating: %s\n", t_rating);
-                input = sc.nextLine();
-                movie.setRating(input);
-                database.addMovie(movie);
-                System.out.printf("New rating: %s\n", movie.getRating());
-                break;
-            case "seasons":
-                System.out.printf("Old number of minutes: %d\n", t_minutes);
-                input = sc.nextLine();
-                movie.setDuration(input);
-                database.addMovie(movie);
-                System.out.printf("New number of minutes: %d\n", movie.getDuration());
-                break;
-            case "genre":
-                System.out.printf("Old genre: %s\n", t_genre);
-                input = sc.nextLine();
-                movie.setGenre(input);
-                database.addMovie(movie);
-                System.out.printf("New genre: %s\n", movie.getGenre());
-                break;
-        }
-    }
-
-    /*
-        attribute: NetflixShow arguments
-        showTitle: as it implies
-
-        changeShowAttribute(String, String) allows the user to select particular TV Show attribute to modify
-
-        No return value.
-        */
-    public static void changeShowAttribute(String attribute, String showTitle) {
-        NetflixShow show = database.getShow(showTitle);
-        database.removeTitle(showTitle);
-
-        String t_show_id    = show.getID();
-        String t_title      = show.getTitle();
-        String t_director   = show.getDirector();
-        String t_country    = show.getCountry();
-        String t_release_year = show.getYear();
-        String t_rating     = show.getRating();
-        String t_seasons    = show.getDuration();
-        String t_genre      = show.getGenre();
-
-        String input;
-        switch(attribute) {
-            case "id": 
-                System.out.printf("Old ID: %s\n", t_show_id);
-                input = sc.nextLine();
-                show.setID(input);
-                database.addShow(show);
-                System.out.printf("New ID: %s\n", show.getID());
-                break;
-            case "title": 
-                System.out.printf("Old title: %s\n", t_title);
-                input = sc.nextLine();
-                show.setTitle(input);
-                database.addShow(show);
-                System.out.printf("New title: %s\n", show.getTitle());
-                break;
-            case "director":
-                System.out.printf("Old director: %s\n", t_director);
-                input = sc.nextLine();
-                show.setDirector(input);
-                database.addShow(show);
-                System.out.printf("New director: %s\n", show.getDirector());
-                break;
-            case "country":
-                System.out.printf("Old country: %s\n", t_country);
-                input = sc.nextLine();
-                show.setCountry(input);
-                database.addShow(show);
-                System.out.printf("New country: %s\n", show.getCountry());
-                break;
-            case "year":
-                System.out.printf("Old year: %d\n", t_release_year);
-                input = sc.nextLine();
-                show.setYear(input);
-                database.addShow(show);
-                System.out.printf("New year: %d\n", show.getYear());
-                break;
-            case "rating":
-                System.out.printf("Old rating: %s\n", t_rating);
-                input = sc.nextLine();
-                show.setRating(input);
-                database.addShow(show);
-                System.out.printf("New rating: %s\n", show.getRating());
-                break;
-            case "duration":
-                System.out.printf("Old number of seasons: %d\n", t_seasons);
-                input = sc.nextLine();
-                show.setDuration(input);
-                database.addShow(show);
-                System.out.printf("New number of seasons: %d\n", show.getDuration());
-                break;
-            case "genre":
-                System.out.printf("Old genre: %s\n", t_genre);
-                input = sc.nextLine();
-                show.setGenre(input);
-                database.addShow(show);
-                System.out.printf("New genre: %s\n", show.getGenre());
-                break;
-        }
-    }
-    
-    /*
         addNewTitle() prompts the user to create a new 'Movie' or 'TV Show'.
         These new objects are added to the database.
 
@@ -201,80 +37,47 @@ public class TestDriver {
 
         No return value. 
         */
-    public static void addNewTitle() {
+    public static void addNewTitlePrompt() {
         int selection = promptTitleType();
         while (selection < 0) {
             // Continually ask for input until answer is correct
-            System.out.println("Bad input, make sure you answer is either 'TV Show' or 'Movie'\n");
+            System.out.println("Bad input, make sure you answer is either 'TV Show' or 'Movie'");
+            System.out.println("Type '2' to quit this menu");
+            if (selection == 2) {
+                return;
+            }
             selection = promptTitleType();
         }
 
         switch(selection) {
             case 0: 
-                buildMovie();
+                database.buildMovieWithPrompt();
                 break;
             case 1: 
-                buildTVShow();
+                database.buildShowWithPrompt();
                 break;
         }
-        
-        // After title has been created, the user has a chance to create edits here
-        System.out.print("Do you want to change an attribute? (yes or no): ");
-        String answer = sc.nextLine();
-
-        if (answer.equals("yes")) {
-            System.out.print("Enter the title you want to edit> ");
-            String title = sc.nextLine();
-            System.out.println("");
-
-            // Change attribute
-            System.out.println("Choose the attribute you want to change (type the full name) --");
-            System.out.println("1 > title");
-            System.out.println("2 > director");
-            System.out.println("3 > country");
-            System.out.println("4 > genre");
-            System.out.println("5 > id");
-            System.out.println("6 > rating");
-            System.out.println("7 > year");
-            System.out.println("8 (movies only) > duration");
-            System.out.println("9 (shows only)  > seasons");
-            System.out.print("> ");
-
-            String attribute = sc.nextLine();
-            System.out.println("\n-- Updating information --");
-
-            if (selection == 1) { // TV SHOW
-                changeShowAttribute(attribute, title); 
-                System.out.println("\n-- Updated show information --");
-                database.displayShowInfo(title);
-            } else if (selection == 0) { // MOVIES
-                changeMovieAttribute(attribute, title);
-                System.out.println("\n-- Updated movie information --");
-                database.displayMovieInfo(title);
-            }
-        }
     }
-    
+        
     /*
         deleteTitle() prompts user for desired title to delete.
         The selected title is removed from the database. 
          
         No return value. 
         */
-    public static void deleteTitle() {
-        String input;
+    public static void deleteTitlePrompt() {
+        System.out.print("TV Show or Movie: ");
+        String type = sc.nextLine();
         System.out.print("Enter title to delete: ");
-        input = sc.nextLine();
-        
-        // Continually prompt user for title to delete in case
-        //  the one entered does not exist
-        while (!database.titleExists(input)) {
-            System.out.printf("%s does not exist\n", input);
-            System.out.print("Enter title to delete: ");
-            input = sc.nextLine();
+        String title = sc.nextLine();
+
+        if (type.equalsIgnoreCase("TV Show")) {
+            database.removeShow(title);
+        } 
+        else if (type.equalsIgnoreCase("Movie")) {
+            database.removeMovie(title);
         }
-       
-        database.removeTitle(input);
+
     }
    
     /*
@@ -283,7 +86,7 @@ public class TestDriver {
 
         No return value.
         */
-    public static void addNewFile() {
+    public static void addNewFilePrompt() {
         // Get filename and parse through it
         try {
             System.out.print("Please enter the name of the input file: ");
@@ -315,16 +118,15 @@ public class TestDriver {
         System.out.print("Enter title you want to modify: ");
         title = sc.nextLine();
 
-        System.out.println("Choose the attribute you want to change (type the full name) --");
-        System.out.println("1 > title");
-        System.out.println("2 > director");
-        System.out.println("3 > country");
-        System.out.println("4 > genre");
-        System.out.println("5 > id");
-        System.out.println("6 > rating");
-        System.out.println("7 > year");
-        System.out.println("8 (movies only) > duration");
-        System.out.println("9 (shows only)  > seasons");
+        System.out.println("-- Type the attribute you want to change --");
+        System.out.println("title");
+        System.out.println("director");
+        System.out.println("country");
+        System.out.println("genre");
+        System.out.println("id");
+        System.out.println("rating");
+        System.out.println("year");
+        System.out.println("duration");
         System.out.print("> ");
         attribute = sc.nextLine();
         
@@ -336,11 +138,9 @@ public class TestDriver {
         
         // Change attributes
         if (type.equalsIgnoreCase("TV Show")) {
-            changeShowAttribute(attribute, title);
-            return;
+            database.changeShowAttribute(attribute, title);
         } else if (type.equalsIgnoreCase("Movie")) {
-            changeMovieAttribute(attribute, title);
-            return;
+            database.changeMovieAttribute(attribute, title);
         }
     }
     
@@ -350,38 +150,29 @@ public class TestDriver {
             is displayed.
         */
     public static void searchDirector(String type) {
-        ArrayList<String> directors = database.getDirectors();
-        int n = directors.size();
-        System.out.println("Please select from the following directors");
-        int j = 0;
-        for (int i = 0; i < n; i++) {
-            if (directors.get(i).isEmpty()) {
-                continue;
-            }
-            System.out.printf("%d: %s\n", j, directors.get(i));
-            j++;
-        }
-        
-        String director;
-        System.out.print("> ");
-        director = sc.nextLine();
-        
-        // Parsing through movieContainer and showContainer to look for desired director
-        ArrayList<NetflixMovie> movieContainer = database.getMovieContainer();
-        ArrayList<NetflixShow> showContainer = database.getShowContainer();
-        
-        if (type.equalsIgnoreCase("Movie")) {
-            n = movieContainer.size();
-            for (int i = 0; i < n; i++) {
-                if (director.equalsIgnoreCase(movieContainer.get(i).getDirector())) {
-                    System.out.println(movieContainer.get(i).getTitle());
-                }
-            }
-        } else if (type.equalsIgnoreCase("TV Show")) {
+        if (type.equalsIgnoreCase("TV Show")) {
+            database.displayShowDirectors();
+            System.out.print("> ");
+            String director = sc.nextLine();
+            
+            ArrayList<NetflixShow> showContainer = database.getShowContainer();
             n = showContainer.size();
             for (int i = 0; i < n; i++) {
                 if (director.equalsIgnoreCase(showContainer.get(i).getDirector())) {
                     System.out.println(showContainer.get(i).getTitle());
+                }
+            }
+        }
+        else if (type.equalsIgnoreCase("Movie")) {
+            database.displayMovieDirectors();
+            System.out.print("> ");
+            String director = sc.nextLine();
+            
+            ArrayList<NetflixMovie> movieContainer = database.getMovieContainer();
+            n = movieContainer.size();
+            for (int i = 0; i < n; i++) {
+                if (director.equalsIgnoreCase(movieContainer.get(i).getDirector())) {
+                    System.out.println(movieContainer.get(i).getTitle());
                 }
             }
         }
@@ -393,34 +184,29 @@ public class TestDriver {
             the country is displayed.
             */
     public static void searchCountry(String type) {
-        ArrayList<String> countries = database.getCountries();
-        int n = countries.size();
-        System.out.println("Please select from the following countries");
-        int j = 0;
-        for (int i = 0; i < n; i++) {
-            System.out.printf("%d: %s\n", j, countries.get(i));
-            j++;
-        }
+        if (type.equalsIgnoreCase("TV Show")) {
+            database.displayShowCountries();
+            System.out.print("> ");
+            String country = sc.nextLine();
 
-        String country;
-        country = sc.nextLine();
-
-        // Parsing through movieContainer and showContainer to search for desired title
-        ArrayList<NetflixMovie> movieContainer = database.getMovieContainer();
-        ArrayList<NetflixShow> showContainer = database.getShowContainer();
-        
-        if (type.equalsIgnoreCase("Movie")) {
-            n = movieContainer.size();
-            for (int i = 0; i < n; i++) {
-                if (country.equalsIgnoreCase(movieContainer.get(i).getCountry())) {
-                    System.out.println(movieContainer.get(i).getTitle());
-                }
-            }
-        } else if (type.equalsIgnoreCase("TV Show")) {
+            ArrayList<NetflixShow> showContainer = database.getShowContainer();
             n = showContainer.size();
             for (int i = 0; i < n; i++) {
                 if (country.equalsIgnoreCase(showContainer.get(i).getCountry())) {
                     System.out.println(showContainer.get(i).getTitle());
+                }
+            }
+        }
+        else if (type.equalsIgnoreCase("Movie")) {
+            database.displayMovieCountries();
+            System.out.print("> ");
+            String country = sc.nextLine();
+
+            ArrayList<NetflixMovie> movieContainer = database.getMovieContainer();
+            n = movieContainer.size();
+            for (int i = 0; i < n; i++) {
+                if (country.equalsIgnoreCase(movieContainer.get(i).getCountry())) {
+                    System.out.println(movieContainer.get(i).getTitle());
                 }
             }
         }
@@ -431,10 +217,6 @@ public class TestDriver {
         Prompts user to select genre, to which every title associated with 
             the genre is displayed.
             */
-
-    // FIXME: BUG
-    //  When selecting genres, there are some prompts for durations, NOT genres.
-    //      Perhaps something to do with CSVParser (?)
     public static void searchGenre(String type) {
         ArrayList<String> genres = database.getGenres();
         int n = genres.size();

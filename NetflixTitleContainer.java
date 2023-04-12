@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Dictionary;
+import java.util.Collections;
 
 public class NetflixTitleContainer {
     private ArrayList<NetflixMovie> movieContainer = new ArrayList<NetflixMovie>();
@@ -13,7 +14,7 @@ public class NetflixTitleContainer {
 
         // Parse information and store into temporary variables
         for (int i = 0; i < n; i++) {
-            if (movieName == movieContainer.get(i).getTitle()) {
+            if (movieName.equalsIgnoreCase(movieContainer.get(i).getTitle())) {
                 // Store information
                 String title      = movieContainer.get(i).getTitle();
                 String director   = movieContainer.get(i).getDirector();
@@ -46,7 +47,7 @@ public class NetflixTitleContainer {
 
         // Parse information and store into temporary variables
         for (int i = 0; i < n; i++) {
-            if (showName == showContainer.get(i).getTitle()) {
+            if (showName.equalsIgnoreCase(showContainer.get(i).getTitle())) {
                 // Store information
                 String title      = showContainer.get(i).getTitle();
                 String director   = showContainer.get(i).getDirector();
@@ -69,6 +70,102 @@ public class NetflixTitleContainer {
 
         // Show does not exist in database
         System.out.printf("The show '%s' does not exist in the database\n", showName);
+    }
+
+    /*
+        Given an attribute, display the names of those
+            attributes from every movie or show
+    */
+    public void displayShowDirectors() {
+        int num_show = showContainer.size();
+        ArrayList<String> directors = new ArrayList<String>();
+        
+        // Get all directors
+        //      Skip duplicates
+        for (int i = 0; i < num_show; i++) {
+            string director = showContainer.get(i).getDirector();
+
+            if (!directors.contains(director)) {
+                directors.add(director);
+            }
+        }
+
+        // Sort the directors in alphabetical order
+        Collections.sort(directors);
+
+        // Display all directors
+        for (int i = 0; i < directors.size(); i++) {
+            System.out.println(directors.get(i));
+        }
+    }
+
+    public void displayMovieDirectors() {
+        int num_show = movieContainer.size();
+        ArrayList<String> directors = new ArrayList<String>();
+        
+        // Get all directors
+        //      Skip duplicates
+        for (int i = 0; i < num_show; i++) {
+            string director = movieContainer.get(i).getDirector();
+
+            if (!directors.contains(director)) {
+                directors.add(director);
+            }
+        }
+
+        // Sort the directors in alphabetical order
+        Collections.sort(directors);
+
+        // Display all directors
+        for (int i = 0; i < directors.size(); i++) {
+            System.out.println(directors.get(i));
+        }
+    }
+
+    public void displayShowCountries() {
+        int num_countries = showContainer.size();
+        ArrayList<String> countries = new ArrayList<String>();
+
+        // Get all countries
+        //      Skip duplicates
+        for (int i = 0; i < num_countries; i++) {
+            String country = showContainer.get(i).getCountry();
+
+            if (!countries.contains(country)) {
+                countries.add(country);
+            }
+        }
+
+        // Sort the countries in alphabetical order
+        Collections.sort(countries);
+
+        // Display all countries
+        for (int i = 0; i < countries.size(); i++) {
+            System.out.println(countries.get(i));
+        }
+    }
+
+    public void displayMovieCountries() {
+        int num_countries = movieContainer.size();
+        ArrayList<String> countries = new ArrayList<String>();
+
+        // Get all countries
+        //      Skip duplicates
+        for (int i = 0; i < num_countries; i++) {
+            String country = movieContainer.get(i).getCountry();
+
+            if (!countries.contains(country)) {
+                countries.add(country);
+            }
+        }
+
+        // Sort the countries in alphabetical order
+        Collections.sort(countries);
+
+        // Display all countries
+        for (int i = 0; i < countries.size(); i++) {
+            System.out.println(countries.get(i));
+        }
     }
 
     /*
@@ -165,6 +262,90 @@ public class NetflixTitleContainer {
         }
 
         return false;
+    }
+
+    /*
+       Allows the user to select a particular movie attribute to modify
+       No return value
+       */
+    public void changeMovieAttribute(String attribute, String title) {
+        NetflixMovie movie = database.getMovie(title);
+
+        database.removeMovie(title);
+
+        System.out.printf("Modifying %s\n", attribute);
+        String input = sc.nextLine();
+        switch(attribute) {
+            case "id": 
+                movie.setID(input);
+                break;
+            case "title": 
+                movie.setTitle(input);
+                break;
+            case "director":
+                movie.setDirector(input);
+                break;
+            case "country":
+                movie.setCountry(input);
+                break;
+            case "year":
+                movie.setYear(input);
+                break;
+            case "rating":
+                movie.setRating(input);
+                break;
+            case "seasons":
+                movie.setDuration(input);
+                break;
+            case "genre":
+                movie.setGenre(input);
+                break;
+        }
+
+        database.addMovie(movie);
+        System.out.printf("Successfully modified %s\n", attribute);
+    }
+
+    /*
+       Allows the user to select a particular show attribute to modify
+       No return value
+       */
+    public void changeShowAttribute(String attribute, String title) {
+        NetflixShow show = database.getShow(title);
+
+        database.removeShow(title);
+
+        System.out.printf("Modifying %s\n", attribute);
+        String input = sc.nextLine();
+        switch(attribute) {
+            case "id": 
+                show.setID(input);
+                break;
+            case "title": 
+                show.setTitle(input);
+                break;
+            case "director":
+                show.setDirector(input);
+                break;
+            case "country":
+                show.setCountry(input);
+                break;
+            case "year":
+                show.setYear(input);
+                break;
+            case "rating":
+                show.setRating(input);
+                break;
+            case "seasons":
+                show.setDuration(input);
+                break;
+            case "genre":
+                show.setGenre(input);
+                break;
+        }
+
+        database.addShow(show);
+        System.out.printf("Successfully modified %s\n", attribute);
     }
 
     /*
