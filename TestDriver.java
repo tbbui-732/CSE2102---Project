@@ -37,80 +37,47 @@ public class TestDriver {
 
         No return value. 
         */
-    public static void addNewTitle() {
+    public static void addNewTitlePrompt() {
         int selection = promptTitleType();
         while (selection < 0) {
             // Continually ask for input until answer is correct
-            System.out.println("Bad input, make sure you answer is either 'TV Show' or 'Movie'\n");
+            System.out.println("Bad input, make sure you answer is either 'TV Show' or 'Movie'");
+            System.out.println("Type '2' to quit this menu");
+            if (selection == 2) {
+                return;
+            }
             selection = promptTitleType();
         }
 
         switch(selection) {
             case 0: 
-                buildMovie();
+                database.buildMovieWithPrompt();
                 break;
             case 1: 
-                buildTVShow();
+                database.buildShowWithPrompt();
                 break;
         }
-        
-        // After title has been created, the user has a chance to create edits here
-        System.out.print("Do you want to change an attribute? (yes or no): ");
-        String answer = sc.nextLine();
-
-        if (answer.equals("yes")) {
-            System.out.print("Enter the title you want to edit> ");
-            String title = sc.nextLine();
-            System.out.println("");
-
-            // Change attribute
-            System.out.println("Choose the attribute you want to change (type the full name) --");
-            System.out.println("1 > title");
-            System.out.println("2 > director");
-            System.out.println("3 > country");
-            System.out.println("4 > genre");
-            System.out.println("5 > id");
-            System.out.println("6 > rating");
-            System.out.println("7 > year");
-            System.out.println("8 (movies only) > duration");
-            System.out.println("9 (shows only)  > seasons");
-            System.out.print("> ");
-
-            String attribute = sc.nextLine();
-            System.out.println("\n-- Updating information --");
-
-            if (selection == 1) { // TV SHOW
-                changeShowAttribute(attribute, title); 
-                System.out.println("\n-- Updated show information --");
-                database.displayShowInfo(title);
-            } else if (selection == 0) { // MOVIES
-                changeMovieAttribute(attribute, title);
-                System.out.println("\n-- Updated movie information --");
-                database.displayMovieInfo(title);
-            }
-        }
     }
-    
+        
     /*
         deleteTitle() prompts user for desired title to delete.
         The selected title is removed from the database. 
          
         No return value. 
         */
-    public static void deleteTitle() {
-        String input;
+    public static void deleteTitlePrompt() {
+        System.out.print("TV Show or Movie: ");
+        String type = sc.nextLine();
         System.out.print("Enter title to delete: ");
-        input = sc.nextLine();
-        
-        // Continually prompt user for title to delete in case
-        //  the one entered does not exist
-        while (!database.titleExists(input)) {
-            System.out.printf("%s does not exist\n", input);
-            System.out.print("Enter title to delete: ");
-            input = sc.nextLine();
+        String title = sc.nextLine();
+
+        if (type.equalsIgnoreCase("TV Show")) {
+            database.removeShow(title);
+        } 
+        else if (type.equalsIgnoreCase("Movie")) {
+            database.removeMovie(title);
         }
-       
-        database.removeTitle(input);
+
     }
    
     /*
@@ -119,7 +86,7 @@ public class TestDriver {
 
         No return value.
         */
-    public static void addNewFile() {
+    public static void addNewFilePrompt() {
         // Get filename and parse through it
         try {
             System.out.print("Please enter the name of the input file: ");
@@ -151,16 +118,15 @@ public class TestDriver {
         System.out.print("Enter title you want to modify: ");
         title = sc.nextLine();
 
-        System.out.println("Choose the attribute you want to change (type the full name) --");
-        System.out.println("1 > title");
-        System.out.println("2 > director");
-        System.out.println("3 > country");
-        System.out.println("4 > genre");
-        System.out.println("5 > id");
-        System.out.println("6 > rating");
-        System.out.println("7 > year");
-        System.out.println("8 (movies only) > duration");
-        System.out.println("9 (shows only)  > seasons");
+        System.out.println("-- Type the attribute you want to change --");
+        System.out.println("title");
+        System.out.println("director");
+        System.out.println("country");
+        System.out.println("genre");
+        System.out.println("id");
+        System.out.println("rating");
+        System.out.println("year");
+        System.out.println("duration");
         System.out.print("> ");
         attribute = sc.nextLine();
         
@@ -172,11 +138,9 @@ public class TestDriver {
         
         // Change attributes
         if (type.equalsIgnoreCase("TV Show")) {
-            changeShowAttribute(attribute, title);
-            return;
+            database.changeShowAttribute(attribute, title);
         } else if (type.equalsIgnoreCase("Movie")) {
-            changeMovieAttribute(attribute, title);
-            return;
+            database.changeMovieAttribute(attribute, title);
         }
     }
     

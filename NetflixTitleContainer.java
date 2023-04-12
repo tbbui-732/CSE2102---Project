@@ -13,7 +13,7 @@ public class NetflixTitleContainer {
 
         // Parse information and store into temporary variables
         for (int i = 0; i < n; i++) {
-            if (movieName == movieContainer.get(i).getTitle()) {
+            if (movieName.equalsIgnoreCase(movieContainer.get(i).getTitle())) {
                 // Store information
                 String title      = movieContainer.get(i).getTitle();
                 String director   = movieContainer.get(i).getDirector();
@@ -46,7 +46,7 @@ public class NetflixTitleContainer {
 
         // Parse information and store into temporary variables
         for (int i = 0; i < n; i++) {
-            if (showName == showContainer.get(i).getTitle()) {
+            if (showName.equalsIgnoreCase(showContainer.get(i).getTitle())) {
                 // Store information
                 String title      = showContainer.get(i).getTitle();
                 String director   = showContainer.get(i).getDirector();
@@ -173,17 +173,8 @@ public class NetflixTitleContainer {
        */
     public void changeMovieAttribute(String attribute, String title) {
         NetflixMovie movie = database.getMovie(title);
+
         database.removeMovie(title);
-
-        String t_show_id      = movie.getID();
-        String t_title        = movie.getTitle();
-        String t_director     = movie.getDirector();
-        String t_country      = movie.getCountry();
-        String t_release_year = movie.getYear();
-        String t_rating       = movie.getRating();
-        String t_minutes      = movie.getDuration();
-        String t_genre        = movie.getGenre();
-
 
         System.out.printf("Modifying %s\n", attribute);
         String input = sc.nextLine();
@@ -224,17 +215,8 @@ public class NetflixTitleContainer {
        */
     public void changeShowAttribute(String attribute, String title) {
         NetflixShow show = database.getShow(title);
+
         database.removeShow(title);
-
-        String t_show_id      = show.getID();
-        String t_title        = show.getTitle();
-        String t_director     = show.getDirector();
-        String t_country      = show.getCountry();
-        String t_release_year = show.getYear();
-        String t_rating       = show.getRating();
-        String t_minutes      = show.getDuration();
-        String t_genre        = show.getGenre();
-
 
         System.out.printf("Modifying %s\n", attribute);
         String input = sc.nextLine();
