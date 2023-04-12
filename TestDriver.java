@@ -54,7 +54,7 @@ public class TestDriver {
                 database.buildMovieWithPrompt();
                 break;
             case 1: 
-                database.buildShowWithPrompt();
+                database.buildTVShowWithPrompt();
                 break;
         }
     }
@@ -150,6 +150,7 @@ public class TestDriver {
             is displayed.
         */
     public static void searchDirector(String type) {
+        int n;
         if (type.equalsIgnoreCase("TV Show")) {
             database.displayShowDirectors();
             System.out.print("> ");
@@ -184,6 +185,7 @@ public class TestDriver {
             the country is displayed.
             */
     public static void searchCountry(String type) {
+        int n;
         if (type.equalsIgnoreCase("TV Show")) {
             database.displayShowCountries();
             System.out.print("> ");
@@ -559,11 +561,11 @@ public class TestDriver {
             switch(input) {
                 case 1: 
                     System.out.println("--- Adding a new title ---");
-                    addNewTitle();
+                    addNewTitlePrompt();
                     break;
                 case 2: 
                     System.out.println("--- Deleting a title ---");
-                    deleteTitle(); 
+                    deleteTitlePrompt(); 
                     break;
                 case 3: 
                     System.out.println("--- Searching for a title ---");
@@ -586,7 +588,7 @@ public class TestDriver {
     }
 
     public static void main(String[] args) {
-        addNewFile();
+        addNewFilePrompt();
         mainMenu();
         sc.close();
     }

@@ -120,7 +120,7 @@ public class CSVParser {
             
             // Build and add attributes to respective NetflixTitle type
             if (t_show_id.equalsIgnoreCase("TV Show")) {
-                database.buildShow(
+                database.buildTVShowWithoutPrompt(
                         t_show_id,
                         t_type,
                         t_title,
@@ -133,7 +133,7 @@ public class CSVParser {
 
             }
             else if (t_show_id.equalsIgnoreCase("Movie")) {
-                database.buildMovie(
+                database.buildMovieWithoutPrompt(
                         t_show_id,
                         t_type,
                         t_title,

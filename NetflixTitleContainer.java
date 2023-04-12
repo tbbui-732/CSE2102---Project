@@ -1,10 +1,12 @@
 import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.Collections;
+import java.util.Scanner;
 
 public class NetflixTitleContainer {
     private ArrayList<NetflixMovie> movieContainer = new ArrayList<NetflixMovie>();
     private ArrayList<NetflixShow> showContainer   = new ArrayList<NetflixShow>();
+    private Scanner sc = new Scanner(System.in);
 
     /*
         displayMovieInfo() displays all the information of a given movie name
@@ -83,7 +85,7 @@ public class NetflixTitleContainer {
         // Get all directors
         //      Skip duplicates
         for (int i = 0; i < num_show; i++) {
-            string director = showContainer.get(i).getDirector();
+            String director = showContainer.get(i).getDirector();
 
             if (!directors.contains(director)) {
                 directors.add(director);
@@ -106,7 +108,7 @@ public class NetflixTitleContainer {
         // Get all directors
         //      Skip duplicates
         for (int i = 0; i < num_show; i++) {
-            string director = movieContainer.get(i).getDirector();
+            String director = movieContainer.get(i).getDirector();
 
             if (!directors.contains(director)) {
                 directors.add(director);
@@ -165,6 +167,52 @@ public class NetflixTitleContainer {
         // Display all countries
         for (int i = 0; i < countries.size(); i++) {
             System.out.println(countries.get(i));
+        }
+    }
+
+    public void displayShowGenres() {
+        int num_genres = showContainer.size();
+        ArrayList<String> genres = new ArrayList<String>();
+
+        // Get all genres
+        //      Skip duplicates
+        for (int i = 0; i < num_genres; i++) {
+            String genre = showContainer.get(i).getGenre();
+
+            if (!genres.contains(genre)) {
+                genres.add(genre);
+            }
+        }
+
+        // Sort the genres in alphabetical order
+        Collections.sort(genres);
+
+        // Display all genres
+        for (int i = 0; i < genres.size(); i++) {
+            System.out.println(genres.get(i));
+        }
+    }
+
+    public void displayMovieGenres() {
+        int num_genres = movieContainer.size();
+        ArrayList<String> genres = new ArrayList<String>();
+
+        // Get all genres
+        //      Skip duplicates
+        for (int i = 0; i < num_genres; i++) {
+            String genre = movieContainer.get(i).getGenre();
+
+            if (!genres.contains(genre)) {
+                genres.add(genre);
+            }
+        }
+
+        // Sort the genres in alphabetical order
+        Collections.sort(genres);
+
+        // Display all genres
+        for (int i = 0; i < genres.size(); i++) {
+            System.out.println(genres.get(i));
         }
     }
 
@@ -269,9 +317,8 @@ public class NetflixTitleContainer {
        No return value
        */
     public void changeMovieAttribute(String attribute, String title) {
-        NetflixMovie movie = database.getMovie(title);
-
-        database.removeMovie(title);
+        NetflixMovie movie = getMovie(title);
+        removeMovie(title);
 
         System.out.printf("Modifying %s\n", attribute);
         String input = sc.nextLine();
@@ -302,7 +349,7 @@ public class NetflixTitleContainer {
                 break;
         }
 
-        database.addMovie(movie);
+        addMovie(movie);
         System.out.printf("Successfully modified %s\n", attribute);
     }
 
@@ -311,9 +358,8 @@ public class NetflixTitleContainer {
        No return value
        */
     public void changeShowAttribute(String attribute, String title) {
-        NetflixShow show = database.getShow(title);
-
-        database.removeShow(title);
+        NetflixShow show = getShow(title);
+        removeShow(title);
 
         System.out.printf("Modifying %s\n", attribute);
         String input = sc.nextLine();
@@ -344,7 +390,7 @@ public class NetflixTitleContainer {
                 break;
         }
 
-        database.addShow(show);
+        addShow(show);
         System.out.printf("Successfully modified %s\n", attribute);
     }
 
