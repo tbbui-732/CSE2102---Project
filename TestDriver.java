@@ -150,38 +150,29 @@ public class TestDriver {
             is displayed.
         */
     public static void searchDirector(String type) {
-        ArrayList<String> directors = database.getDirectors();
-        int n = directors.size();
-        System.out.println("Please select from the following directors");
-        int j = 0;
-        for (int i = 0; i < n; i++) {
-            if (directors.get(i).isEmpty()) {
-                continue;
-            }
-            System.out.printf("%d: %s\n", j, directors.get(i));
-            j++;
-        }
-        
-        String director;
-        System.out.print("> ");
-        director = sc.nextLine();
-        
-        // Parsing through movieContainer and showContainer to look for desired director
-        ArrayList<NetflixMovie> movieContainer = database.getMovieContainer();
-        ArrayList<NetflixShow> showContainer = database.getShowContainer();
-        
-        if (type.equalsIgnoreCase("Movie")) {
-            n = movieContainer.size();
-            for (int i = 0; i < n; i++) {
-                if (director.equalsIgnoreCase(movieContainer.get(i).getDirector())) {
-                    System.out.println(movieContainer.get(i).getTitle());
-                }
-            }
-        } else if (type.equalsIgnoreCase("TV Show")) {
+        if (type.equalsIgnoreCase("TV Show")) {
+            database.displayShowDirectors();
+            System.out.print("> ");
+            String director = sc.nextLine();
+            
+            ArrayList<NetflixShow> showContainer = database.getShowContainer();
             n = showContainer.size();
             for (int i = 0; i < n; i++) {
                 if (director.equalsIgnoreCase(showContainer.get(i).getDirector())) {
                     System.out.println(showContainer.get(i).getTitle());
+                }
+            }
+        }
+        else if (type.equalsIgnoreCase("Movie")) {
+            database.displayMovieDirectors();
+            System.out.print("> ");
+            String director = sc.nextLine();
+            
+            ArrayList<NetflixMovie> movieContainer = database.getMovieContainer();
+            n = movieContainer.size();
+            for (int i = 0; i < n; i++) {
+                if (director.equalsIgnoreCase(movieContainer.get(i).getDirector())) {
+                    System.out.println(movieContainer.get(i).getTitle());
                 }
             }
         }
@@ -193,34 +184,29 @@ public class TestDriver {
             the country is displayed.
             */
     public static void searchCountry(String type) {
-        ArrayList<String> countries = database.getCountries();
-        int n = countries.size();
-        System.out.println("Please select from the following countries");
-        int j = 0;
-        for (int i = 0; i < n; i++) {
-            System.out.printf("%d: %s\n", j, countries.get(i));
-            j++;
-        }
+        if (type.equalsIgnoreCase("TV Show")) {
+            database.displayShowCountries();
+            System.out.print("> ");
+            String country = sc.nextLine();
 
-        String country;
-        country = sc.nextLine();
-
-        // Parsing through movieContainer and showContainer to search for desired title
-        ArrayList<NetflixMovie> movieContainer = database.getMovieContainer();
-        ArrayList<NetflixShow> showContainer = database.getShowContainer();
-        
-        if (type.equalsIgnoreCase("Movie")) {
-            n = movieContainer.size();
-            for (int i = 0; i < n; i++) {
-                if (country.equalsIgnoreCase(movieContainer.get(i).getCountry())) {
-                    System.out.println(movieContainer.get(i).getTitle());
-                }
-            }
-        } else if (type.equalsIgnoreCase("TV Show")) {
+            ArrayList<NetflixShow> showContainer = database.getShowContainer();
             n = showContainer.size();
             for (int i = 0; i < n; i++) {
                 if (country.equalsIgnoreCase(showContainer.get(i).getCountry())) {
                     System.out.println(showContainer.get(i).getTitle());
+                }
+            }
+        }
+        else if (type.equalsIgnoreCase("Movie")) {
+            database.displayMovieCountries();
+            System.out.print("> ");
+            String country = sc.nextLine();
+
+            ArrayList<NetflixMovie> movieContainer = database.getMovieContainer();
+            n = movieContainer.size();
+            for (int i = 0; i < n; i++) {
+                if (country.equalsIgnoreCase(movieContainer.get(i).getCountry())) {
+                    System.out.println(movieContainer.get(i).getTitle());
                 }
             }
         }
@@ -231,10 +217,6 @@ public class TestDriver {
         Prompts user to select genre, to which every title associated with 
             the genre is displayed.
             */
-
-    // FIXME: BUG
-    //  When selecting genres, there are some prompts for durations, NOT genres.
-    //      Perhaps something to do with CSVParser (?)
     public static void searchGenre(String type) {
         ArrayList<String> genres = database.getGenres();
         int n = genres.size();
