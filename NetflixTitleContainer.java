@@ -7,16 +7,9 @@ public class NetflixTitleContainer {
 
     /*
         displayMovieInfo() displays all the information of a given movie name
-        Returns 1 if successful, 0 otherwise 
         */
-    public int displayMovieInfo(String movieName) {
+    public void displayMovieInfo(String movieName) {
         int n = movieContainer.size();
-
-        // Return error if empty
-        if (n == 0) {
-            System.out.println("Movies database is currently empty");
-            return 0;
-        }
 
         // Parse information and store into temporary variables
         for (int i = 0; i < n; i++) {
@@ -38,29 +31,19 @@ public class NetflixTitleContainer {
                 System.out.printf("Show ID: %s\n",    show_id);
                 System.out.printf("Rating: %s\n",     rating);
                 System.out.printf("Duration (in minutes): %s\n",   duration);
-
-                return 1;
             }
         }
 
         // Movie does not exist in database
         System.out.printf("The movie '%s' does not exist in the database\n", movieName);
-        return 0;
     }
     
     /*
         displayShowInfo() displays show information given a show name
-        Returns 1 if successful, 0 otherwise 
         */
-    public int displayShowInfo(String showName) {
+    public void displayShowInfo(String showName) {
         int n = showContainer.size();
 
-        // Return error if empty
-        if (n == 0) {
-            System.out.println("Shows database is currently empty");
-            return 0;
-        }
-        
         // Parse information and store into temporary variables
         for (int i = 0; i < n; i++) {
             if (showName == showContainer.get(i).getTitle()) {
@@ -81,14 +64,11 @@ public class NetflixTitleContainer {
                 System.out.printf("Show ID: %s\n",            show_id);
                 System.out.printf("Rating: %s\n",             rating);
                 System.out.printf("Number of seasons: %s\n",  numSeasons);
-
-                return 1;
             }
         }
 
         // Show does not exist in database
         System.out.printf("The show '%s' does not exist in the database\n", showName);
-        return 0;
     }
 
     /*
