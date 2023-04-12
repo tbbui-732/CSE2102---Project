@@ -191,8 +191,10 @@ public class NetflixTitleContainer {
         Build methods that take in respective Netflix title atttributes
             and store them into their respective container, as well
             as updating the containers to be used in TestDriver.
+
+        The attributes are NOT asked for here.
         */
-    public void buildMovie(
+    public void buildMovieWithoutPrompt(
             String  show_id,
             String  type,
             String  title,
@@ -203,6 +205,7 @@ public class NetflixTitleContainer {
             String  minutes,
             String  genre)
     {
+        // Build new movie
         NetflixMovie movie = new NetflixMovie(
                 show_id,
                 type,
@@ -214,11 +217,12 @@ public class NetflixTitleContainer {
                 minutes,
                 genre
                 );
-
+        
+        // Store movie into database
         movieContainer.add(movie);
     }
 
-    public void buildShow(
+    public void buildTVShowWithoutPrompt(
             String  show_id,
             String  type,
             String  title,
@@ -229,6 +233,7 @@ public class NetflixTitleContainer {
             String  seasons,
             String  genre)
     {
+        // Build new show
         NetflixShow show = new NetflixShow(
                 show_id,
                 type,
@@ -241,6 +246,90 @@ public class NetflixTitleContainer {
                 genre
                 );
 
+        // Store show into database
+        showContainer.add(show);
+    }
+
+    /*
+        Build methods that take in respective Netflix title atttributes
+            and store them into their respective container, as well
+            as updating the containers to be used in TestDriver.
+
+        The attributes ARE asked for here.
+        */
+    public void buildMovieWithPrompt() {
+        // Temporary values
+        String  t_show_id;
+        String  t_type = "Movie";
+        String  t_title;
+        String  t_director;
+        String  t_country;
+        String  t_release_year;
+        String  t_rating;
+        String  t_minutes;
+        String  t_genre;
+
+        // Prompt attributes
+        System.out.print("Show ID: ");            t_show_id      = sc.nextLine();
+        System.out.print("Title: ");              t_title        = sc.nextLine();
+        System.out.print("Director: ");           t_director     = sc.nextLine();
+        System.out.print("Country/Countries: ");  t_country      = sc.nextLine();
+        System.out.print("Release year: ");       t_release_year = sc.nextLine();
+        System.out.print("Rating: ");             t_rating       = sc.nextLine();
+        System.out.print("Duration: ");           t_minutes      = sc.nextLine();
+        System.out.print("Genre: ");              t_genre        = sc.nextLine();
+
+        NetflixMovie movie = new NetflixMovie(
+                t_show_id,
+                t_type,
+                t_title,
+                t_director,
+                t_country,
+                t_release_year,
+                t_rating,
+                t_minutes,
+                t_genre
+                );
+
+        movieContainer.add(movie);
+    }
+
+    public void buildTVShowWithPrompt() {
+        // Temporary values
+        String  t_show_id;
+        String  t_type = "TV Show";
+        String  t_title;
+        String  t_director;
+        String  t_country;
+        String  t_release_year;
+        String  t_rating;
+        String  t_seasons;
+        String  t_genre;
+
+        // Prompt attributes
+        System.out.print("Show ID: ");            t_show_id      = sc.nextLine();
+        System.out.print("Title: ");              t_title        = sc.nextLine();
+        System.out.print("Director: ");           t_director     = sc.nextLine();
+        System.out.print("Country/Countries: ");  t_country      = sc.nextLine();
+        System.out.print("Release year: ");       t_release_year = sc.nextLine();
+        System.out.print("Rating: ");             t_rating       = sc.nextLine();
+        System.out.print("Number of seasons: ");  t_seasons      = sc.nextLine();
+        System.out.print("Genre: ");              t_genre        = sc.nextLine();
+
+        // Build show
+        NetflixShow show = new NetflixShow(
+                t_show_id,
+                t_type,
+                t_title,
+                t_director,
+                t_country,
+                t_release_year,
+                t_rating,
+                t_seasons,
+                t_genre
+                );
+
+        // Store show into container
         showContainer.add(show);
     }
 }

@@ -30,108 +30,6 @@ public class TestDriver {
     }
 
     /*
-        buildTVShow() prompts user for NetflixShow attributes,
-            in order to create a new NetflixShow object;
-        This object is added to the database as a "TV Show" type.
-
-        No return value. 
-       */
-    public static void buildTVShow() {
-        // Temporary values
-        String  t_show_id;
-        String  t_type = "TV Show";
-        String  t_title;
-        String  t_director;
-        String  t_country;
-        String  t_release_year;
-        String  t_rating;
-        String  t_seasons;
-        String  t_genre;
-
-        // Prompt attributes
-        System.out.print("Show ID: ");            t_show_id      = sc.nextLine();
-        System.out.print("Title: ");              t_title        = sc.nextLine();
-        System.out.print("Director: ");           t_director     = sc.nextLine();
-        System.out.print("Country/Countries: ");  t_country      = sc.nextLine();
-        System.out.print("Release year: ");       t_release_year = sc.nextLine();
-        System.out.print("Rating: ");             t_rating       = sc.nextLine();
-        System.out.print("Number of seasons: ");  t_seasons      = sc.nextLine();
-        System.out.print("Genre: ");              t_genre        = sc.nextLine();
-
-        // Add prompts to database
-        NetflixShow new_show = new NetflixShow(
-                t_show_id,
-                t_type,
-                t_title,
-                t_director,
-                t_country,
-                t_release_year,
-                t_rating,
-                t_seasons,
-                t_genre
-                );
-
-        // Add show to database
-        database.addShow(new_show);
-
-        // Output TV Show that was just created
-        System.out.println("\n-- Show information --");
-        database.displayShowInfo(t_title);
-        System.out.println("");
-    }
-
-    /*
-        buildMovie() prompts user for NetflixMovie attributes,
-            in order to create a new NetflixMovie object;
-        This object is added to the database as a "Movie" type.
-
-        No return value. 
-       */
-    public static void buildMovie() {
-        // Temporary values
-        String  t_show_id;
-        String  t_type = "Movie";
-        String  t_title;
-        String  t_director;
-        String  t_country;
-        String  t_release_year;
-        String  t_rating;
-        String  t_minutes;
-        String  t_genre;
-
-        // Prompt attributes
-        System.out.print("Show ID: ");            t_show_id      = sc.nextLine();
-        System.out.print("Title: ");              t_title        = sc.nextLine();
-        System.out.print("Director: ");           t_director     = sc.nextLine();
-        System.out.print("Country/Countries: ");  t_country      = sc.nextLine();
-        System.out.print("Release year: ");       t_release_year = sc.nextLine();
-        System.out.print("Rating: ");             t_rating       = sc.nextLine();
-        System.out.print("Duration (in minutes): ");  t_minutes  = sc.nextLine();
-        System.out.print("Genre: ");              t_genre        = sc.nextLine();
-
-        // Add prompts to database
-        NetflixMovie new_movie = new NetflixMovie(
-                t_show_id,
-                t_type,
-                t_title,
-                t_director,
-                t_country,
-                t_release_year,
-                t_rating,
-                t_minutes,
-                t_genre
-                );
-
-        // Add show to database
-        database.addMovie(new_movie);
-
-        // Output TV Show that was just created
-        System.out.println("\n-- Movie information --");
-        database.displayMovieInfo(t_title);
-        System.out.println("");
-    }
-    
-    /*
         attribute: NetflixMovie arguments
         movieTitle: as it implies
 
@@ -908,5 +806,6 @@ public class TestDriver {
     public static void main(String[] args) {
         addNewFile();
         mainMenu();
+        sc.close();
     }
 }
