@@ -71,18 +71,54 @@ public class CSVParser {
             String  t_duration      = attributes.get(7); 
             String  t_genre         = attributes.get(8); 
 
-            // NOTE: remove these temporary files once done testing
-            System.out.println(t_show_id);
-            System.out.println(t_type);
-            System.out.println(t_title);
-            System.out.println(t_director);
-            System.out.println(t_country);
-            System.out.println(t_release_year);
-            System.out.println(t_rating);
-            System.out.println(t_duration);
-            System.out.println(t_genre);
-            System.out.println("");
+            // Reset attributes for clean array list upon next iteration
+            attributes.clear();
 
+            // Clean data of whitespaces
+            // This is done so that the UI is cleaner when 
+            //      the user wants to see a title's information
+            //      displayed
+            if (t_show_id.equalsIgnoreCase("")) {
+                t_show_id = "[show_id not given]";
+            }
+            if (t_type.equalsIgnoreCase("")) {
+                t_type = "[type not given]";
+            }
+            if (t_title.equalsIgnoreCase("")) {
+                t_title = "[title not given]";
+            }
+            if (t_director.equalsIgnoreCase("")) {
+                t_director = "[director not given]";
+            }
+            if (t_country.equalsIgnoreCase("")) {
+                t_country = "[country not given]";
+            }
+            if (t_release_year.equalsIgnoreCase("")) {
+                t_release_year = "[release_year not given]";
+            }
+            if (t_rating.equalsIgnoreCase("")) {
+                t_rating = "[rating not given]";
+            }
+            if (t_duration.equalsIgnoreCase("")) {
+                t_duration = "[duration not given]";
+            }
+            if (t_genre.equalsIgnoreCase("")) {
+                t_genre = "[genre not given]";
+            }
+            
+            // NOTE: uncomment this to display results (for testing purposes)
+            // System.out.println(t_show_id     );
+            // System.out.println(t_type        );
+            // System.out.println(t_title       );
+            // System.out.println(t_director    );
+            // System.out.println(t_country     );
+            // System.out.println(t_release_year);
+            // System.out.println(t_rating      );
+            // System.out.println(t_duration    );
+            // System.out.println(t_genre       );
+            // System.out.println();
+            
+            // Build and add attributes to respective NetflixTitle type
             if (t_show_id.equalsIgnoreCase("TV Show")) {
                 database.buildShow(
                         t_show_id,
