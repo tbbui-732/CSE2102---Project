@@ -4,23 +4,12 @@ import java.util.Dictionary;
 public class NetflixTitleContainer {
     private ArrayList<NetflixMovie> movieContainer = new ArrayList<NetflixMovie>();
     private ArrayList<NetflixShow> showContainer   = new ArrayList<NetflixShow>();
-    private ArrayList<String> directors = new ArrayList<String>();
-    private ArrayList<String> countries = new ArrayList<String>();
-    private ArrayList<String> genres = new ArrayList<String>();
-
 
     /*
         displayMovieInfo() displays all the information of a given movie name
-        Returns 1 if successful, 0 otherwise 
         */
-    public int displayMovieInfo(String movieName) {
+    public void displayMovieInfo(String movieName) {
         int n = movieContainer.size();
-
-        // Return error if empty
-        if (n == 0) {
-            System.out.println("Movies database is currently empty");
-            return 0;
-        }
 
         // Parse information and store into temporary variables
         for (int i = 0; i < n; i++) {
@@ -42,29 +31,19 @@ public class NetflixTitleContainer {
                 System.out.printf("Show ID: %s\n",    show_id);
                 System.out.printf("Rating: %s\n",     rating);
                 System.out.printf("Duration (in minutes): %s\n",   duration);
-
-                return 1;
             }
         }
 
         // Movie does not exist in database
         System.out.printf("The movie '%s' does not exist in the database\n", movieName);
-        return 0;
     }
     
     /*
         displayShowInfo() displays show information given a show name
-        Returns 1 if successful, 0 otherwise 
         */
-    public int displayShowInfo(String showName) {
+    public void displayShowInfo(String showName) {
         int n = showContainer.size();
 
-        // Return error if empty
-        if (n == 0) {
-            System.out.println("Shows database is currently empty");
-            return 0;
-        }
-        
         // Parse information and store into temporary variables
         for (int i = 0; i < n; i++) {
             if (showName == showContainer.get(i).getTitle()) {
@@ -85,18 +64,14 @@ public class NetflixTitleContainer {
                 System.out.printf("Show ID: %s\n",            show_id);
                 System.out.printf("Rating: %s\n",             rating);
                 System.out.printf("Number of seasons: %s\n",  numSeasons);
-
-                return 1;
             }
         }
 
         // Show does not exist in database
         System.out.printf("The show '%s' does not exist in the database\n", showName);
-        return 0;
     }
 
     /*
-        Mutator methods -
         Given a particular Netflix type, store the information into 
             their respective container. 
             */
@@ -109,28 +84,31 @@ public class NetflixTitleContainer {
     }
 
     /*
-        removeTitle() removes title from database based on given title 
+        Removal methods
+        Wipes title from database
         */
-    public void removeTitle(String title) {
+    public void removeMovie(String title) {
+        int n = movieContainer.size();
+        for (int i = 0; i < n; i++) {
+            if (title.equalsIgnoreCase(movieContainer.get(i).getTitle())) {
+                movieContainer.remove(i);
+                System.out.printf("Successfully removed %s\n", title);
+                return;
+            }
+        }
+        System.out.printf("%s does not exist", title);
+    }
 
-        // Parse through both containers and remove the title if they match
+    public void removeShow(String title) {
         int n = showContainer.size();
         for (int i = 0; i < n; i++) {
             if (title.equalsIgnoreCase(showContainer.get(i).getTitle())) {
-                System.out.printf("Successfully removed %s\n", title);
                 showContainer.remove(i);
-                return;
-            }
-        }
-
-        n = movieContainer.size();
-        for (int i = 0; i < n; i++) {
-            if (title.equalsIgnoreCase(movieContainer.get(i).getTitle())) {
                 System.out.printf("Successfully removed %s\n", title);
-                movieContainer.remove(i);                
                 return;
             }
         }
+        System.out.printf("%s does not exist", title);
     }
 
     // Accessor methods
@@ -190,47 +168,13 @@ public class NetflixTitleContainer {
     }
 
     /*
-        These methods keep track of attributes to be displayed in TestDriver 
-        */
-    public void addDirector(String director) {
-        if (!directors.contains(director)) {
-            directors.add(director);  
-        }
-    }
-
-    public void addCountry(String country) {
-        if (!countries.contains(country)) {
-            countries.add(country);
-        }
-    }
-
-    public void addGenre(String genre) {
-        if (!genres.contains(genre)) {
-            genres.add(genre);
-        }
-    }
-    
-    /*
-        These methods return the attributes to be displayed 
-        */
-    public ArrayList<String> getDirectors() {
-        return directors;
-    }
-    
-    public ArrayList<String> getCountries() {
-        return countries;
-    }
-
-    public ArrayList<String> getGenres() {
-        return genres;
-    }
-    
-    /*
         Build methods that take in respective Netflix title atttributes
             and store them into their respective container, as well
             as updating the containers to be used in TestDriver.
+
+        The attributes are NOT asked for here.
         */
-    public void buildMovie(
+    public void buildMovieWithoutPrompt(
             String  show_id,
             String  type,
             String  title,
@@ -241,6 +185,7 @@ public class NetflixTitleContainer {
             String  minutes,
             String  genre)
     {
+        // Build new movie
         NetflixMovie movie = new NetflixMovie(
                 show_id,
                 type,
@@ -252,14 +197,12 @@ public class NetflixTitleContainer {
                 minutes,
                 genre
                 );
-
+        
+        // Store movie into database
         movieContainer.add(movie);
-        addDirector(director);
-        addCountry(country);
-        addGenre(genre);
     }
 
-    public void buildShow(
+    public void buildTVShowWithoutPrompt(
             String  show_id,
             String  type,
             String  title,
@@ -270,6 +213,7 @@ public class NetflixTitleContainer {
             String  seasons,
             String  genre)
     {
+        // Build new show
         NetflixShow show = new NetflixShow(
                 show_id,
                 type,
@@ -282,9 +226,90 @@ public class NetflixTitleContainer {
                 genre
                 );
 
+        // Store show into database
         showContainer.add(show);
-        addDirector(director);
-        addCountry(country);
-        addGenre(genre);
+    }
+
+    /*
+        Build methods that take in respective Netflix title atttributes
+            and store them into their respective container, as well
+            as updating the containers to be used in TestDriver.
+
+        The attributes ARE asked for here.
+        */
+    public void buildMovieWithPrompt() {
+        // Temporary values
+        String  t_show_id;
+        String  t_type = "Movie";
+        String  t_title;
+        String  t_director;
+        String  t_country;
+        String  t_release_year;
+        String  t_rating;
+        String  t_minutes;
+        String  t_genre;
+
+        // Prompt attributes
+        System.out.print("Show ID: ");            t_show_id      = sc.nextLine();
+        System.out.print("Title: ");              t_title        = sc.nextLine();
+        System.out.print("Director: ");           t_director     = sc.nextLine();
+        System.out.print("Country/Countries: ");  t_country      = sc.nextLine();
+        System.out.print("Release year: ");       t_release_year = sc.nextLine();
+        System.out.print("Rating: ");             t_rating       = sc.nextLine();
+        System.out.print("Duration: ");           t_minutes      = sc.nextLine();
+        System.out.print("Genre: ");              t_genre        = sc.nextLine();
+
+        NetflixMovie movie = new NetflixMovie(
+                t_show_id,
+                t_type,
+                t_title,
+                t_director,
+                t_country,
+                t_release_year,
+                t_rating,
+                t_minutes,
+                t_genre
+                );
+
+        movieContainer.add(movie);
+    }
+
+    public void buildTVShowWithPrompt() {
+        // Temporary values
+        String  t_show_id;
+        String  t_type = "TV Show";
+        String  t_title;
+        String  t_director;
+        String  t_country;
+        String  t_release_year;
+        String  t_rating;
+        String  t_seasons;
+        String  t_genre;
+
+        // Prompt attributes
+        System.out.print("Show ID: ");            t_show_id      = sc.nextLine();
+        System.out.print("Title: ");              t_title        = sc.nextLine();
+        System.out.print("Director: ");           t_director     = sc.nextLine();
+        System.out.print("Country/Countries: ");  t_country      = sc.nextLine();
+        System.out.print("Release year: ");       t_release_year = sc.nextLine();
+        System.out.print("Rating: ");             t_rating       = sc.nextLine();
+        System.out.print("Number of seasons: ");  t_seasons      = sc.nextLine();
+        System.out.print("Genre: ");              t_genre        = sc.nextLine();
+
+        // Build show
+        NetflixShow show = new NetflixShow(
+                t_show_id,
+                t_type,
+                t_title,
+                t_director,
+                t_country,
+                t_release_year,
+                t_rating,
+                t_seasons,
+                t_genre
+                );
+
+        // Store show into container
+        showContainer.add(show);
     }
 }
