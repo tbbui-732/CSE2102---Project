@@ -31,12 +31,11 @@ public class CSVParser {
 
             // Parse through the given line
             for (int i = 0; i < line.length(); i++) {
-
                 // Parsing regular words
                 if (line.charAt(i) == ',') {
                     attributes.add(word);
                     word = "";
-                    i++;
+                    continue;
                 }
 
                 // Parsing through attributes with multiple
@@ -53,6 +52,11 @@ public class CSVParser {
                 }
 
                 word += line.charAt(i);
+
+                // Add word to attributes if it's the last one
+                if (i == line.length()-1) {
+                    attributes.add(word);
+                }
             }        
             
             // Put the attributes into either NetflixShow or NetflixMovie
@@ -66,6 +70,18 @@ public class CSVParser {
             String  t_rating        = attributes.get(6); 
             String  t_duration      = attributes.get(7); 
             String  t_genre         = attributes.get(8); 
+
+            // NOTE: remove these temporary files once done testing
+            System.out.println(t_show_id);
+            System.out.println(t_type);
+            System.out.println(t_title);
+            System.out.println(t_director);
+            System.out.println(t_country);
+            System.out.println(t_release_year);
+            System.out.println(t_rating);
+            System.out.println(t_duration);
+            System.out.println(t_genre);
+            System.out.println("");
 
             if (t_show_id.equalsIgnoreCase("TV Show")) {
                 database.buildShow(
