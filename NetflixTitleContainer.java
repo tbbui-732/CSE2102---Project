@@ -4,10 +4,6 @@ import java.util.Dictionary;
 public class NetflixTitleContainer {
     private ArrayList<NetflixMovie> movieContainer = new ArrayList<NetflixMovie>();
     private ArrayList<NetflixShow> showContainer   = new ArrayList<NetflixShow>();
-    private ArrayList<String> directors = new ArrayList<String>();
-    private ArrayList<String> countries = new ArrayList<String>();
-    private ArrayList<String> genres = new ArrayList<String>();
-
 
     /*
         displayMovieInfo() displays all the information of a given movie name
@@ -96,7 +92,6 @@ public class NetflixTitleContainer {
     }
 
     /*
-        Mutator methods -
         Given a particular Netflix type, store the information into 
             their respective container. 
             */
@@ -109,28 +104,31 @@ public class NetflixTitleContainer {
     }
 
     /*
-        removeTitle() removes title from database based on given title 
+        Removal methods
+        Wipes title from database
         */
-    public void removeTitle(String title) {
+    public void removeMovie(String title) {
+        int n = movieContainer.size();
+        for (int i = 0; i < n; i++) {
+            if (title.equalsIgnoreCase(movieContainer.get(i).getTitle())) {
+                movieContainer.remove(i);
+                System.out.printf("Successfully removed %s\n", title);
+                return;
+            }
+        }
+        System.out.printf("%s does not exist", title);
+    }
 
-        // Parse through both containers and remove the title if they match
+    public void removeShow(String title) {
         int n = showContainer.size();
         for (int i = 0; i < n; i++) {
             if (title.equalsIgnoreCase(showContainer.get(i).getTitle())) {
-                System.out.printf("Successfully removed %s\n", title);
                 showContainer.remove(i);
-                return;
-            }
-        }
-
-        n = movieContainer.size();
-        for (int i = 0; i < n; i++) {
-            if (title.equalsIgnoreCase(movieContainer.get(i).getTitle())) {
                 System.out.printf("Successfully removed %s\n", title);
-                movieContainer.remove(i);                
                 return;
             }
         }
+        System.out.printf("%s does not exist", title);
     }
 
     // Accessor methods
@@ -190,42 +188,6 @@ public class NetflixTitleContainer {
     }
 
     /*
-        These methods keep track of attributes to be displayed in TestDriver 
-        */
-    public void addDirector(String director) {
-        if (!directors.contains(director)) {
-            directors.add(director);  
-        }
-    }
-
-    public void addCountry(String country) {
-        if (!countries.contains(country)) {
-            countries.add(country);
-        }
-    }
-
-    public void addGenre(String genre) {
-        if (!genres.contains(genre)) {
-            genres.add(genre);
-        }
-    }
-    
-    /*
-        These methods return the attributes to be displayed 
-        */
-    public ArrayList<String> getDirectors() {
-        return directors;
-    }
-    
-    public ArrayList<String> getCountries() {
-        return countries;
-    }
-
-    public ArrayList<String> getGenres() {
-        return genres;
-    }
-    
-    /*
         Build methods that take in respective Netflix title atttributes
             and store them into their respective container, as well
             as updating the containers to be used in TestDriver.
@@ -254,9 +216,6 @@ public class NetflixTitleContainer {
                 );
 
         movieContainer.add(movie);
-        addDirector(director);
-        addCountry(country);
-        addGenre(genre);
     }
 
     public void buildShow(
@@ -283,8 +242,5 @@ public class NetflixTitleContainer {
                 );
 
         showContainer.add(show);
-        addDirector(director);
-        addCountry(country);
-        addGenre(genre);
     }
 }
