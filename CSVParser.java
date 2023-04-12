@@ -1,78 +1,100 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 import java.io.File;
-import java.io.IOException;
 import java.io.FileNotFoundException;
 
 public class CSVParser {
+    private NetflixTitleContainer database = new NetflixTitleContainer();
     private String filename;
-    Scanner file_sc;
-    NetflixTitleContainer database = new NetflixTitleContainer(); 
+    private Scanner file_sc;
 
     public CSVParser(String filename) throws FileNotFoundException {
         this.filename = filename;
-
-        // Throw an exception if file is not found
+        
+        // Make sure that the file given exists
         try {
             file_sc = new Scanner(new File(filename));
-        } catch (FileNotFoundException error) {
+        } 
+        catch (FileNotFoundException e) {
             throw new FileNotFoundException("FileNotFoundException: " + filename + " does not exist");
         }
     }
 
-    // Parses every line in CSV and puts information into the corresponding container
-    // Returns database if successful
     public NetflixTitleContainer parseCSVFile() {
-        File file = new File(filename);
-        try {
-            Scanner file_sc = new Scanner(file);
+        // Skip line that contains CSV format
+        file_sc.nextLine(); 
+        
+        ArrayList<String> attributes = new ArrayList<String>();
+        while (file_sc.hasNextLine()) {
+            String line = file_sc.nextLine();
+            String word = "";
 
-            // Loop through every line in the CSV file
-            while (file_sc.hasNextLine()) {
-                String line = file_sc.nextLine();
-                Scanner line_sc = new Scanner(line);
-                line_sc.useDelimiter(",");
+            // Parse through the given line
+            for (int i = 0; i < line.length(); i++) {
 
-                // Temporary variables
-                String  t_show_id       = line_sc.next();
-                String  t_type          = line_sc.next();
-                String  t_title         = line_sc.next();
-                String  t_director      = line_sc.next();
-                String  t_country       = line_sc.next();
-                String  t_release_year  = line_sc.next(); 
-                String  t_rating        = line_sc.next();
-                String  t_duration      = line_sc.next();
-                String  t_genre         = line_sc.next();
-
-                if (t_type.equalsIgnoreCase("TV Show")) {
-                    database.buildShow(
-                            t_show_id,
-                            t_type,
-                            t_title,
-                            t_director,
-                            t_country,
-                            t_release_year,
-                            t_rating,
-                            t_duration,
-                            t_genre);
-                } else if (t_type.equalsIgnoreCase("Movie")) {
-                    database.buildMovie(
-                            t_show_id,
-                            t_type,
-                            t_title,
-                            t_director,
-                            t_country,
-                            t_release_year,
-                            t_rating,
-                            t_duration,
-                            t_genre);
+                // Parsing regular words
+                if (line.charAt(i) == ',') {
+                    attributes.add(word);
+                    word = "";
+                    i++;
                 }
-                line_sc.close();
+
+                // Parsing through attributes with multiple
+                //      strings
+                if (line.charAt(i) == '\"') {
+                    i++; 
+                    while (line.charAt(i) != '\"') {
+                        word += line.charAt(i);
+                        i++;
+                    }
+                    attributes.add(word);
+                    word = "";
+                    continue;
+                }
+
+                word += line.charAt(i);
+            }        
+            
+            // Put the attributes into either NetflixShow or NetflixMovie
+            //      depending on the given type
+            String  t_show_id       = attributes.get(0);
+            String  t_type          = attributes.get(1); 
+            String  t_title         = attributes.get(2); 
+            String  t_director      = attributes.get(3); 
+            String  t_country       = attributes.get(4); 
+            String  t_release_year  = attributes.get(5); 
+            String  t_rating        = attributes.get(6); 
+            String  t_duration      = attributes.get(7); 
+            String  t_genre         = attributes.get(8); 
+
+            if (t_show_id.equalsIgnoreCase("TV Show")) {
+                database.buildShow(
+                        t_show_id,
+                        t_type,
+                        t_title,
+                        t_director,
+                        t_country,
+                        t_release_year,
+                        t_rating,
+                        t_duration,
+                        t_genre);
+
             }
-            file_sc.close();
+            else if (t_show_id.equalsIgnoreCase("Movie")) {
+                database.buildMovie(
+                        t_show_id,
+                        t_type,
+                        t_title,
+                        t_director,
+                        t_country,
+                        t_release_year,
+                        t_rating,
+                        t_duration,
+                        t_genre);
+            }
         }
-        catch (IOException error) {
-            error.printStackTrace();
-        }
+        file_sc.close();
         return database;
     }
 }
+
