@@ -321,6 +321,7 @@ public class NetflixTitleContainer {
         removeMovie(title);
 
         System.out.printf("Modifying %s\n", attribute);
+        System.out.print("> ");
         String input = sc.nextLine();
         switch(attribute) {
             case "id": 
