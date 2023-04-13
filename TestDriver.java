@@ -67,19 +67,45 @@ public class TestDriver {
         No return value. 
         */
     public static void deleteTitlePrompt() {
-        System.out.print("TV Show or Movie: ");
-        String type = sc.nextLine();
-        System.out.print("Enter title to delete: ");
-        String title = sc.nextLine();
+        // Store all titles into a single array list
+        ArrayList<String> showTitles = database.getShowTitles();
+        ArrayList<String> movieTitles = database.getMovieTitles();
+        ArrayList<String> allTitles = new ArrayList<String>();
+        allTitles.addAll(movieTitles);
+        allTitles.addAll(showTitles);
 
-        if (type.equalsIgnoreCase("TV Show")) {
-            database.removeShow(title);
-        } 
-        else if (type.equalsIgnoreCase("Movie")) {
-            database.removeMovie(title);
-        }
-        else {
-            System.out.println("Invalid type");
+        // Display all the titles
+        for (int i = 0; i < allTitles.size(); i++) {
+
+            // This function displays the titles
+            if (i >= 0 && i < movieTitles.size()) {
+                System.out.printf("%d: %s\n", i+1, movieTitles.get(i));
+            } else if (i >= movieTitles.size() && i <= allTitles.size()) {
+                System.out.printf("%d: %s\n", i+1, showTitles.get(i - movieTitles.size()));
+            }
+
+            // During every 10th title shown, prompt the user for their input
+            if ((i+1) % 10 == 0) {
+                System.out.println("|Hit space to see more, or type the number of the title you would like to remove|");
+                System.out.print("> ");
+                String input = sc.nextLine();
+                if (input.equals("")) {
+                    continue;
+                } else {
+
+                    // If a number was selected, then delete the associated number
+                    int num = Integer.parseInt(input);
+                    System.out.printf("Title: %s will be deleted now\n", allTitles.get(num-1));
+
+                    if (i >= 0 && i < movieTitles.size()) {
+                        database.removeMovie(allTitles.get(num-1));
+                    } else if (i >= movieTitles.size() && i <= allTitles.size()) {
+                        database.removeShow(allTitles.get(num-1));
+                    }
+
+                    return;
+                }
+            }
         }
     }
    

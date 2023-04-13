@@ -78,6 +78,52 @@ public class NetflixTitleContainer {
         Given an attribute, display the names of those
             attributes from every movie or show
     */
+
+    public ArrayList<String> getShowTitles() {
+        int num_show = showContainer.size();
+        ArrayList<String> titles = new ArrayList<String>();
+
+        // Get all title 
+        //  SKip duplicates
+        for (int i = 0; i < num_show; i++) {
+            String title = showContainer.get(i).getTitle();
+
+            if (title.equalsIgnoreCase("[title not given]")) {
+                continue;
+            } else if (!titles.contains(title)) {
+                titles.add(title);
+            }
+        }
+
+        // Sort the titles in alphabetical order
+        Collections.sort(titles);
+        
+        return titles;
+    }
+
+    public ArrayList<String> getMovieTitles() {
+        int num_movie = movieContainer.size();
+        ArrayList<String> titles = new ArrayList<String>();
+
+        // Get all titles
+        //      Skip duplicates
+        for (int i = 0; i < num_movie; i++) {
+            String title = movieContainer.get(i).getTitle();
+
+            if (title.equalsIgnoreCase("[title not given]")) {
+                continue;
+            } else if (!titles.contains(title)) {
+                titles.add(title);
+            }
+
+        }
+
+        // Sort the titles in alphabetical order
+        Collections.sort(titles);
+        
+        return titles;
+    }
+    
     public void displayShowDirectors() {
         int num_show = showContainer.size();
         ArrayList<String> directors = new ArrayList<String>();
