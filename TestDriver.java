@@ -97,9 +97,9 @@ public class TestDriver {
                     int num = Integer.parseInt(input);
                     System.out.printf("Title: %s will be deleted now\n", allTitles.get(num-1));
 
-                    if (i >= 0 && i < movieTitles.size()) {
+                    if (num >= 0 && num < movieTitles.size()) {
                         database.removeMovie(allTitles.get(num-1));
-                    } else if (i >= movieTitles.size() && i <= allTitles.size()) {
+                    } else if (num >= movieTitles.size() && num <= allTitles.size()) {
                         database.removeShow(allTitles.get(num-1));
                     }
 
