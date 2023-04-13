@@ -523,7 +523,8 @@ public class TestDriver {
         type = sc.nextLine();
 
         // Search based on attributes
-        System.out.println("Type attribute you searching based on?");
+        System.out.println("-- Type the attribute you are searching based on --");
+        System.out.printf("title [note: this displays all titles of type %s]\n", type);
         System.out.println("director");
         System.out.println("country");
         System.out.println("genre");
@@ -534,6 +535,44 @@ public class TestDriver {
         attribute = sc.nextLine();
 
         switch(attribute) {
+            case "title":
+                ArrayList<String> titles = new ArrayList<String>();
+                int int_type = 0;
+                if (type.equalsIgnoreCase("TV Show")) { 
+                    titles = database.getShowTitles(); 
+                }
+                else if (type.equalsIgnoreCase("Movie")) { 
+                    titles = database.getMovieTitles(); 
+                    int_type = 1;
+                }
+
+                // Display all the titles
+                for (int i = 0; i < titles.size(); i++) {
+                    System.out.printf("%d: %s\n", i+1, titles.get(i));
+                }
+                
+                // Prompt user to make selection
+                System.out.println("Select number to display title information or 'q' to quit");
+                System.out.print("> ");
+                String selection = sc.nextLine();
+                
+                // Quit or convert value to integer
+                int num;
+                if (selection.equalsIgnoreCase("q")) {
+                    return;
+                } else {
+                    num = Integer.parseInt(selection);
+                }
+
+                // Display the information of the selected title
+                String title = titles.get(num-1);
+                System.out.printf("-- Displaying %s ---\n", title);
+                if (int_type == 0) { // TV Show
+                    database.displayShowInfo(title);
+                } else if (int_type == 1) { // Movie
+                    database.displayMovieInfo(title);
+                }
+                break;
             case "director": 
                 searchDirector(type);
                 break;

@@ -34,6 +34,7 @@ public class NetflixTitleContainer {
                 System.out.printf("Show ID: %s\n",    show_id);
                 System.out.printf("Rating: %s\n",     rating);
                 System.out.printf("Duration (in minutes): %s\n",   duration);
+                return;
             }
         }
 
@@ -67,6 +68,7 @@ public class NetflixTitleContainer {
                 System.out.printf("Show ID: %s\n",            show_id);
                 System.out.printf("Rating: %s\n",             rating);
                 System.out.printf("Number of seasons: %s\n",  numSeasons);
+                return;
             }
         }
 
