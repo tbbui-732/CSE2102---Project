@@ -86,8 +86,10 @@ public class NetflixTitleContainer {
         //      Skip duplicates
         for (int i = 0; i < num_show; i++) {
             String director = showContainer.get(i).getDirector();
-
-            if (!directors.contains(director)) {
+            
+            if (director.equalsIgnoreCase("[director not given]")) {
+                continue;
+            } else if (!directors.contains(director)) {
                 directors.add(director);
             }
         }
@@ -109,8 +111,10 @@ public class NetflixTitleContainer {
         //      Skip duplicates
         for (int i = 0; i < num_show; i++) {
             String director = movieContainer.get(i).getDirector();
-
-            if (!directors.contains(director)) {
+            
+            if (director.equalsIgnoreCase("[director not given]")) {
+                continue;
+            } else if (!directors.contains(director)) {
                 directors.add(director);
             }
         }
@@ -132,8 +136,10 @@ public class NetflixTitleContainer {
         //      Skip duplicates
         for (int i = 0; i < num_countries; i++) {
             String country = showContainer.get(i).getCountry();
-
-            if (!countries.contains(country)) {
+            
+            if (country.equalsIgnoreCase("[country not given]")) {
+                continue;
+            } else if (!countries.contains(country)) {
                 countries.add(country);
             }
         }
@@ -155,8 +161,10 @@ public class NetflixTitleContainer {
         //      Skip duplicates
         for (int i = 0; i < num_countries; i++) {
             String country = movieContainer.get(i).getCountry();
-
-            if (!countries.contains(country)) {
+                
+            if (country.equalsIgnoreCase("[country not given]")) {
+                continue;
+            } else if (!countries.contains(country)) {
                 countries.add(country);
             }
         }
@@ -178,8 +186,10 @@ public class NetflixTitleContainer {
         //      Skip duplicates
         for (int i = 0; i < num_genres; i++) {
             String genre = showContainer.get(i).getGenre();
-
-            if (!genres.contains(genre)) {
+                
+            if (genre.equalsIgnoreCase("[genre not given]")) {
+                continue;
+            } else if (!genres.contains(genre)) {
                 genres.add(genre);
             }
         }
@@ -201,8 +211,10 @@ public class NetflixTitleContainer {
         //      Skip duplicates
         for (int i = 0; i < num_genres; i++) {
             String genre = movieContainer.get(i).getGenre();
-
-            if (!genres.contains(genre)) {
+            
+            if (genre.equalsIgnoreCase("[genre not given]")) {
+                continue;
+            } else if (!genres.contains(genre)) {
                 genres.add(genre);
             }
         }

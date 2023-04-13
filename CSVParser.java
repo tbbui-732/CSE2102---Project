@@ -5,12 +5,9 @@ import java.io.FileNotFoundException;
 
 public class CSVParser {
     private NetflixTitleContainer database = new NetflixTitleContainer();
-    private String filename;
     private Scanner file_sc;
 
     public CSVParser(String filename) throws FileNotFoundException {
-        this.filename = filename;
-        
         // Make sure that the file given exists
         try {
             file_sc = new Scanner(new File(filename));
@@ -107,19 +104,19 @@ public class CSVParser {
             }
             
             // NOTE: uncomment this to display results (for testing purposes)
-            // System.out.println(t_show_id     );
-            // System.out.println(t_type        );
-            // System.out.println(t_title       );
-            // System.out.println(t_director    );
-            // System.out.println(t_country     );
-            // System.out.println(t_release_year);
-            // System.out.println(t_rating      );
-            // System.out.println(t_duration    );
-            // System.out.println(t_genre       );
-            // System.out.println();
+            //System.out.println(t_show_id     );
+            //System.out.println(t_type        );
+            //System.out.println(t_title       );
+            //System.out.println(t_director    );
+            //System.out.println(t_country     );
+            //System.out.println(t_release_year);
+            //System.out.println(t_rating      );
+            //System.out.println(t_duration    );
+            //System.out.println(t_genre       );
+            //System.out.println();
             
             // Build and add attributes to respective NetflixTitle type
-            if (t_show_id.equalsIgnoreCase("TV Show")) {
+            if (t_type.equalsIgnoreCase("TV Show")) {
                 database.buildTVShowWithoutPrompt(
                         t_show_id,
                         t_type,
@@ -132,7 +129,7 @@ public class CSVParser {
                         t_genre);
 
             }
-            else if (t_show_id.equalsIgnoreCase("Movie")) {
+            else if (t_type.equalsIgnoreCase("Movie")) {
                 database.buildMovieWithoutPrompt(
                         t_show_id,
                         t_type,

@@ -16,6 +16,7 @@ public class TestDriver {
     public static int promptTitleType() {
         // Get user input
         System.out.println("Would you like to build a TV Show or a Movie?");
+        System.out.print("> ");
         String selection = sc.nextLine();
 
         if (selection.equalsIgnoreCase("TV Show")) {
@@ -77,7 +78,9 @@ public class TestDriver {
         else if (type.equalsIgnoreCase("Movie")) {
             database.removeMovie(title);
         }
-
+        else {
+            System.out.println("Invalid type");
+        }
     }
    
     /*
@@ -220,21 +223,22 @@ public class TestDriver {
             the genre is displayed.
             */
     public static void searchGenre(String type) {
-        ArrayList<String> genres = database.getGenres();
-        int n = genres.size();
-        System.out.println("Please select from the following genres");
-        int j = 0; 
-        for (int i = 0; i < n; i++) {
-            System.out.printf("%d: %s\n", j, genres.get(i));
-            j++;
+        // Display the appropriate genres
+        if (type.equalsIgnoreCase("Movie")) {
+            database.displayMovieGenres();
         }
-        String genre;
-        genre = sc.nextLine();
+        else if (type.equalsIgnoreCase("TV Show")) {
+            database.displayShowGenres();
+        }
+        System.out.println("Please select from the following");
+        System.out.print("> ");
+        String genre = sc.nextLine();
 
         // Parsing through movieContainer and showContainer to get desired title
         ArrayList<NetflixMovie> movieContainer = database.getMovieContainer();
         ArrayList<NetflixShow> showContainer = database.getShowContainer();
         
+        int n;
         if (type.equalsIgnoreCase("Movie")) {
             n = movieContainer.size();
             for (int i = 0; i < n; i++) {
@@ -242,7 +246,8 @@ public class TestDriver {
                     System.out.println(movieContainer.get(i).getTitle());
                 }
             }
-        } else if (type.equalsIgnoreCase("TV Show")) {
+        }
+        else if (type.equalsIgnoreCase("TV Show")) {
             n = showContainer.size();
             for (int i = 0; i < n; i++) {
                 if (genre.equalsIgnoreCase(showContainer.get(i).getGenre())) {
@@ -274,17 +279,17 @@ public class TestDriver {
         rating = sc.nextLine();
 
         // Parsing through movieContainer and showContainer to get desired title
-        ArrayList<NetflixMovie> movieContainer = database.getMovieContainer();
-        ArrayList<NetflixShow> showContainer = database.getShowContainer();
-        
         if (type.equalsIgnoreCase("Movie")) {
+            ArrayList<NetflixMovie> movieContainer = database.getMovieContainer();
             n = movieContainer.size();
             for (int i = 0; i < n; i++) {
                 if (rating.equalsIgnoreCase(movieContainer.get(i).getRating())) {
                     System.out.println(movieContainer.get(i).getTitle());
                 }
             }
-        } else if (type.equalsIgnoreCase("TV Show")) {
+        }
+        else if (type.equalsIgnoreCase("TV Show")) {
+            ArrayList<NetflixShow> showContainer = database.getShowContainer();
             n = showContainer.size();
             for (int i = 0; i < n; i++) {
                 if (rating.equalsIgnoreCase(showContainer.get(i).getRating())) {
@@ -312,17 +317,16 @@ public class TestDriver {
 
         // Display titles with years +/- 50 years
         // Parsing through movieContainer and showContainer to get desired title
-        ArrayList<NetflixMovie> movieContainer = database.getMovieContainer();
-        ArrayList<NetflixShow> showContainer = database.getShowContainer();
-        
         if (type.equalsIgnoreCase("Movie")) {
+            ArrayList<NetflixMovie> movieContainer = database.getMovieContainer();
             n = movieContainer.size();
             for (int i = 0; i < n; i++) {
                 String strYear = movieContainer.get(i).getYear();
-
                 strYear = strYear.replaceAll("[^0-9.]", ""); // Remove all non-numeric characters
 
-                if (strYear.isEmpty()) {strYear = "1950";}
+                if (strYear.isEmpty()) {
+                    strYear = "1950";
+                }
 
                 int currYear = Integer.parseInt(strYear);
 
@@ -330,14 +334,17 @@ public class TestDriver {
                     System.out.println(movieContainer.get(i).getTitle());
                 }
             }
-        } else if (type.equalsIgnoreCase("TV Show")) {
+        } 
+        else if (type.equalsIgnoreCase("TV Show")) {
+            ArrayList<NetflixShow> showContainer = database.getShowContainer();
             n = showContainer.size();
             for (int i = 0; i < n; i++) {
                 String strYear = showContainer.get(i).getYear();
-
                 strYear = strYear.replaceAll("[^0-9.]", ""); // Remove all non-numeric characters
 
-                if (strYear.isEmpty()) {strYear = "1950";}
+                if (strYear.isEmpty()) {
+                    strYear = "1950";
+                }
 
                 int currYear = Integer.parseInt(strYear);
 
@@ -457,7 +464,6 @@ public class TestDriver {
         ArrayList<NetflixShow> showContainer = database.getShowContainer();
         int n = showContainer.size();
         for (int i = 0; i < n; i++) {
-
             String strSeason = showContainer.get(i).getDuration();
             strSeason = strSeason.replaceAll("[^0-9.]", "");
             
@@ -491,13 +497,13 @@ public class TestDriver {
         type = sc.nextLine();
 
         // Search based on attributes
-        System.out.println("Which attribute are you searching based on? (enter full word)");
-        System.out.println("1 > director");
-        System.out.println("2 > country");
-        System.out.println("3 > genre");
-        System.out.println("4 > rating");
-        System.out.println("5 > year");
-        System.out.println("6 > duration");
+        System.out.println("Type attribute you searching based on?");
+        System.out.println("director");
+        System.out.println("country");
+        System.out.println("genre");
+        System.out.println("rating");
+        System.out.println("year");
+        System.out.println("duration");
         System.out.print("> ");
         attribute = sc.nextLine();
 
@@ -531,16 +537,14 @@ public class TestDriver {
         mainMenu() prompts the user for select options. 
         */
     public static void mainMenu() {
-        int input; 
-
         System.out.println("\n--- Please enter number to select following options ---");
-        System.out.println("1. Add a title");
-        System.out.println("2. Delete a title");
-        System.out.println("3. Search for a title (displays information)");
-        System.out.println("4. Modify a title");
-        System.out.println("5. Exit program");
+        System.out.println("1 > Add a title");
+        System.out.println("2 > Delete a title");
+        System.out.println("3 > Search for a title (displays information)");
+        System.out.println("4 > Modify a title");
+        System.out.println("5 > Exit program");
         System.out.print("> ");
-        input = Integer.parseInt(sc.nextLine());
+        int input = Integer.parseInt(sc.nextLine());
 
         while (input < 1 || input > 5 || input == 5) {
             if (input == 5) {
