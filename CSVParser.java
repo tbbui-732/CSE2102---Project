@@ -103,18 +103,6 @@ public class CSVParser {
                 t_genre = "[genre not given]";
             }
             
-            // NOTE: uncomment this to display results (for testing purposes)
-            //System.out.println(t_show_id     );
-            //System.out.println(t_type        );
-            //System.out.println(t_title       );
-            //System.out.println(t_director    );
-            //System.out.println(t_country     );
-            //System.out.println(t_release_year);
-            //System.out.println(t_rating      );
-            //System.out.println(t_duration    );
-            //System.out.println(t_genre       );
-            //System.out.println();
-            
             // Build and add attributes to respective NetflixTitle type
             if (t_type.equalsIgnoreCase("TV Show")) {
                 database.buildTVShowWithoutPrompt(
