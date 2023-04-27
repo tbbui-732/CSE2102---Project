@@ -143,9 +143,7 @@ public class DataParser {
     /* This method keeps track of changes in a copy file for later usage */
     public void UpdateFile(NetflixTitleContainer updatedDatabase) {
 
-        // Generate a new copy file if one doesn't already exist
-        String newFilename = filename + ".copy";
-        persistentFile = new File(newFilename);
+        persistentFile = new File(filename);
 
         try {
             PrintWriter printWriter = new PrintWriter(persistentFile);
