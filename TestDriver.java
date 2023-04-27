@@ -6,6 +6,7 @@ import java.util.ArrayList;
 public class TestDriver {
     private static NetflixTitleContainer database = new NetflixTitleContainer();
     private static Scanner sc = new Scanner(System.in);
+    private static DataParser dataParser;
 
     /*
        promptTitleType() prompts user for title type : ('TV Show', 'Movie')
@@ -120,8 +121,8 @@ public class TestDriver {
         try {
             System.out.print("Please enter the name of the input file: ");
             String filename = sc.nextLine();
-            DataParser csvParser = new DataParser(filename);
-            database = csvParser.parseCSVFile(); // Operates upon and adds each line to database
+            dataParser = new DataParser(filename);
+            database = dataParser.parseCSVFile(); // Operates upon and adds each line to database
         } 
         // Throw error if file does not exist; exitting program...
         catch (FileNotFoundException error) {
