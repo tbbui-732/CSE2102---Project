@@ -157,7 +157,7 @@ public class TestDriver {
 
             // During every 10th title shown, prompt the user for their input
             if ((i+1) % 10 == 0) {
-                System.out.println("|Hit space to see more, or type the number of the title you would like to remove|");
+                System.out.println("|Hit enter to see more, or type the number of the title you would like to remove|");
                 System.out.print("> ");
                 String input = sc.nextLine();
                 if (input.equals("")) {
