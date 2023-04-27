@@ -137,39 +137,57 @@ public class TestDriver {
         No return value.
         */
     public static void modifyExistingTitle() {
-        String type;
-        String title;
-        String attribute;
+        // Store all titles into a single array list
+        ArrayList<String> showTitles = database.getShowTitles();
+        ArrayList<String> movieTitles = database.getMovieTitles();
+        ArrayList<String> allTitles = new ArrayList<String>();
+        allTitles.addAll(movieTitles);
+        allTitles.addAll(showTitles);
 
-        System.out.print("Modify 'TV Show' or 'Movie'? : ");
-        type = sc.nextLine();
+        // Display all the titles
+        for (int i = 0; i < allTitles.size(); i++) {
 
-        System.out.print("Enter title you want to modify: ");
-        title = sc.nextLine();
+            // This function displays the titles
+            if (i >= 0 && i < movieTitles.size()) {
+                System.out.printf("%d: %s\n", i+1, movieTitles.get(i));
+            } else if (i >= movieTitles.size() && i <= allTitles.size()) {
+                System.out.printf("%d: %s\n", i+1, showTitles.get(i - movieTitles.size()));
+            }
 
-        System.out.println("-- Type the attribute you want to change --");
-        System.out.println("title");
-        System.out.println("director");
-        System.out.println("country");
-        System.out.println("genre");
-        System.out.println("id");
-        System.out.println("rating");
-        System.out.println("year");
-        System.out.println("duration");
-        System.out.print("> ");
-        attribute = sc.nextLine();
-        
-        // Make sure type exists
-        while (!(type.equalsIgnoreCase("TV Show")) && !(type.equalsIgnoreCase("Movie"))) {
-            System.out.print("Invalid type: 'TV Show' or 'Movie'? : ");
-            type = sc.nextLine();
-        }
-        
-        // Change attributes
-        if (type.equalsIgnoreCase("TV Show")) {
-            database.changeShowAttribute(attribute, title);
-        } else if (type.equalsIgnoreCase("Movie")) {
-            database.changeMovieAttribute(attribute, title);
+            // During every 10th title shown, prompt the user for their input
+            if ((i+1) % 10 == 0) {
+                System.out.println("|Hit space to see more, or type the number of the title you would like to remove|");
+                System.out.print("> ");
+                String input = sc.nextLine();
+                if (input.equals("")) {
+                    continue;
+                } else {
+
+                    // If a number was selected, then modify the associated number
+                    int num = Integer.parseInt(input);
+
+                    // Ask for attribute to change
+                    System.out.println("-- Type the attribute you want to change --");
+                    System.out.println("title");
+                    System.out.println("director");
+                    System.out.println("country");
+                    System.out.println("genre");
+                    System.out.println("id");
+                    System.out.println("rating");
+                    System.out.println("year");
+                    System.out.println("duration");
+                    System.out.print("> ");
+                    String attribute = sc.nextLine();
+
+                    if (num >= 0 && num < movieTitles.size()) {
+                        database.changeMovieAttribute(attribute, allTitles.get(num-1)); // movie
+                    } else if (num >= movieTitles.size() && num <= allTitles.size()) {
+                        database.changeShowAttribute(attribute, allTitles.get(num-1)); // show
+                    }
+
+                    return;
+                }
+            }
         }
     }
     
