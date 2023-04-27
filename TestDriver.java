@@ -650,10 +650,12 @@ public class TestDriver {
                 case 1: 
                     System.out.println("--- Adding a new title ---");
                     addNewTitlePrompt();
+                    dataParser.UpdateFile(database);
                     break;
                 case 2: 
                     System.out.println("--- Deleting a title ---");
                     deleteTitlePrompt(); 
+                    dataParser.UpdateFile(database);
                     break;
                 case 3: 
                     System.out.println("--- Searching for a title ---");
@@ -662,6 +664,7 @@ public class TestDriver {
                 case 4: 
                     System.out.println("--- Modifying an existing title ---");
                     modifyExistingTitle();
+                    dataParser.UpdateFile(database);
                     break;
             }
             System.out.println("\n--- Please enter number to select following options ---");

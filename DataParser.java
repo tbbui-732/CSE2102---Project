@@ -2,18 +2,23 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class DataParser {
     private NetflixTitleContainer database = new NetflixTitleContainer();
     private Scanner file_sc;
+    private String filename;
+    private File persistentFile;
 
     public DataParser(String filename) throws FileNotFoundException {
         // Make sure that the file given exists
+        this.filename = filename;
         try {
-            file_sc = new Scanner(new File(filename));
+            file_sc = new Scanner(new File(this.filename));
         } 
         catch (FileNotFoundException e) {
-            throw new FileNotFoundException("FileNotFoundException: " + filename + " does not exist");
+            throw new FileNotFoundException("FileNotFoundException: " + this.filename + " does not exist");
         }
     }
 
@@ -132,5 +137,69 @@ public class DataParser {
         }
         file_sc.close();
         return database;
+    }
+
+
+    /* This method keeps track of changes in a copy file for later usage */
+    public void UpdateFile(NetflixTitleContainer updatedDatabase) {
+
+        // Generate a new copy file if one doesn't already exist
+        String newFilename = filename + ".copy";
+        persistentFile = new File(newFilename);
+
+        try {
+            PrintWriter printWriter = new PrintWriter(persistentFile);
+            printWriter.print("");
+            // Write over the copy file with data from the updated database
+            ArrayList<NetflixMovie> movieContainer = updatedDatabase.getMovieContainer();
+            ArrayList<NetflixShow> showContainer = updatedDatabase.getShowContainer();
+            String show_id;
+            String type;
+            String title;
+            String director;
+            String country;
+            String release_year;
+            String rating;
+            String duration;
+            String genre;
+
+            String line = "";
+
+            // Add movies first
+            for (int i = 0; i < movieContainer.size(); i++) {
+                NetflixMovie movie = movieContainer.get(i);
+                show_id      = movie.getID();
+                type         = movie.getType();
+                title        = movie.getTitle();
+                director     = movie.getDirector();
+                country      = movie.getCountry();
+                release_year = movie.getYear();
+                rating       = movie.getRating();
+                duration     = movie.getDuration();
+                genre        = movie.getGenre();
+                line = show_id + "," + type + "," + title + "," + director + "," + country + "," + release_year + "," + rating + "," + duration + "," + genre + "\n";
+                printWriter.print(line);
+            }
+
+            // Add shows
+            for (int i = 0; i < showContainer.size(); i++) {
+                NetflixShow show = showContainer.get(i);
+                show_id      = show.getID();
+                type         = show.getType();
+                title        = show.getTitle();
+                director     = show.getDirector();
+                country      = show.getCountry();
+                release_year = show.getYear();
+                rating       = show.getRating();
+                duration     = show.getDuration();
+                genre        = show.getGenre();
+                line = show_id + "," + type + "," + title + "," + director + "," + country + "," + release_year + "," + rating + "," + duration + "," + genre + "\n";
+                printWriter.print(line);
+            }
+            printWriter.close();
+            System.out.println("Successfully updated copy file");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
