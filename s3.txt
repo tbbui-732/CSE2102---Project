@@ -1,0 +1,52 @@
+show_id	type	title	director	country	release_year	rating	duration	Genre
+s50	TV Show	Castle and Castle		Nigeria	2021	TV-MA	2 Seasons	"International TV Shows, TV Dramas"
+s51	TV Show	Dharmakshetra		India	2014	TV-PG	1 Season	"International TV Shows, TV Dramas, TV Sci-Fi & Fantasy"
+s52	Movie	InuYasha the Movie 2: The Castle Beyond the Looking Glass	Toshiya Shinohara	Japan	2002	TV-14	99 min	"Action & Adventure, Anime Features, International Movies"
+s53	Movie	InuYasha the Movie 3: Swords of an Honorable Ruler	Toshiya Shinohara	Japan	2003	TV-14	99 min	"Action & Adventure, Anime Features, International Movies"
+s54	Movie	InuYasha the Movie 4: Fire on the Mystic Island	Toshiya Shinohara	Japan	2004	TV-PG	88 min	"Action & Adventure, Anime Features, International Movies"
+s55	Movie	InuYasha the Movie: Affections Touching Across Time	Toshiya Shinohara	Japan	2001	TV-PG	100 min	"Action & Adventure, Anime Features, International Movies"
+s56	TV Show	Nailed It		United States	2021	TV-PG	6 Seasons	Reality TV
+s57	Movie	Naruto Shippuden the Movie: Blood Prison	Masahiko Murata	Japan	2011	TV-14	102 min	"Action & Adventure, Anime Features, International Movies"
+s58	Movie	Naruto ShippÃ»den the Movie: Bonds	Hajime Kamegaki	Japan	2008	TV-PG	93 min	"Action & Adventure, Anime Features, International Movies"
+s59	Movie	Naruto ShippÃ»den the Movie: The Will of Fire	Masahiko Murata	Japan	2009	TV-PG	96 min	"Action & Adventure, Anime Features, International Movies"
+s60	Movie	Naruto Shippuden: The Movie	Hajime Kamegaki	Japan	2007	TV-PG	95 min	"Action & Adventure, Anime Features, International Movies"
+s61	Movie	Naruto Shippuden: The Movie: The Lost Tower	Masahiko Murata	Japan	2010	TV-14	85 min	"Action & Adventure, Anime Features, International Movies"
+s62	Movie	Naruto the Movie 2: Legend of the Stone of Gelel	Hirotsugu Kawasaki	Japan	2005	TV-PG	97 min	"Action & Adventure, Anime Features, International Movies"
+s63	Movie	Naruto the Movie 3: Guardians of the Crescent Moon Kingdom	Toshiyuki Tsuru	Japan	2006	TV-PG	95 min	"Action & Adventure, Anime Features, International Movies"
+s64	Movie	Naruto the Movie: Ninja Clash in the Land of Snow	Tensai Okamura	Japan	2004	TV-PG	83 min	"Action & Adventure, Anime Features, International Movies"
+s65	Movie	Nightbooks	David Yarovesky		2021	TV-PG	103 min	Children & Family Movies
+s66	TV Show	Numberblocks		United Kingdom	2021	TV-Y	6 Seasons	Kids' TV
+s67	TV Show	Raja Rasoi Aur Anya Kahaniyan		India	2014	TV-G	1 Season	"Docuseries, International TV Shows"
+s68	TV Show	Saved by the Bell		United States	1994	TV-PG	9 Seasons	"Kids' TV, TV Comedies"
+s69	Movie	Schumacher	"Hanns-Bruno KammertÃ¶ns, Vanessa NÃ¶cker, Michael Wech"		2021	TV-14	113 min	"Documentaries, International Movies, Sports Movies"
+s70	TV Show	Stories by Rabindranath Tagore		India	2015	TV-PG	1 Season	"International TV Shows, TV Dramas"
+s71	TV Show	Too Hot To Handle: Latino			2021	TV-MA	1 Season	"International TV Shows, Reality TV, Romantic TV Shows"
+s72	Movie	A StoryBots Space Adventure	David A. Vargas		2021	TV-Y	13 min	Children & Family Movies
+s73	TV Show	Jack Whitehall: Travels with My Father		United Kingdom	2021	TV-MA	5 Seasons	"British TV Shows, Docuseries, International TV Shows"
+s74	Movie	King of Boys	Kemi Adetiba	Nigeria	2018	TV-MA	182 min	"Dramas, International Movies"
+s75	TV Show	The World's Most Amazing Vacation Rentals			2021	TV-PG	2 Seasons	Reality TV
+s76	Movie	You vs. Wild: Out Cold	Ben Simms		2021	TV-G	106 min	Children & Family Movies
+s77	TV Show	Yowamushi Pedal		Japan	2013	TV-14	1 Season	"Anime Series, International TV Shows"
+s78	Movie	Little Singham - Black Shadow	Prakash Satam		2021	TV-Y7	48 min	"Children & Family Movies, Comedies"
+s79	Movie	Tughlaq Durbar	Delhiprasad Deenadayalan		2020	TV-14	145 min	"Comedies, Dramas, International Movies"
+s80	Movie	Tughlaq Durbar (Telugu)	Delhiprasad Deenadayalan		2021	TV-14	145 min	"Comedies, Dramas, International Movies"
+s81	Movie	Firedrake the Silver Dragon	Tomer Eshed		2021	TV-Y7	93 min	Children & Family Movies
+s82	Movie	Kate	Cedric Nicolas-Troyan	United States	2021	R	106 min	Action & Adventure
+s83	TV Show	Lucifer		United States	2021	TV-14	6 Seasons	"Crime TV Shows, TV Comedies, TV Dramas"
+s84	TV Show	Metal Shop Masters			2021	TV-MA	1 Season	Reality TV
+s85	Movie	Omo Ghetto: the Saga	"JJC Skillz, Funke Akindele"	Nigeria	2020	TV-MA	147 min	"Action & Adventure, Comedies, Dramas"
+s86	TV Show	PokÃ©mon Master Journeys: The Series			2021	TV-Y7	1 Season	"Anime Series, Kids' TV"
+s87	Movie	Prey	Thomas Sieben		2021	TV-MA	87 min	"International Movies, Thrillers"
+s88	TV Show	Titipo Titipo			2019	TV-Y	2 Seasons	"Kids' TV, Korean TV Shows"
+s89	Movie	Blood Brothers: Malcolm X & Muhammad Ali	Marcus Clarke		2021	PG-13	96 min	"Documentaries, Sports Movies"
+s90	TV Show	Mighty Raju			2017	TV-Y7	4 Seasons	Kids' TV
+s91	Movie	Paradise Hills	Alice Waddington	"Spain, United States"	2019	TV-MA	95 min	"Sci-Fi & Fantasy, Thrillers"
+s92	Movie	The Women and the Murderer	"Mona Achache, Patricia Tourancheau"	France	2021	TV-14	92 min	"Documentaries, International Movies"
+s93	TV Show	Into the Night		Belgium	2021	TV-MA	2 Seasons	"International TV Shows, TV Dramas, TV Mysteries"
+s94	Movie	JJ+E	Alexis AlmstrÃ¶m		2021	TV-MA	91 min	"Dramas, International Movies, Romantic Movies"
+s95	Movie	Show Dogs	Raja Gosnell	"United Kingdom, United States"	2018	PG	90 min	"Children & Family Movies, Comedies"
+s96	TV Show	The Circle		"United States, United Kingdom"	2021	TV-MA	3 Seasons	Reality TV
+s97	Movie	If I Leave Here Tomorrow: A Film About Lynyrd Skynyrd	Stephen Kijak	United States	2018	TV-MA	97 min	"Documentaries, Music & Musicals"
+s98	TV Show	Kid Cosmic		United States	2021	TV-Y7	2 Seasons	"Kids' TV, TV Comedies, TV Sci-Fi & Fantasy"
+s99	TV Show	Octonauts: Above & Beyond		United Kingdom	2021	TV-Y	1 Season	"British TV Shows, Kids' TV"
+s100	TV Show	On the Verge		"France, United States"	2021	TV-MA	1 Season	"TV Comedies, TV Dramas"
