@@ -120,7 +120,7 @@ public class TestDriver {
         try {
             System.out.print("Please enter the name of the input file: ");
             String filename = sc.nextLine();
-            CSVParser csvParser = new CSVParser(filename);
+            DataParser csvParser = new DataParser(filename);
             database = csvParser.parseCSVFile(); // Operates upon and adds each line to database
         } 
         // Throw error if file does not exist; exitting program...

@@ -3,11 +3,11 @@ import java.util.ArrayList;
 import java.io.File;
 import java.io.FileNotFoundException;
 
-public class CSVParser {
+public class DataParser {
     private NetflixTitleContainer database = new NetflixTitleContainer();
     private Scanner file_sc;
 
-    public CSVParser(String filename) throws FileNotFoundException {
+    public DataParser(String filename) throws FileNotFoundException {
         // Make sure that the file given exists
         try {
             file_sc = new Scanner(new File(filename));
