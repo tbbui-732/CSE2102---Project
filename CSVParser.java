@@ -29,7 +29,7 @@ public class CSVParser {
             // Parse through the given line
             for (int i = 0; i < line.length(); i++) {
                 // Parsing regular words
-                if (line.charAt(i) == ',') {
+                if (line.charAt(i) == '\t' || line.charAt(i) == ',') {
                     attributes.add(word);
                     word = "";
                     continue;
